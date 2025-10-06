@@ -26,4 +26,16 @@ describe("pathFactory", () => {
       "some/:param.html",
     );
   });
+
+  test("optional params", () => {
+    expect(pathFactory(pathTokensFactory("some/[[param]]"))).toEqual(
+      "some/{/:param}",
+    );
+  });
+
+  test("optional params with extension", () => {
+    expect(pathFactory(pathTokensFactory("some/[[param]].html"))).toEqual(
+      "some/{/:param.html}",
+    );
+  });
 });
