@@ -1,0 +1,42 @@
+import { join } from "node:path";
+
+import { routerRoutesFactory } from "@oreum/api";
+
+import { baseurl, apiurl } from "{{importPathmap.config}}";
+import coreMiddleware from "{{importPathmap.coreMiddleware}}";
+
+{{#each routes}}
+import {{importName}} from "{{importPathmap.api}}";
+import { validationSchemas as {{importName}}ValidationSchemas } from "{{importPathmap.schemas}}";
+{{/each}}
+
+export type RouteName ={{#unless routes.length}} never{{/unless}}
+{{#each routes}}
+| "{{name}}"
+{{/each}};
+
+export const routerRoutes = routerRoutesFactory(
+  [
+    {{#each routes}}
+    {
+      name: "{{name}}",
+      {{#if fullpath}}
+      path: "{{fullpath}}",
+      {{else}}
+      path: join(baseurl, apiurl, "{{path}}"),
+      {{/if}}
+      file: "{{file}}",
+      definitionItems: {{importName}},
+      params: [ {{#each params.schema}}[ "{{name}}", {{isRest}} ], {{/each}}],
+      numericParams: [ {{#each numericParams}}"{{.}}", {{/each}}],
+      validationSchemas: {{importName}}ValidationSchemas,
+      {{#if meta}},
+      meta: {{meta}},
+      {{/if}}
+    },
+    {{/each}}
+  ] as const,
+  {
+    coreMiddleware,
+  }
+);
