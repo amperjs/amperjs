@@ -1,0 +1,8 @@
+{
+  "extends": "@oreum/config/tsconfig.oreum.json",
+  "compilerOptions": {
+    "noEmit": true,
+    "declaration": false,
+    "emitDeclarationOnly": false
+  }
+}
