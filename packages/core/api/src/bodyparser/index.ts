@@ -41,3 +41,36 @@ export function json(opts: JsonOptions = {}): Array<Middleware> {
     },
   ];
 }
+
+export function form(opts: FormOptions = {}): Array<Middleware> {
+  return [
+    async (ctx, next) => {
+      const form = IncomingForm({
+        maxFieldsSize: opts.limit || config.form.limit,
+        maxFileSize: opts.limit || config.form.limit,
+        ...opts,
+      });
+
+      let trimmer = trimmerFactory(opts.trim);
+
+      if (opts.multipart || opts.urlencoded) {
+        trimmer = undefined;
+      }
+
+      ctx.request.body = await new Promise((resolve, reject) => {
+        form.parse(ctx.request.req, (err, fields, files) => {
+          if (err) {
+            return reject(err);
+          }
+
+          resolve({
+            fields: trimmer ? trimmer(fields) : fields,
+            files,
+          });
+        });
+      });
+
+      return next();
+    },
+  ];
+}
