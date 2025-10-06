@@ -50,4 +50,27 @@ describe("pathFactory", () => {
       "some/{*param}.html",
     );
   });
+
+  test("combined params", () => {
+    expect(
+      pathFactory(
+        pathTokensFactory("some/[required]/with/[[optional]]/and/[...rest]"),
+      ),
+    ).toEqual("some/:required/with/{/:optional}/and/{*rest}");
+  });
+
+  test("combined params with extension", () => {
+    expect(
+      pathFactory(
+        pathTokensFactory(
+          "some/[required]/with/[[optional]]/and/[...rest].html",
+        ),
+      ),
+    ).toEqual("some/:required/with/{/:optional}/and/{*rest}.html");
+  });
+
+  test("index prefix replaced with /", () => {
+    expect(pathFactory(pathTokensFactory("index"))).toEqual("");
+    expect(pathFactory(pathTokensFactory("index/[id]"))).toEqual(":id");
+  });
 });
