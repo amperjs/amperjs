@@ -1,0 +1,15 @@
+{{#if route.params.schema.length}}
+import { defineRoute, type ParamsT } from "{{importPathmap.lib}}";
+export default defineRoute<ParamsT>(({ GET }) => [
+  GET(async (ctx) => {
+    ctx.body = "Automatically generated route: [ {{route.name}} ]"
+  }),
+])
+{{else}}
+import { defineRoute } from "{{importPathmap.lib}}";
+export default defineRoute(({ GET }) => [
+  GET(async (ctx) => {
+    ctx.body = "Automatically generated route: [ {{route.name}} ]"
+  }),
+])
+{{/if}}
