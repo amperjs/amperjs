@@ -1,0 +1,15 @@
+export { defineRoute } from "@oreum/api";
+
+{{#if route.params.schema.length}}
+export type ParamsT<
+  {{#each route.params.schema}}
+  P00{{@index}} = string,
+  {{/each}}
+> = {
+  {{#each route.params.schema}}
+  "{{name}}"{{#unless isRequired}}?{{/unless}}: P00{{@index}}{{#unless isRequired}} | undefined{{/unless}};
+  {{/each}}
+};
+{{else}}
+export type ParamsT = {};
+{{/if}}
