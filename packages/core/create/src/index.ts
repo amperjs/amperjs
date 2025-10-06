@@ -102,4 +102,34 @@ if (process.argv[2]) {
       },
     },
   ]);
+
+  const targetDir = (...a: Array<string>) => {
+    return resolve(cwd, project.name, ...a);
+  };
+
+  if (await fsx.exists(targetDir())) {
+    halt(`${colors.blue(project.name)} already exists`);
+  }
+
+  await copyFiles(tplDir(), targetDir(), {
+    exclude: [/@src/, /.+\.hbs/],
+  });
+
+  {
+    const context = {
+      ...genericContext,
+      project,
+      defaults,
+    };
+
+    for (const [file, template] of [
+      [".gitignore", gitignoreTpl],
+      ["esbuild.json", esbuildTpl],
+      ["package.json", packageTpl],
+      ["tsconfig.json", tsconfigTpl],
+      ["vite.base.ts", viteBaseTpl],
+    ]) {
+      await renderToFile(targetDir(file), template, context);
+    }
+  }
 }
