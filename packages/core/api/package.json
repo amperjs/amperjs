@@ -1,0 +1,53 @@
+{
+  "type": "module",
+  "name": "@oreum/api",
+  "version": "0.0.0-alpha.0",
+  "author": "Slee Woo",
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "files": [
+    "pkg/*"
+  ],
+  "exports": {
+    ".": {
+      "types": "./pkg/src/index.d.ts",
+      "default": "./pkg/index.js"
+    },
+    "./bodyparser": {
+      "types": "./pkg/src/bodyparser/index.d.ts",
+      "default": "./pkg/bodyparser/index.js"
+    },
+    "./queryparser": {
+      "types": "./pkg/src/queryparser/index.d.ts",
+      "default": "./pkg/queryparser/index.js"
+    },
+    "./debug": {
+      "types": "./pkg/src/debug.d.ts",
+      "default": "./pkg/debug.js"
+    }
+  },
+  "scripts": {
+    "build": "esbuilder src/index.ts src/bodyparser/index.ts src/queryparser/index.ts src/debug.ts",
+    "test": "vitest --root ../../.. --project core/api"
+  },
+  "dependencies": {
+    "@koa/router": "^14.0.0",
+    "formidable": "^3.5.4",
+    "kleur": "^4.1.5",
+    "koa": "^3.0.1",
+    "picomatch": "^4.0.3",
+    "qs": "^6.14.0",
+    "raw-body": "^3.0.1",
+    "string-width": "^8.1.0"
+  },
+  "devDependencies": {
+    "@oreum/devlib": "workspace:^",
+    "@types/formidable": "^3.4.5",
+    "@types/koa": "^3.0.0",
+    "@types/koa__router": "^12.0.4",
+    "@types/picomatch": "^4.0.2",
+    "@types/qs": "^6.14.0"
+  }
+}
