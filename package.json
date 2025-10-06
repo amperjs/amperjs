@@ -9,6 +9,14 @@
       "onFail": "download"
     }
   },
+  "pnpm": {
+    "requiredScripts": [
+      "build"
+    ],
+    "onlyBuiltDependencies": [
+      "msw"
+    ]
+  },
   "scripts": {
     "test": "vitest",
     "prepub:000": "pnpm -r build",
