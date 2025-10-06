@@ -1,0 +1,3 @@
+{
+  "extends": "@oreum/config/tsconfig.oreum.json"
+}
