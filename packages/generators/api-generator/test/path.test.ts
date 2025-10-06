@@ -38,4 +38,16 @@ describe("pathFactory", () => {
       "some/{/:param.html}",
     );
   });
+
+  test("rest params", () => {
+    expect(pathFactory(pathTokensFactory("some/[...param]"))).toEqual(
+      "some/{*param}",
+    );
+  });
+
+  test("rest params with extension", () => {
+    expect(pathFactory(pathTokensFactory("some/[...param].html"))).toEqual(
+      "some/{*param}.html",
+    );
+  });
 });
