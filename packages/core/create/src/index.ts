@@ -72,6 +72,144 @@ const printUsage = () => {
 };
 
 if (process.argv[2]) {
+  const options = {
+    folder: {
+      type: "boolean",
+      short: "f",
+    },
+    help: {
+      type: "boolean",
+      short: "h",
+    },
+  } as const;
+
+  let input:
+    | ReturnType<typeof parseArgs<{ options: typeof options }>>
+    | undefined;
+
+  try {
+    input = parseArgs({ options });
+    if (input.values.help) {
+      printUsage();
+      process.exit(0);
+    }
+  } catch (
+    // biome-ignore lint: any
+    error: any
+  ) {
+    printUsage();
+    halt(error.message);
+  }
+
+  const viteBaseFile = resolve(cwd, "vite.base.ts");
+  const tsConfigFile = resolve(cwd, "tsconfig.json");
+
+  const viteBaseExists = await fsx.exists(viteBaseFile);
+  const tsConfigExists = await fsx.exists(tsConfigFile);
+
+  const tsConfig = tsConfigExists
+    ? await import(tsConfigFile, {
+        with: { type: "json" },
+      }).then((e) => e.default)
+    : undefined;
+
+  if (!viteBaseExists || !tsConfig?.compilerOptions?.paths) {
+    halt("Please navigate to a valid Oreum project directory");
+  }
+
+  if (input?.values.folder) {
+    const folder = await prompts<"name" | "baseurl" | "port">([
+      {
+        type: "text",
+        name: "name",
+        message: "Folder Name",
+        onState,
+        validate(name) {
+          if (!name?.length) {
+            return "Please insert folder name";
+          }
+          return validateNameIdentifier(name);
+        },
+      },
+
+      {
+        type: "text",
+        name: "baseurl",
+        message: "Base URL",
+        initial: "/",
+        onState,
+        validate(base: string) {
+          if (!base?.startsWith("/")) {
+            return "Should start with a slash";
+          }
+          if (/[^\w./-]/.test(base)) {
+            return "May contain only alphanumerics, hyphens, periods or slashes";
+          }
+          if (/\.\.\//.test(base) || /\/\.\//.test(base)) {
+            return "Should not contain path traversal patterns";
+          }
+          return true;
+        },
+      },
+
+      {
+        type: "number",
+        name: "port",
+        message: "Dev Server Port",
+        initial: 4000,
+        onState,
+      },
+    ]);
+
+    const dstDir = (...a: Array<string>) => {
+      return resolve(cwd, folder.name, ...a);
+    };
+
+    if (await fsx.exists(dstDir())) {
+      halt(`${colors.blue(folder.name)} already exists`);
+    }
+
+    await copyFiles(tplDir("@src"), dstDir(), {
+      exclude: [/.+\.hbs/],
+    });
+
+    const context = {
+      ...genericContext,
+      folder,
+      defaults,
+      importPathmap: {
+        core: [defaults.appPrefix, defaults.coreDir, defaults.apiDir].join("/"),
+        lib: [folder.name, defaults.apiLibDir].join("/"),
+      },
+    };
+
+    for (const [file, template] of [
+      [`${defaults.configDir}/index.ts`, srcConfigTpl],
+      [`${defaults.apiDir}/app.ts`, srcApiAppTpl],
+      [`${defaults.apiDir}/router.ts`, srcApiRouterTpl],
+      [`${defaults.apiDir}/server.ts`, srcApiServerTpl],
+      [`${defaults.apiDir}/use.ts`, srcApiUseTpl],
+      ["vite.config.ts", srcViteConfigTpl],
+      // stub files for initial build to pass
+      [`${defaults.apiDir}/index/index.ts`, ""],
+      ["index.ts", ""],
+    ]) {
+      await renderToFile(dstDir(file), template, context);
+    }
+
+    tsConfig.compilerOptions.paths[`${folder.name}/*`] = [
+      `./${folder.name}/*`,
+      `./${defaults.libDir}/${folder.name}/*`,
+    ];
+
+    await fsx.outputJson(tsConfigFile, tsConfig, { spaces: 2 });
+
+    try {
+      execFileSync("vite", ["build", folder.name], {
+        stdio: "inherit",
+      });
+    } catch (_error) {}
+  }
 } else {
   // no args provided, creating a new project
   const project = await prompts<"name" | "distDir">([
