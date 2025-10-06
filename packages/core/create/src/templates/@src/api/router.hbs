@@ -1,0 +1,11 @@
+import { routerRoutes } from "{{importPathmap.lib}}";
+
+import createRouter from "{{importPathmap.core}}/router";
+
+const router = createRouter();
+
+for (const { name, path, methods, middleware } of routerRoutes) {
+  router.register(path, methods, middleware, { name });
+}
+
+export default router;
