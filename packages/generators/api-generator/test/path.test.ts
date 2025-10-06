@@ -14,4 +14,16 @@ describe("pathFactory", () => {
       "some/page.html",
     );
   });
+
+  test("required params", () => {
+    expect(pathFactory(pathTokensFactory("some/[param]"))).toEqual(
+      "some/:param",
+    );
+  });
+
+  test("required params with extension", () => {
+    expect(pathFactory(pathTokensFactory("some/[param].html"))).toEqual(
+      "some/:param.html",
+    );
+  });
 });
