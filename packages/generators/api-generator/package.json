@@ -1,0 +1,31 @@
+{
+  "type": "module",
+  "name": "@oreum/api-generator",
+  "version": "0.0.0-alpha.0",
+  "author": "Slee Woo",
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "files": [
+    "pkg/*"
+  ],
+  "exports": {
+    ".": {
+      "types": "./pkg/src/index.d.ts",
+      "default": "./pkg/index.js"
+    }
+  },
+  "scripts": {
+    "build": "esbuilder src/index.ts",
+    "test": "vitest --root ../../.. --project generators/api-generator"
+  },
+  "dependencies": {
+    "@oreum/devlib": "workspace:^",
+    "crc": "^4.3.2",
+    "picomatch": "^4.0.3"
+  },
+  "devDependencies": {
+    "@types/picomatch": "^4.0.2"
+  }
+}
