@@ -1,0 +1,19 @@
+{
+  "name": "@oreum/config",
+  "version": "0.0.0-alpha.0",
+  "author": "Slee Woo",
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "files": [
+    "*.json"
+  ],
+  "exports": {
+    "./tsconfig.oreum.json": "./tsconfig.oreum.json",
+    "./tsconfig.vite.json": "./tsconfig.vite.json"
+  },
+  "scripts": {
+    "build": "echo"
+  }
+}
