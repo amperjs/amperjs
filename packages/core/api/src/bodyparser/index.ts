@@ -16,6 +16,7 @@ import type {
 
 export * from "./types";
 export { config };
+export default { json, form, raw };
 
 export function json(opts: JsonOptions = {}): Array<Middleware> {
   return [
@@ -73,4 +74,56 @@ export function form(opts: FormOptions = {}): Array<Middleware> {
       return next();
     },
   ];
+}
+
+export function raw(opts: RawOptions = {}): Array<Middleware> {
+  return [
+    async (ctx, next) => {
+      const { chunkSize, ...rawParserOptions } = { ...config.raw, ...opts };
+
+      const stream = ctx.request.req.pipe(zlib.createUnzip({ chunkSize }));
+      ctx.request.body = await rawParser(stream, rawParserOptions);
+
+      return next();
+    },
+  ];
+}
+
+function trimmerFactory(
+  trimOption: TrimOption | undefined,
+): Trimmer | undefined {
+  if (!Array.isArray(trimOption) || !trimOption.length) {
+    return;
+  }
+
+  const trimableKeys: {
+    [key: string]: boolean;
+  } = trimOption.reduce((m: Record<string, boolean>, k) => {
+    m[k] = true;
+    return m;
+  }, {});
+
+  const trim = (key: string, val: unknown) => {
+    return typeof val === "string"
+      ? trimableKeys[key] || trimableKeys["*"]
+        ? val.trim()
+        : val
+      : val;
+  };
+
+  const reducer = (
+    memo: Record<string, unknown>,
+    [key, val]: [string, unknown],
+  ) => {
+    memo[key] = trim(key, val);
+    return memo;
+  };
+
+  return (payload) =>
+    Object.entries(payload).reduce(
+      reducer,
+      // accumulator is set to payload intentionally, to avoid duplication of big strings.
+      // if using a new object for accumulator then trimmed strings will be duplicated?
+      payload,
+    );
 }
