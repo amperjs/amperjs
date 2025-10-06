@@ -8,5 +8,29 @@
       "version": "^22.20.0",
       "onFail": "download"
     }
+  },
+  "scripts": {
+    "test": "vitest",
+    "prepub:000": "pnpm -r build",
+    "prepub:001": "changeset add",
+    "prepub:002": "git add --all .",
+    "prepub:003": "git commit -am changeset",
+    "prepub:004": "changeset version",
+    "prepub:005": "git commit -am version\\ bump",
+    "prepub": "set -e; for i in 0 1 2 3 4 5; do pnpm run -w prepub:00$i; done",
+    "pub": "changeset publish"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^2.2.5",
+    "@changesets/cli": "^2.29.7",
+    "@oreum/config": "workspace:^",
+    "@oreum/esbuilder": "workspace:^",
+    "@types/node": "^24.6.2",
+    "jsdom": "^27.0.0",
+    "msw": "^2.11.3",
+    "resolve-tspaths": "^0.8.23",
+    "rimraf": "^6.0.1",
+    "typescript": "^5.9.3",
+    "vitest": "^3.2.4"
   }
 }
