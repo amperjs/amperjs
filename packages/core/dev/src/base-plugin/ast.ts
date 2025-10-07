@@ -198,3 +198,172 @@ export const extractRouteMethods = (
 
   return methods;
 };
+
+export const extractTypeDeclarations = (
+  sourceFile: SourceFile,
+  opts?: {
+    relpathResolver?: PathResolver;
+    withReferencedFiles?: boolean;
+  },
+): [d: Array<TypeDeclaration>, f?: Array<string>] => {
+  const declarations: Array<TypeDeclaration> = [];
+
+  const referencedFiles: Array<string> | undefined = opts?.withReferencedFiles
+    ? []
+    : undefined;
+
+  for (const declaration of sourceFile.getImportDeclarations()) {
+    const modulePath = declaration.getModuleSpecifierValue();
+
+    const path = /^\.\.?\/?/.test(modulePath)
+      ? opts?.relpathResolver
+        ? opts.relpathResolver(modulePath)
+        : modulePath
+      : modulePath;
+
+    const typeOnlyDeclaration = declaration.isTypeOnly();
+
+    const defaultImport = typeOnlyDeclaration
+      ? declaration.getDefaultImport()
+      : undefined;
+
+    if (defaultImport) {
+      const name = defaultImport.getText();
+      const text = `import type ${name} from "${path}";`;
+      declarations.push({
+        importDeclaration: {
+          name,
+          path,
+        },
+        text,
+      });
+      if (referencedFiles) {
+        referencedFiles.push(...getReferencedFiles(defaultImport));
+      }
+    }
+
+    for (const namedImport of declaration.getNamedImports()) {
+      if (namedImport.isTypeOnly() || typeOnlyDeclaration) {
+        const nameNode = namedImport.getNameNode();
+        const name = nameNode.getText();
+        const alias = namedImport.getAliasNode()?.getText();
+        const nameText = alias ? `${name} as ${alias}` : name;
+
+        declarations.push({
+          importDeclaration: {
+            name,
+            alias,
+            path,
+          },
+          text: `import type { ${nameText} } from "${path}";`,
+        });
+
+        if (referencedFiles) {
+          if (nameNode.isKind(SyntaxKind.Identifier)) {
+            referencedFiles.push(...getReferencedFiles(nameNode));
+          }
+        }
+      }
+    }
+  }
+
+  for (const declaration of sourceFile.getTypeAliases()) {
+    const name = declaration.getName();
+    const text = declaration.getFullText().trim();
+    declarations.push({
+      typeAliasDeclaration: { name },
+      text,
+    });
+  }
+
+  for (const declaration of sourceFile.getInterfaces()) {
+    const name = declaration.getName();
+    const text = declaration.getFullText().trim();
+    declarations.push({
+      interfaceDeclaration: { name },
+      text,
+    });
+  }
+
+  for (const declaration of sourceFile.getEnums()) {
+    const name = declaration.getName();
+    const text = declaration.getFullText().trim();
+    declarations.push({
+      enumDeclaration: { name },
+      text,
+    });
+  }
+
+  for (const declaration of sourceFile.getExportDeclarations()) {
+    const typeOnlyDeclaration = declaration.isTypeOnly();
+
+    const modulePath = declaration.getModuleSpecifierValue();
+
+    const path = modulePath
+      ? /^\.\.?\/?/.test(modulePath)
+        ? opts?.relpathResolver
+          ? opts.relpathResolver(modulePath)
+          : modulePath
+        : modulePath
+      : undefined;
+
+    for (const namedExport of declaration.getNamedExports()) {
+      if (namedExport.isTypeOnly() || typeOnlyDeclaration) {
+        const nameNode = namedExport.getNameNode();
+        const name = nameNode.getText();
+        const alias = namedExport.getAliasNode()?.getText();
+        const nameText = alias ? `${name} as ${alias}` : name;
+
+        declarations.push({
+          exportDeclaration: {
+            name,
+            alias: alias ?? name,
+            path,
+          },
+          text: path
+            ? `export type { ${nameText} } from "${path}";`
+            : `export type { ${nameText} };`,
+        });
+
+        if (referencedFiles) {
+          if (nameNode.isKind(SyntaxKind.Identifier)) {
+            referencedFiles.push(...getReferencedFiles(nameNode));
+          }
+        }
+      }
+    }
+  }
+
+  return referencedFiles
+    ? [declarations, [...new Set<string>(referencedFiles)]]
+    : [declarations];
+};
+
+const getReferencedFiles = (importIdentifier: Identifier): Array<string> => {
+  // ambient modules may have declarations in multiple files
+  const declarations =
+    importIdentifier //
+      ?.getSymbol()
+      ?.getAliasedSymbol()
+      ?.getDeclarations() || [];
+
+  return declarations.flatMap((e) => {
+    const sourceFile = e.getSourceFile();
+    return sourceFile //
+      ? [sourceFile.getFilePath()]
+      : [];
+  });
+};
+
+const extractGenerics = (
+  callExpression: CallExpression,
+): Array<{ node: Node; comments: Array<string> }> => {
+  return callExpression.getTypeArguments().map((node) => {
+    return {
+      node,
+      comments: node
+        .getLeadingCommentRanges()
+        .map((range) => range.getText().trim()),
+    };
+  });
+};
