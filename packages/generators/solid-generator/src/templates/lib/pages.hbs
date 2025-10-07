@@ -1,0 +1,51 @@
+import { type HostOpt, createHost, stringify, join } from "{{importPathmap.fetch}}/lib";
+import { baseurl } from "{{importPathmap.config}}";
+
+const resolverFactory = <ParamsT extends Array<number | string>>(
+  pathTokens: Array<[ path: string, param?: boolean ]>
+) => {
+  type QueryT = Record<string, unknown>;
+
+  return {
+    parametrize(params: ParamsT) {
+      const copy = [ ...params ];
+      return pathTokens
+        .map(([ path, param ]) => param ? copy.splice(0, 1)[0] : path)
+        .join("/");
+    },
+
+    base(
+      params: ParamsT,
+      query?: QueryT,
+    ) {
+      const base = join("/", this.parametrize(params));
+      return query
+        ? [ base, stringify(query) ].join("?")
+        : base;
+    },
+
+    path(
+      params: ParamsT,
+      query?: QueryT,
+    ) {
+      return join(baseurl, this.base(params, query));
+    },
+
+    href(
+      host: HostOpt,
+      params: ParamsT,
+      query?: QueryT,
+    ) {
+      return createHost(host) + this.path(params, query);
+    },
+  }
+}
+
+export default {
+  {{#each routes}}
+  "{{name}}": resolverFactory<[ {{paramsLiteral}} ]>([
+    {{#each pathTokens}}[ "{{path}}", {{#if param}}true{{else}}false{{/if}} ],
+    {{/each}}
+  ]),
+  {{/each}}
+}
