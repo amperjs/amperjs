@@ -1,0 +1,22 @@
+import { query, useLocation } from "@solidjs/router";
+import { createResource } from "solid-js";
+
+import fetch from "{{importPathmap.fetch}}";
+
+type ResourceMap = {
+  {{#each apiRoutes}}
+  "{{name}}": import("{{importPathmap.fetch}}").ResponseT extends { GET: unknown }
+    ? import("{{importPathmap.fetch}}").ResponseT["GET"]
+    : unknown;
+  {{/each}}
+}
+
+export const useResource = <K extends keyof ResourceMap>(routeName: K) => {
+  const location = useLocation();
+  const fetchData = () => fetch[routeName].GET();
+  const queryData = query(fetchData, routeName);
+  return createResource<ResourceMap[K]>(
+    () => location.pathname as never,
+    queryData as never,
+  );
+};
