@@ -66,3 +66,19 @@ export const resolveRouteSignature = async (
   };
 };
 
+export const extractDefaultExport = (
+  sourceFile: SourceFile,
+): CallExpression | undefined => {
+  const [defaultExport] = sourceFile
+    .getExportAssignments()
+    .flatMap((exportAssignment) => {
+      if (exportAssignment.isExportEquals()) {
+        return [];
+      }
+      const callExpression = exportAssignment.getExpression();
+      return callExpression.isKind(SyntaxKind.CallExpression)
+        ? [callExpression]
+        : [];
+    });
+  return defaultExport;
+};
