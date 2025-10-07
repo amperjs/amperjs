@@ -1,6 +1,15 @@
+import useFetch from "@oreum/fetch";
+
+import { baseurl, apiurl } from "{{importPathmap.config}}";
+import { validationSchemas } from "./schemas";
+
 import {
   type MaybeWrapped,
   type HostOpt,
+  unwrap,
+  join,
+  stringify,
+  createHost,
 } from "{{importPathmap.fetchLib}}";
 
 export type ParamsT = [
@@ -24,3 +33,88 @@ export type ResponseT = {
   {{method}}: import("./types").{{id}};
   {{/each}}
 }
+
+const paramsMapper = (params: ParamsT) => {
+  return {
+    {{#each paramsMapper}}
+    "{{name}}": params[{{idx}}],
+    {{/each}}
+  }
+}
+
+const parametrize = (params: ParamsT) => {
+  const copy = [ ...params ]
+  const chunks: Array<string | number> = [
+  {{#each route.pathTokens}}
+    {{#if param}}
+    copy.splice(0, 1)[0],
+    {{else}}
+    "{{orig}}",
+    {{/if}}
+  {{/each}}
+  ].filter((e) => e !== undefined)
+  return join(...chunks);
+}
+
+const fetchApi = useFetch(join(baseurl, apiurl), { stringify });
+
+{{#each routeMethods}}
+export const {{method}} = (
+  _params{{#if ../route.optionalParams}}?{{/if}}: MaybeWrapped<ParamsT>,
+  {{#if payloadType}}
+  _payload{{#if payloadType.isOptional}}?{{/if}}: MaybeWrapped<
+    PayloadT["{{method}}"]
+  >,
+  {{else}}
+  _payload?: unknown,
+  {{/if}}
+): Promise<
+  {{#if responseType}}
+  ResponseT["{{method}}"]
+  {{else}}
+  unknown
+  {{/if}}
+> => {
+  const [params, payload] = [unwrap(_params || []), unwrap(_payload || {})];
+  if (validationSchemas.params) {
+    validationSchemas.params.validate(paramsMapper(params as never));
+  }
+  if (validationSchemas.payload?.{{method}}) {
+    validationSchemas.payload.{{method}}.validate(payload);
+  }
+  return fetchApi.{{method}}(
+    parametrize(params as never),
+    payload,
+  )
+};
+{{/each}}
+
+export const path = (
+  params: ParamsT,
+  query?: Record<string, unknown>,
+) => {
+  const path = join(
+    baseurl,
+    {{#if route.base}}"{{route.base}}"{{else}}apiurl{{/if}},
+    parametrize(params)
+  );
+  return query
+    ? [ path, stringify(query) ].join("?")
+    : path;
+}
+
+export const href = (
+  host: HostOpt,
+  params: ParamsT,
+  query?: Record<string, unknown>,
+) => createHost(host) + path(params, query);
+
+export default {
+  {{#each routeMethods}}
+  {{method}},
+  {{/each}}
+  fetch,
+  path,
+  href,
+  validationSchemas,
+};
