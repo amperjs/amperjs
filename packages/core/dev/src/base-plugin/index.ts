@@ -120,4 +120,20 @@ export default (apiurl: string, pluginOptions?: PluginOptions): Plugin => {
       await worker.terminate();
     };
   };
+
+  return {
+    name: "@oreum:basePlugin",
+
+    config(config) {
+      if (!config.build?.outDir) {
+        throw new Error("Incomplete config, missing build.outDir");
+      }
+      return {
+        build: {
+          outDir: join(config.build.outDir, outDirSuffix),
+        },
+      };
+    },
+
+  };
 };
