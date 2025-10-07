@@ -73,4 +73,24 @@ export default async (
       }
     }
   }
+
+  const typesResolver = (
+    typesFileContent: string,
+    overrides?: Record<string, string>,
+  ) => {
+    const sourceFile = project.createSourceFile(
+      `${crc(typesFileContent)}-${Date.now()}.ts`,
+      typesFileContent,
+      { overwrite: true },
+    );
+
+    const resolvedTypes = flattener(project, sourceFile, {
+      overrides: { ...overrides },
+      stripComments: true,
+    });
+
+    project.removeSourceFile(sourceFile);
+
+    return resolvedTypes;
+  };
 };
