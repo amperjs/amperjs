@@ -135,5 +135,88 @@ export default (apiurl: string, pluginOptions?: PluginOptions): Plugin => {
       };
     },
 
+    async configResolved(_config) {
+      config = _config;
+
+      const appRoot = resolve(config.root, "..");
+      const sourceFolder = basename(config.root);
+
+      // removing outDirSuffix
+      const outDir = resolve(appRoot, resolve(config.build.outDir, ".."));
+
+      const { stabilityThreshold = 1000 } =
+        typeof config.server.watch?.awaitWriteFinish === "object"
+          ? config.server.watch.awaitWriteFinish
+          : {};
+
+      const watcher: PluginOptionsResolved["watcher"] = {
+        delay: stabilityThreshold,
+        ...(config.server.watch ? { options: config.server.watch } : {}),
+      };
+
+      {
+        const { generators = [], formatters = [] } = { ...pluginOptions };
+        const _apiGenerator = generators.find((e) => e.kind === "api");
+        const _fetchGenerator = generators.find((e) => e.kind === "fetch");
+        resolvedOptions = {
+          ...pluginOptions,
+          watcher,
+          generators: [
+            // 1. stub generator should run first
+            stubGenerator(),
+            // 2. then api generator
+            _apiGenerator || (apiGenerator() as GeneratorConstructor),
+            // 3. then fetch generator
+            _fetchGenerator || (fetchGenerator() as GeneratorConstructor),
+            // 4. finally rest generators in the order they were added
+            ...generators.filter((e) => !e.kind),
+          ],
+          formatters: formatters.map((e) => e.formatter),
+          baseurl: config.base,
+          apiurl,
+          appRoot,
+          sourceFolder,
+          outDir,
+        };
+      }
+
+      if (config.command === "build") {
+        const { resolvers } = await routesFactory(resolvedOptions);
+        const resolvedRoutes: RouteResolverEntry[] = [];
+
+        {
+          const spinner = spinnerFactory("Resolving Routes");
+
+          for (const { name, handler } of resolvers.values()) {
+            spinner.append(
+              `[ ${resolvedRoutes.length + 1} of ${resolvers.size} ] ${name}`,
+            );
+            resolvedRoutes.push(await handler());
+          }
+
+          spinner.succeed();
+        }
+
+        {
+          const spinner = spinnerFactory("Running Generators");
+
+          for (const { name, factory } of resolvedOptions.generators) {
+            spinner.append(name);
+            const { watchHandler } = await factory(resolvedOptions);
+            await watchHandler(resolvedRoutes);
+          }
+
+          spinner.succeed();
+        }
+
+        {
+          const spinner = spinnerFactory("Building Api");
+          const apiHandler = await apiHandlerFactory(resolvedOptions);
+          await apiHandler.build();
+          spinner.succeed();
+        }
+      }
+    },
+
   };
 };
