@@ -93,4 +93,29 @@ export default async (
 
     return resolvedTypes;
   };
+
+  const routeFilePatterns = [
+    `${defaults.apiDir}/**/index.ts`,
+    `${defaults.pagesDir}/**/index.ts{x,}`, // .tsx? wont work here
+  ];
+
+  const resolveRouteFile: ResolveRouteFile = (file) => {
+    const [_sourceFolder, folder, ...rest] = resolve(appRoot, file)
+      .replace(`${appRoot}/`, "")
+      .split("/");
+
+    /**
+     * Ensure the file:
+     * - is under the correct source root (`sourceFolder`)
+     * - belongs to a known route folder (`apiDir` or `pagesDir`)
+     * - is nested at least one level deep (not a direct child of the folder)
+     */
+    if (!folder || _sourceFolder !== sourceFolder || rest.length < 2) {
+      return;
+    }
+
+    return picomatch.isMatch(join(folder, ...rest), routeFilePatterns)
+      ? [folder, rest.join("/")]
+      : undefined;
+  };
 };
