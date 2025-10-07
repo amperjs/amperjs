@@ -56,4 +56,68 @@ export default (apiurl: string, pluginOptions?: PluginOptions): Plugin => {
       workerData,
     });
   };
+
+  const workerHandler = (
+    onReady?: () => Promise<void>,
+    onExit?: () => Promise<void>,
+  ) => {
+    const worker = createWorker();
+
+    const spinnerMap = new Map<string, SpinnerFactory>();
+
+    worker.on("error", async (error) => {
+      console.error(error);
+    });
+
+    worker.on("exit", async () => {
+      await onExit?.();
+      // TODO: revive worker only if it exited due to an error.
+      // Note: worker.terminate() triggers an exit with code 1,
+      // so it's not always possible to distinguish normal termination from a crash.
+    });
+
+    worker.on(
+      "message",
+      async (msg: { spinner?: WorkerSpinner; error?: WorkerError }) => {
+        if (msg?.spinner) {
+          const { id, startText, method, text } = msg.spinner;
+          withSpinner(
+            startText,
+            (spinner) => {
+              spinnerMap.set(id, spinner);
+              spinner[method](text || "");
+              if (method === "succeed" || method === "failed") {
+                spinnerMap.delete(id);
+              }
+            },
+            spinnerMap.get(id),
+          );
+        } else if (msg?.error) {
+          const { error } = msg;
+          if (error.stack) {
+            const [message, ...stack] = error.stack.split("\n");
+            console.error(red(message));
+            console.error(stack.join("\n"));
+          } else if (error?.message) {
+            console.error(`${red(error?.name)}: ${error.message}`);
+          } else {
+            console.error(error);
+          }
+        }
+      },
+    );
+
+    const readyHandler = async (msg: string) => {
+      if (msg === "ready") {
+        worker.off("message", readyHandler);
+        await onReady?.();
+      }
+    };
+
+    worker.on("message", readyHandler);
+
+    return async () => {
+      await worker.terminate();
+    };
+  };
 };
