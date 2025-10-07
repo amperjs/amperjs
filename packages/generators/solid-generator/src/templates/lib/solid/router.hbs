@@ -1,0 +1,30 @@
+import { lazy } from "solid-js";
+import type { RouteDefinition } from "@solidjs/router";
+
+export type LinkProps ={{#unless routes.length}} never{{/unless}}
+  {{#each routes}}
+  | [ "{{name}}", {{paramsLiteral}} ]
+  {{/each}};
+
+export type RouteName ={{#unless routes.length}} never{{/unless}}
+  {{#each routes}}
+  | "{{name}}"
+  {{/each}};
+
+export const routeMap: Record<RouteName, RouteDefinition> = {
+  {{#each routes}}
+  "{{name}}": {
+    path: "{{path}}",
+    component: lazy(() => import("{{importPathmap.page}}")),
+    preload: () => import("{{importPathmap.page}}").then(
+      // @ts-ignore
+      (mdl) => mdl.route?.preload?.()
+    ),
+    {{#if meta}}
+    info: {{meta}},
+    {{/if}}
+  },
+  {{/each}}
+};
+
+export const routes = Object.values(routeMap);
