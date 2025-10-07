@@ -1,0 +1,19 @@
+{{#each typeDeclarations}}{{text}}
+{{/each}}
+
+export type {{params.id}} = {
+  {{#each paramsSchema}}
+  "{{name}}"{{#unless isRequired}}?{{/unless}}:{{#if isRest}} Array<{{/if}}
+    {{#if refinement}}{{refinement.text}}{{else}}string{{/if}}
+  {{#if isRest}}>{{/if}}
+  {{#unless isRequired}} | undefined{{/unless}};
+  {{/each}}
+};
+
+{{#each payloadTypes}}
+export type {{id}} = {{text}};
+{{/each}}
+
+{{#each responseTypes}}
+export type {{id}} = {{text}};
+{{/each}}
