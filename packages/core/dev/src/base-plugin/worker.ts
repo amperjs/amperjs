@@ -1,0 +1,123 @@
+import { parentPort, workerData } from "node:worker_threads";
+
+import chokidar from "chokidar";
+import crc from "crc/crc32";
+
+import {
+  type Formatter,
+  type GeneratorConstructor,
+  type PluginOptionsResolved,
+  pathResolver,
+  type RouteResolver,
+  type RouteResolverEntry,
+  type SpinnerFactory,
+  type WatcherEvent,
+  type WatchHandler,
+} from "@oreum/devlib";
+
+import routesFactory from "./routes";
+
+// By default, kleur (and similar libs) won't emit ANSI escapes when running
+// inside a worker thread, since no TTY is detected.
+// Setting FORCE_COLOR would force color output.
+// (effective in the worker only, does not propagate to the parent process)
+// INFO: should be set before loading generators.
+process.env.FORCE_COLOR = "1";
+
+export type WorkerData = Omit<
+  PluginOptionsResolved,
+  "generators" | "formatters"
+> & {
+  generatorModules: Array<[string, unknown]>;
+  formatterModules: Array<[string, unknown]>;
+};
+
+export type WorkerSpinner = {
+  id: string;
+  startText: string;
+  method: keyof SpinnerFactory;
+  text?: string | undefined;
+};
+
+export type WorkerError = {
+  name: string;
+  message: string;
+  stack?: string;
+};
+
+const {
+  //
+  generatorModules,
+  formatterModules,
+  ...restOptions
+} = workerData as WorkerData;
+
+const generators: Array<GeneratorConstructor> = [];
+const formatters: Array<Formatter> = [];
+
+for (const [path, opts] of generatorModules) {
+  generators.push(await import(path).then((m) => m.default(opts)));
+}
+
+for (const [path, opts] of formatterModules) {
+  formatters.push(await import(path).then((m) => m.default(opts).formatter));
+}
+
+const resolvedOptions: PluginOptionsResolved = {
+  ...restOptions,
+  generators,
+  formatters,
+};
+
+const { appRoot, sourceFolder } = resolvedOptions;
+
+const watchHandlers: Array<{ name: string; handler: WatchHandler }> = [];
+
+const resolvedRoutes = new Map<
+  string, // fileFullpath
+  RouteResolverEntry
+>();
+
+const {
+  //
+  resolvers,
+  resolversFactory,
+  resolveRouteFile,
+} = await routesFactory(resolvedOptions);
+
+const { resolve } = pathResolver({ appRoot, sourceFolder });
+
+const spinnerFactory = (startText: string) => {
+  const id = [startText, Date.now().toString()].map(crc).join(":");
+
+  const postMessage = (
+    method: keyof SpinnerFactory,
+    text?: string | undefined,
+  ) => {
+    const spinner: WorkerSpinner = { id, startText, method, text };
+    parentPort?.postMessage({ spinner });
+  };
+
+  const postError = (error: Error) => {
+    parentPort?.postMessage({ error: structuredClone(error) });
+  };
+
+  return {
+    id,
+    startText,
+    text(text: string) {
+      postMessage("text", text);
+    },
+    append(text: string) {
+      postMessage("append", text);
+    },
+    succeed(text?: string) {
+      postMessage("succeed", text);
+    },
+    failed(error: Error) {
+      postError(error);
+      postMessage("failed", error?.stack || error?.message);
+    },
+  };
+};
+
