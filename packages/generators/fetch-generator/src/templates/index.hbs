@@ -1,0 +1,10 @@
+{{#each routes}}
+import {{importName}} from "{{importPathmap.fetchApi}}";
+{{/each}}
+
+export default {
+{{#each routes}}  "{{name}}": {{importName}},
+{{#each alias }}  "{{this}}": {{../importName}},
+{{/each}}
+{{/each}}
+}
