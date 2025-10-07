@@ -181,3 +181,6 @@ const updateEventHandler = async (file: string) => {
 
   spinner.succeed();
 };
+const deleteEventHandler = async () => {
+  // TODO: cleanup related files in libDir
+};
