@@ -9,6 +9,9 @@ import {
 } from "@oreum/devlib";
 
 import fetchTpl from "./templates/fetch.hbs";
+import indexTpl from "./templates/index.hbs";
+import libTpl from "./templates/lib.hbs";
+import typesTpl from "./templates/types.hbs";
 import unwrapTpl from "./templates/unwrap.hbs";
 
 export const factory: GeneratorFactory = async ({
@@ -70,6 +73,39 @@ export const factory: GeneratorFactory = async ({
     }
   };
 
+  const generateIndexFiles = async (entries: Array<RouteResolverEntry>) => {
+    const routes = entries
+      .flatMap(({ kind, route }) => (kind === "api" ? [route] : []))
+      .sort((a, b) => a.name.localeCompare(b.name));
+
+    for (const [file, template] of [
+      ["index.ts", indexTpl],
+      ["lib.ts", libTpl],
+      ["types.ts", typesTpl],
+    ]) {
+      await renderToFile(
+        resolve("fetchLibDir", file),
+        template,
+        {
+          routes: routes.map((route) => {
+            return {
+              ...route,
+              importPathmap: {
+                fetchApi: join(
+                  sourceFolder,
+                  defaults.apiLibDir,
+                  route.importPath,
+                  "fetch",
+                ),
+              },
+            };
+          }),
+        },
+        { formatters },
+      );
+    }
+  };
+
   return {
     async watchHandler(entries, event) {
       if (event) {
@@ -87,6 +123,8 @@ export const factory: GeneratorFactory = async ({
         // no event means initial call
         await generateLibFiles(entries);
       }
+
+      await generateIndexFiles(entries);
 
       return undefined;
     },
