@@ -288,3 +288,26 @@ watcher.on("all", async (event, file) => {
   spinner.succeed();
 }
 
+{
+  let spinner = spinnerFactory("Initializing Generators");
+
+  for (const { name, factory } of generators) {
+    spinner.append(name);
+    try {
+      const { watchHandler } = await factory(resolvedOptions);
+      watchHandlers.push({ name, handler: watchHandler });
+    } catch (
+      // biome-ignore lint: any
+      error: any
+    ) {
+      spinner.failed(error);
+      spinner = spinnerFactory("Initializing Generators");
+    }
+  }
+
+  spinner.succeed();
+}
+
+await runWatchHandlers();
+
+parentPort?.postMessage("ready");
