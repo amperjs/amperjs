@@ -218,5 +218,29 @@ export default (apiurl: string, pluginOptions?: PluginOptions): Plugin => {
       }
     },
 
+    async configureServer(server) {
+      if (config.command !== "serve") {
+        return;
+      }
+
+      const apiHandler = await apiHandlerFactory(resolvedOptions);
+      const apiWatcher = await apiHandler.watcher();
+
+      const stopWorker = workerHandler(
+        async () => {
+          await apiWatcher.start();
+        },
+        async () => {
+          await apiWatcher.stop();
+        },
+      );
+
+      // Attach the dev middleware from apiHandler. It may intercept requests to
+      // determine whether they should be handled by Vite or by another handler.
+      server.middlewares.use(apiHandler.devMiddleware);
+
+      // clean up when Vite dev server closes/restarts
+      server.httpServer?.on("close", stopWorker);
+    },
   };
 };
