@@ -181,6 +181,34 @@ const updateEventHandler = async (file: string) => {
 
   spinner.succeed();
 };
+
 const deleteEventHandler = async () => {
   // TODO: cleanup related files in libDir
 };
+
+const runWatchHandlers = async (event?: WatcherEvent) => {
+  let spinner = spinnerFactory("Running Generators");
+
+  /**
+   * Watch handlers receive the full list of routes
+   * and should process only those whose source file or dependencies were updated.
+   */
+  const routes = Array.from(resolvedRoutes.values());
+
+  for (const { name, handler } of watchHandlers) {
+    spinner.append(name);
+    try {
+      // using structuredClone to make sure no generator would alter routes
+      await handler(structuredClone(routes), event);
+    } catch (
+      // biome-ignore lint: any
+      error: any
+    ) {
+      spinner.failed(error);
+      spinner = spinnerFactory("Running Generators");
+    }
+  }
+
+  spinner.succeed();
+};
+
