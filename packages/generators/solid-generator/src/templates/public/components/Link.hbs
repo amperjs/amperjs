@@ -1,0 +1,37 @@
+import { A, type AnchorProps, useLocation } from "@solidjs/router";
+import { type JSXElement, splitProps } from "solid-js";
+
+import { stringify, unwrap } from "{{importPathmap.fetch}}/lib";
+import pageMap from "{{importPathmap.pageMap}}";
+import type { LinkProps } from "{{importPathmap.router}}";
+import { baseurl } from "{{importPathmap.config}}";
+
+export default function Link(
+  props: Omit<AnchorProps, "href"> & {
+    href?: LinkProps;
+    query?: Record<string | number, unknown>;
+    children: JSXElement;
+  },
+) {
+  const [knownProps, restProps] = splitProps(props, [
+    "href",
+    "query",
+    "children",
+  ]);
+
+  const href = () => {
+    if (knownProps.href) {
+      const [key, ...params] = knownProps.href;
+      return pageMap[key]?.base(params as never, knownProps.query);
+    }
+    const path = useLocation().pathname.replace(
+      new RegExp(`^${baseurl.replace(/\/+$/, "")}/`),
+      "/",
+    );
+    return knownProps.query
+      ? [path, stringify(unwrap(knownProps.query))].join("?")
+      : path;
+  };
+
+  return <A {...{ ...restProps, href: href() }}>{knownProps.children}</A>;
+}
