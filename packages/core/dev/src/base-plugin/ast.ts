@@ -82,3 +82,31 @@ export const extractDefaultExport = (
     });
   return defaultExport;
 };
+
+export const extractParamsRefinements = (
+  callExpression: CallExpression,
+):
+  | Array<{
+      index: number;
+      text: string;
+    }>
+  | undefined => {
+  const [firstGeneric] = extractGenerics(callExpression);
+
+  if (!firstGeneric?.node.isKind(SyntaxKind.TypeReference)) {
+    return;
+  }
+
+  const typeArguments = firstGeneric.node.getTypeArguments();
+
+  if (!typeArguments.length) {
+    return;
+  }
+
+  return typeArguments.map((node, index) => {
+    return {
+      index,
+      text: node.getText(),
+    };
+  });
+};
