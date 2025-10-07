@@ -121,3 +121,21 @@ const spinnerFactory = (startText: string) => {
   };
 };
 
+const createEventHandler = async (file: string) => {
+  const [resolver] = resolversFactory([file]).values();
+  if (resolver) {
+    const spinner = spinnerFactory(`Resolving ${resolver.name} Route`);
+    try {
+      const resolvedRoute = await resolver.handler();
+      resolvers.set(file, resolver);
+      resolvedRoutes.set(resolvedRoute.route.fileFullpath, resolvedRoute);
+      spinner.succeed();
+    } catch (
+      // biome-ignore lint: any
+      error: any
+    ) {
+      spinner.failed(error);
+    }
+  }
+};
+
