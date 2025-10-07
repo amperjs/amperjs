@@ -1,0 +1,26 @@
+import {
+  type MaybeWrapped,
+  type HostOpt,
+} from "{{importPathmap.fetchLib}}";
+
+export type ParamsT = [
+  {{#each route.params.schema}}
+  {{#if isRest}}
+  ...{{name}}: Array<string | number>
+  {{else}}
+  {{name}}{{#if isOptional}}?{{/if}}: import("./types").{{../route.params.id}}["{{name}}"],
+  {{/if}}
+  {{/each}}
+];
+
+export type PayloadT = {
+  {{#each route.payloadTypes}}
+  {{method}}: import("./types").{{id}};
+  {{/each}}
+}
+
+export type ResponseT = {
+  {{#each route.responseTypes}}
+  {{method}}: import("./types").{{id}};
+  {{/each}}
+}
