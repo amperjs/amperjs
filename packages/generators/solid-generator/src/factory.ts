@@ -133,6 +133,123 @@ export const factory: GeneratorFactory<Options> = async (
     }
   };
 
+  const staticSegments = (pathTokens: Array<PathToken>) => {
+    return pathTokens.reduce((a, e) => a + (e.param ? 0 : 1), 0);
+  };
+
+  const generateIndexFiles = async (entries: Array<RouteResolverEntry>) => {
+    const routes = entries
+      .flatMap(({ kind, route }) => {
+        return kind === "page"
+          ? [
+              {
+                ...route,
+                path: join("/", pathFactory(route.pathTokens)),
+                paramsLiteral: route.params.schema
+                  .map((param) => render(paramTpl, { param }).trim())
+                  .join(", "),
+                meta: metaResolver(route),
+                importPathmap: {
+                  page: join(sourceFolder, defaults.pagesDir, route.importPath),
+                },
+              },
+            ]
+          : [];
+      })
+      .sort((a, b) => {
+        /**
+         * Sort routes so that more specific (static) paths come before dynamic ones.
+         *
+         * This is important because dynamic segments
+         * (e.g., `:id` or `*catchall`) are more general,
+         * and can match values that should be routed to more specific static paths.
+         *
+         * For example, given:
+         *   - `/users/account`
+         *   - `/users/:id`
+         * If `/users/:id` comes first, visiting `/users/account` would incorrectly match it,
+         * treating "account" as an `id`. So static routes must take precedence.
+         *
+         * Estimating specificity by counting static segments — i.e., those that don't start
+         * with `:` or `*`. The route with more static segments is considered more specific.
+         * */
+        const aStaticSegments = staticSegments(a.pathTokens);
+        const bStaticSegments = staticSegments(b.pathTokens);
+        return aStaticSegments === bStaticSegments
+          ? a.path.localeCompare(b.path)
+          : bStaticSegments - aStaticSegments;
+      });
+
+    /**
+     * Selecting api routes eligible for `useResource`.
+     * Only considering api routes that handle GET requests without params.
+     * */
+    const apiRoutes = entries
+      .flatMap(({ kind, route }) => {
+        if (kind !== "api") {
+          return [];
+        }
+
+        if (!route.methods.includes("GET")) {
+          return [];
+        }
+
+        if (!route.optionalParams) {
+          return [];
+        }
+
+        return [
+          {
+            ...route,
+            importPathmap: {
+              fetch: join(
+                sourceFolder,
+                defaults.apiLibDir,
+                route.importPath,
+                "fetch",
+              ),
+            },
+          },
+        ];
+      })
+      .sort(
+        // cosmetic sort, needed for consistency between builds
+        (a, b) => a.name.localeCompare(b.name),
+      );
+
+    const context = {
+      routes,
+      apiRoutes,
+      importPathmap: {
+        config: join(sourceFolder, defaults.configDir),
+        fetch: join(sourceFolder, defaults.fetchLibDir),
+      },
+    };
+
+    for (const [file, template] of [
+      ["{solid}/index.ts", libSolidIndexTpl],
+      ["{solid}/router.ts", libSolidRouterTpl],
+      [`${defaults.pagesLibDir}.ts`, libPagesTpl],
+    ]) {
+      await renderToFile(
+        resolve("libDir", sourceFolder, file),
+        template,
+        context,
+        { formatters },
+      );
+    }
+  };
+
+  return {
+    async watchHandler(entries, event) {
+      if (event?.kind === "create") {
+        await generatePublicFiles(entries);
+      }
+      await generateIndexFiles(entries);
+    },
+  };
+};
+
 export const pathFactory = (pathTokens: Array<PathToken>) => {
   return pathTokens
     .flatMap(({ param, orig, ext }, i) => {
