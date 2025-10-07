@@ -1,2 +1,9 @@
+minimumReleaseAge: 4320
+minimumReleaseAgeExclude:
+  - typebox
+  - ts-fusion
 packages:
   - "packages/core/*"
+  - "packages/generators/*"
+  - "packages/formatters/*"
+  - "packages/build/*"
