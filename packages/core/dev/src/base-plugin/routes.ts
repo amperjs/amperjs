@@ -118,4 +118,280 @@ export default async (
       ? [folder, rest.join("/")]
       : undefined;
   };
+
+  const resolversFactory: ResolversFactory = (routeFiles) => {
+    const resolvers = new Map<
+      string, // fileFullpath
+      RouteResolver
+    >();
+
+    const entries: Array<RouteEntry> = routeFiles.flatMap((_file) => {
+      const resolvedPaths = resolveRouteFile(_file);
+
+      if (!resolvedPaths) {
+        return [];
+      }
+
+      const [folder, file] = resolvedPaths;
+
+      const fileFullpath = join(appRoot, sourceFolder, folder, file);
+
+      const pathTokens = pathTokensFactory(dirname(file));
+
+      const name = pathTokens.map((e) => e.orig).join("/");
+
+      const importPath = dirname(file);
+
+      const importName = [
+        importPath
+          .split(/\[/)[0]
+          .replace(/^\W+|\W+$/g, "")
+          .replace(/\W+/g, "_"),
+        crc(importPath),
+      ].join("_");
+
+      return [
+        {
+          name,
+          folder,
+          file,
+          fileFullpath,
+          pathTokens,
+          importPath,
+          importName,
+        },
+      ];
+    });
+
+    for (const entry of entries.filter((e) => e.folder === defaults.apiDir)) {
+      const {
+        name,
+        file,
+        folder,
+        fileFullpath,
+        pathTokens,
+        importPath,
+        importName,
+      } = entry;
+
+      const handler: RouteResolver["handler"] = async (updatedFile) => {
+        const paramsSchema = pathTokens.flatMap((e) => {
+          return e.param ? [e.param] : [];
+        });
+
+        const params: ApiRoute["params"] = {
+          id: ["ParamsT", crc(name)].join(""),
+          schema: paramsSchema,
+        };
+
+        const optionalParams = paramsSchema.length
+          ? !paramsSchema.some((e) => e.isRequired)
+          : true;
+
+        const { getCache, persistCache } = cacheFactory(
+          { file, fileFullpath, importName, importPath },
+          {
+            appRoot,
+            sourceFolder,
+            extraContext: { resolveTypes },
+          },
+        );
+
+        let cache = await getCache({ validate: true });
+
+        if (!cache) {
+          if (updatedFile === fileFullpath) {
+            const sourceFile = project.getSourceFile(fileFullpath);
+            if (sourceFile) {
+              await sourceFile.refreshFromFileSystem();
+            }
+          }
+
+          const {
+            typeDeclarations,
+            paramsRefinements,
+            methods,
+            payloadTypes,
+            responseTypes,
+            referencedFiles = [],
+          } = await resolveRouteSignature(
+            { importName, fileFullpath, optionalParams },
+            {
+              withReferencedFiles: true,
+              sourceFile:
+                project.getSourceFile(fileFullpath) ||
+                project.addSourceFileAtPath(fileFullpath),
+              relpathResolver(path) {
+                return join(sourceFolder, defaults.apiDir, dirname(file), path);
+              },
+            },
+          );
+
+          const numericParams = paramsRefinements
+            ? paramsRefinements.flatMap(({ text, index }) => {
+                if (text === "number") {
+                  const param = paramsSchema.at(index);
+                  return param ? [param.name] : [];
+                }
+                return [];
+              })
+            : [];
+
+          const typesFileContent = render(typeLiteralsTpl, {
+            params,
+            paramsSchema: paramsSchema.map((param, index) => {
+              return {
+                ...param,
+                refinement: paramsRefinements?.at(index),
+              };
+            }),
+            typeDeclarations,
+            payloadTypes,
+            responseTypes,
+          });
+
+          const resolvedTypes = resolveTypes
+            ? typesResolver(
+                typesFileContent,
+                [...payloadTypes, ...responseTypes].reduce(
+                  (map: Record<string, string>, { id, skipValidation }) => {
+                    if (skipValidation) {
+                      map[id] = "never";
+                    }
+                    return map;
+                  },
+                  {},
+                ),
+              )
+            : undefined;
+
+          /*
+           * writing types.ts file; required by core generators (like fetch).
+           * if types resolved, write resolved types;
+           * otherwise write original types extracted from API route.
+           * */
+          await renderToFile(
+            pathResolver({ appRoot, sourceFolder }).resolve(
+              "apiLibDir",
+              importPath,
+              "types.ts",
+            ),
+            resolvedTypes ? resolvedTypesTpl : typesFileContent,
+            { resolvedTypes },
+            { formatters },
+          );
+
+          if (resolvedTypes) {
+            for (const hook of typesResolvedHooks) {
+              await hook(resolvedTypes, entry, {
+                options: pluginOptions,
+                project,
+              });
+            }
+          }
+
+          cache = await persistCache({
+            methods,
+            typeDeclarations,
+            numericParams,
+            // text was needed at writing types.ts file, dropping from cache
+            payloadTypes: payloadTypes.map(({ text, ...rest }) => rest),
+            responseTypes: responseTypes.map(({ text, ...rest }) => rest),
+            referencedFiles,
+          });
+        }
+
+        const {
+          methods,
+          typeDeclarations,
+          numericParams,
+          payloadTypes,
+          responseTypes,
+          referencedFiles,
+        } = cache;
+
+        const route: ApiRoute = {
+          name,
+          pathTokens,
+          params,
+          numericParams,
+          optionalParams,
+          importName,
+          importPath,
+          folder,
+          file,
+          fileFullpath,
+          methods,
+          typeDeclarations,
+          payloadTypes,
+          responseTypes,
+          referencedFiles: Object.keys(referencedFiles).map(
+            // expanding referenced files path,
+            // they are stored as relative in cache
+            (e) => resolve(appRoot, e),
+          ),
+        };
+
+        return {
+          kind: "api",
+          route,
+        };
+      };
+
+      resolvers.set(fileFullpath, { name, handler });
+    }
+
+    for (const entry of entries.filter((e) => e.folder === defaults.pagesDir)) {
+      const {
+        //
+        name,
+        folder,
+        file,
+        fileFullpath,
+        pathTokens,
+        importPath,
+        importName,
+      } = entry;
+
+      const handler: RouteResolver["handler"] = async () => {
+        const route: PageRoute = {
+          name,
+          pathTokens,
+          params: {
+            schema: pathTokens.flatMap((e) => (e.param ? [e.param] : [])),
+          },
+          folder,
+          file,
+          fileFullpath,
+          importPath,
+          importName,
+        };
+
+        return {
+          kind: "page",
+          route,
+        };
+      };
+
+      resolvers.set(fileFullpath, { name, handler });
+    }
+
+    return resolvers;
+  };
+
+  const routeFiles = await glob(routeFilePatterns, {
+    cwd: resolve(appRoot, sourceFolder),
+    absolute: true,
+    onlyFiles: true,
+    ignore: [
+      `${defaults.apiDir}/index.ts`,
+      `${defaults.pagesDir}/index.ts{x,}`,
+    ],
+  });
+
+  return {
+    resolvers: resolversFactory(routeFiles),
+    resolversFactory,
+    resolveRouteFile,
+  };
 };
