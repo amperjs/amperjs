@@ -139,3 +139,45 @@ const createEventHandler = async (file: string) => {
   }
 };
 
+const updateEventHandler = async (file: string) => {
+  const relatedResolvers = new Map<string, RouteResolver>();
+
+  if (resolvedRoutes.has(file)) {
+    // some route updated
+    const resolver = resolvers.get(file);
+    if (resolver) {
+      relatedResolvers.set(file, resolver);
+    }
+  } else {
+    // checking if changed file is referenced by any routes
+    const referencedRoutes = resolvedRoutes
+      .values()
+      .filter(({ kind, route }) => {
+        return kind === "api" ? route.referencedFiles.includes(file) : false;
+      });
+    for (const { route } of referencedRoutes) {
+      const resolver = resolvers.get(route.fileFullpath);
+      if (resolver) {
+        relatedResolvers.set(route.fileFullpath, resolver);
+      }
+    }
+  }
+
+  let spinner = spinnerFactory(`Updating ${relatedResolvers.size} Routes`);
+
+  for (const resolver of relatedResolvers.values()) {
+    spinner.append(resolver.name);
+    try {
+      const route = await resolver.handler(file);
+      resolvedRoutes.set(route.route.fileFullpath, route);
+    } catch (
+      // biome-ignore lint: any
+      error: any
+    ) {
+      spinner.failed(error);
+      spinner = spinnerFactory(`Updating ${relatedResolvers.size} Routes`);
+    }
+  }
+
+  spinner.succeed();
+};
