@@ -1,0 +1,120 @@
+{
+  "$schema": "https://biomejs.dev/schemas/2.2.3/schema.json",
+
+  "files": {
+    "includes": [
+      "*.js",
+      "packages/*/*/{src,test}/**/*.ts",
+      "!packages/*/*/test/_fixtures/app/lib/*"
+    ]
+  },
+
+  "formatter": {
+    "indentStyle": "space",
+    "indentWidth": 2
+  },
+
+  "linter": {
+    "enabled": true,
+    "rules": {
+      "complexity": {
+        "noBannedTypes": "off",
+        "noUselessTernary": "off",
+        "useLiteralKeys": "off"
+      },
+      "correctness": {
+        "noUnusedVariables": {
+          "level": "info",
+          "options": {
+            "ignoreRestSiblings": true
+          }
+        }
+      },
+      "style": {
+        "useFilenamingConvention": {
+          "level": "error",
+          "options": {
+            "strictCase": true,
+            "requireAscii": true
+          }
+        }
+      },
+      "suspicious": {
+        "noEmptyInterface": "off",
+        "noConsole": {
+          "level": "info",
+          "options": {
+            "allow": ["assert", "error", "info", "warn"]
+          }
+        }
+      }
+    }
+  },
+
+  "overrides": [
+    {
+      "includes": [
+        "./packages/build/esbuilder/src/index.ts",
+        "./packages/core/dev/src/base-plugin/api-handler.ts",
+        "./packages/core/create/src/index.ts",
+        "./packages/core/create/src/templates/**/*.ts"
+      ],
+      "linter": {
+        "rules": {
+          "suspicious": {
+            "noConsole": "off"
+          }
+        }
+      }
+    }
+  ],
+
+  "assist": {
+    "actions": {
+      "source": {
+        "organizeImports": {
+          "level": "on",
+          "options": {
+            "groups": [
+              [":NODE:", ":BUN:"],
+              ":BLANK_LINE:",
+              [
+                ":PACKAGE:",
+                ":PACKAGE_WITH_PROTOCOL:",
+                "!@test/**",
+                "!@oreum/**"
+              ],
+              ":BLANK_LINE:",
+
+              [
+                ":PACKAGE:",
+                ":PACKAGE_WITH_PROTOCOL:",
+                "!@test/**",
+                "@oreum/**",
+                "!@oreum/**/*-generator"
+              ],
+              ":BLANK_LINE:",
+
+              [":PACKAGE:", ":PACKAGE_WITH_PROTOCOL:", "@oreum/**/*-generator"],
+              ":BLANK_LINE:",
+
+              [":PACKAGE:", "@test/**"],
+              ":BLANK_LINE:",
+
+              [":URL:"],
+              ":BLANK_LINE:",
+
+              [":ALIAS:"],
+              ":BLANK_LINE:",
+
+              [":PATH:", "!./templates/**"],
+              ":BLANK_LINE:",
+
+              [":PATH:"]
+            ]
+          }
+        }
+      }
+    }
+  }
+}
