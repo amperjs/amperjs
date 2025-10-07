@@ -1,0 +1,11 @@
+export type PayloadT = {
+  {{#each routes}}
+  "{{name}}": import("{{importPathmap.fetchApi}}").PayloadT;
+  {{/each}}
+}
+
+export type ResponseT = {
+  {{#each routes}}
+  "{{name}}": import("{{importPathmap.fetchApi}}").ResponseT;
+  {{/each}}
+}
