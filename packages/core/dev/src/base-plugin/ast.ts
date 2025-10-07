@@ -110,3 +110,91 @@ export const extractParamsRefinements = (
     };
   });
 };
+
+export const extractRouteMethods = (
+  callExpression: CallExpression,
+  route: Pick<ApiRoute, "importName" | "optionalParams">,
+): Array<{
+  method: HTTPMethod;
+  payloadType: (PayloadType & { text: string }) | undefined;
+  responseType: (ResponseType & { text: string }) | undefined;
+}> => {
+  const funcDeclaration =
+    callExpression.getFirstChildByKind(SyntaxKind.ArrowFunction) ||
+    callExpression.getFirstChildByKind(SyntaxKind.FunctionExpression);
+
+  if (!funcDeclaration) {
+    return [];
+  }
+
+  const arrayLiteralExpression = funcDeclaration.getFirstChildByKind(
+    SyntaxKind.ArrayLiteralExpression,
+  );
+
+  if (!arrayLiteralExpression) {
+    return [];
+  }
+
+  const callExpressions: Array<[CallExpression, HTTPMethod]> = [];
+
+  for (const e of arrayLiteralExpression.getChildrenOfKind(
+    SyntaxKind.CallExpression,
+  )) {
+    const name = e.getExpression().getText() as HTTPMethod;
+    if (HTTPMethods[name]) {
+      callExpressions.push([e, name]);
+    }
+  }
+
+  const methods = [];
+
+  const skipValidationFilter = (e: string) => /@skip-validation/.test(e);
+
+  for (const [callExpression, method] of callExpressions) {
+    const [payloadGeneric, responseGeneric] = extractGenerics(callExpression);
+
+    const payloadText = payloadGeneric?.node
+      ? payloadGeneric.node.getChildren().length === 0
+        ? "{}"
+        : payloadGeneric.node.getFullText()
+      : undefined;
+
+    const responseText = responseGeneric?.node.getText();
+
+    const responseType = responseText
+      ? {
+          id: ["ResponseT", crc(route.importName + method)].join(""),
+          method,
+          skipValidation: responseGeneric?.comments
+            ? responseGeneric.comments.some(skipValidationFilter)
+            : false,
+          text: ["never", "object"].includes(responseText)
+            ? "{}"
+            : responseText,
+        }
+      : undefined;
+
+    const payloadType = payloadText
+      ? {
+          id: ["PayloadT", crc(route.importName + method)].join(""),
+          responseTypeId: responseType?.id,
+          method,
+          skipValidation: payloadGeneric?.comments
+            ? payloadGeneric.comments.some(skipValidationFilter)
+            : false,
+          isOptional: payloadText
+            ? payloadText === "{}" || route.optionalParams
+            : true,
+          text: payloadText,
+        }
+      : undefined;
+
+    methods.push({
+      method,
+      payloadType,
+      responseType,
+    });
+  }
+
+  return methods;
+};
