@@ -1,1 +1,5 @@
+/packages/*/*/test/_fixtures/app/lib/
+/packages/*/*/pkg/
+/packages/*/*/var/
+/var/
 /.tmuxinator*
