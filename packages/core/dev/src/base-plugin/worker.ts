@@ -212,3 +212,79 @@ const runWatchHandlers = async (event?: WatcherEvent) => {
   spinner.succeed();
 };
 
+const watcher = chokidar.watch(
+  [
+    // watching for changes in sourceFolder's apiDir and pagesDir
+    resolve("apiDir"),
+    resolve("pagesDir"),
+  ],
+  {
+    ...resolvedOptions.watcher.options,
+    awaitWriteFinish:
+      typeof resolvedOptions.watcher.options?.awaitWriteFinish === "object"
+        ? resolvedOptions.watcher.options.awaitWriteFinish
+        : {
+            stabilityThreshold: resolvedOptions.watcher.delay,
+            pollInterval: Math.floor(resolvedOptions.watcher.delay / 4),
+          },
+    // Do Not emit "add" event for existing files
+    ignoreInitial: true,
+    // Not using Chokidar's `ignored` option.
+    // Instead, allow all events through and filter them manually as needed.
+  },
+);
+
+watcher.on("all", async (event, file) => {
+  if (event.endsWith("Dir")) {
+    // skipping folder events
+    return;
+  }
+
+  if (!resolveRouteFile(file)) {
+    // not a route file
+    return;
+  }
+
+  const match = (
+    {
+      add: { handler: createEventHandler, kind: "create" },
+      change: { handler: updateEventHandler, kind: "update" },
+      unlink: { handler: deleteEventHandler, kind: "delete" },
+    } as const
+  )[event as string];
+
+  if (match) {
+    const { handler, kind } = match;
+
+    /**
+     * This handler is responsible for updating `resolvedRoutes`
+     * before they are passed to generators.
+     * */
+    await handler(file);
+
+    await runWatchHandlers({ kind, file });
+  }
+});
+
+{
+  let spinner = spinnerFactory("Resolving Routes");
+
+  for (const { name, handler } of resolvers.values()) {
+    spinner.append(
+      `[ ${resolvedRoutes.size + 1} of ${resolvers.size} ] ${name}`,
+    );
+    try {
+      const resolvedEntry = await handler();
+      resolvedRoutes.set(resolvedEntry.route.fileFullpath, resolvedEntry);
+    } catch (
+      // biome-ignore lint: any
+      error: any
+    ) {
+      spinner.failed(error);
+      spinner = spinnerFactory("Resolving Routes");
+    }
+  }
+
+  spinner.succeed();
+}
+
