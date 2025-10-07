@@ -73,9 +73,9 @@ const printUsage = () => {
 
 if (process.argv[2]) {
   const options = {
-    folder: {
+    "source-folder": {
       type: "boolean",
-      short: "f",
+      short: "s",
     },
     help: {
       type: "boolean",
@@ -117,7 +117,7 @@ if (process.argv[2]) {
     halt("Please navigate to a valid Oreum project directory");
   }
 
-  if (input?.values.folder) {
+  if (input?.values["source-folder"]) {
     const folder = await prompts<"name" | "baseurl" | "port">([
       {
         type: "text",
