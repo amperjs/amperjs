@@ -1,0 +1,56 @@
+{
+  "type": "module",
+  "name": "@oreum/dev",
+  "version": "0.0.0-alpha.0",
+  "cacheVersion": "001",
+  "author": "Slee Woo",
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "files": [
+    "pkg/*"
+  ],
+  "exports": {
+    ".": {
+      "types": "./pkg/src/index.d.ts",
+      "default": "./pkg/index.js"
+    },
+    "./routes": {
+      "types": "./pkg/src/base-plugin/routes.d.ts",
+      "default": "./pkg/base-plugin/routes.js"
+    },
+    "./stub-generator": {
+      "types": "./pkg/src/stub-generator/index.d.ts",
+      "default": "./pkg/stub-generator/index.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "scripts": {
+    "build": "esbuilder src/index.ts src/base-plugin/routes.ts src/base-plugin/worker.ts src/stub-generator/index.ts",
+    "test": "vitest --root ../../.. --project core/dev"
+  },
+  "dependencies": {
+    "@oreum/api": "workspace:^",
+    "@oreum/api-generator": "workspace:^",
+    "@oreum/devlib": "workspace:^",
+    "@oreum/fetch-generator": "workspace:^",
+    "chokidar": "^4.0.3",
+    "crc": "^4.3.2",
+    "dotenv": "^17.2.3",
+    "esbuild": "^0.25.10",
+    "fs-extra": "^11.3.2",
+    "kleur": "^4.1.5",
+    "picomatch": "^4.0.3",
+    "tinyglobby": "^0.2.15",
+    "ts-fusion": "^0.0.18",
+    "ts-morph": "^27.0.0",
+    "typescript": "^5.9.3"
+  },
+  "devDependencies": {
+    "@types/fs-extra": "^11.0.4",
+    "@types/koa": "^3.0.0",
+    "@types/picomatch": "^4.0.2",
+    "vite": "^7.1.9"
+  }
+}
