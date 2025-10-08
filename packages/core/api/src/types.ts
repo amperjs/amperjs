@@ -182,8 +182,9 @@ export type TeardownHandler = (app: App) => void | Promise<void>;
 
 export type ValidationSchema = {
   check: (data: unknown) => boolean;
-  // biome-ignore lint/suspicious/noExplicitAny: any
-  errors: (data: unknown) => Array<any>;
+  errors: (data: unknown) => Array<ValidationErrorEntry>;
+  errorMessage: (data: unknown) => string;
+  errorSummary: (data: unknown) => string;
   validate: (data: unknown) => void;
 };
 
