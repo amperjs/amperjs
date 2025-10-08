@@ -1,3 +1,5 @@
+import qs from "qs";
+
 import defaults from "./defaults";
 import type {
   FetchMapper,
@@ -169,4 +171,12 @@ export default (base: string | URL, opts?: Options): FetchMapper => {
     PATCH: wrapper("PATCH"),
     DELETE: wrapper("DELETE"),
   };
+};
+
+export const stringify = (data: Record<string, unknown>) => {
+  return qs.stringify(data, {
+    arrayFormat: "brackets",
+    indices: false,
+    encodeValuesOnly: true,
+  });
 };

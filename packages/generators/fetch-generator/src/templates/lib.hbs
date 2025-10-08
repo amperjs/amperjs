@@ -1,4 +1,4 @@
-import qs from "qs"; // safe to import, qs is a @oreum/fetch dependency
+export { stringify } from "@oreum/fetch";
 
 export * from "./unwrap";
 
@@ -36,12 +36,4 @@ export const join = (...args: Array<unknown>): string => {
     );
   }
   return args.join("/").replace(/\/+/g, "/");
-};
-
-export const stringify = (data: Record<string, unknown>) => {
-  return qs.stringify(data, {
-    arrayFormat: "brackets",
-    indices: false,
-    encodeValuesOnly: true,
-  });
 };
