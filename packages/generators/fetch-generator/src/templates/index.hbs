@@ -2,6 +2,8 @@
 import {{importName}} from "{{importPathmap.fetchApi}}";
 {{/each}}
 
+export { ValidationError } from "@oreum/api";
+
 export default {
 {{#each routes}}  "{{name}}": {{importName}},
 {{#each alias }}  "{{this}}": {{../importName}},

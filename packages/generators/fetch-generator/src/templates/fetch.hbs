@@ -12,6 +12,8 @@ import {
   createHost,
 } from "{{importPathmap.fetchLib}}";
 
+export { ValidationError } from "@oreum/api";
+
 export type ParamsT = [
   {{#each route.params.schema}}
   {{#if isRest}}
