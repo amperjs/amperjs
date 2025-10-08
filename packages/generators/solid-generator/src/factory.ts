@@ -90,7 +90,7 @@ export const factory: GeneratorFactory<Options> = async (
   for (const [file, template] of [
     ["components/Link.tsx", publicComponentsLinkTpl],
     ["App.tsx", publicAppTpl],
-    ["index.tsx", publicIndexTpl],
+    ["index.ts", publicIndexTpl],
     ["router.tsx", publicRouterTpl],
   ]) {
     await renderToFile(
