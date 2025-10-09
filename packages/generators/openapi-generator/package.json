@@ -1,0 +1,32 @@
+{
+  "type": "module",
+  "name": "@oreum/openapi-generator",
+  "version": "0.0.0-alpha.0",
+  "author": "Slee Woo",
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "files": [
+    "pkg/*"
+  ],
+  "exports": {
+    ".": {
+      "types": "./pkg/src/index.d.ts",
+      "default": "./pkg/index.js"
+    }
+  },
+  "scripts": {
+    "build": "esbuilder src/index.ts"
+  },
+  "dependencies": {
+    "@oreum/devlib": "workspace:^",
+    "@sinclair/typemap": "^0.10.1",
+    "fs-extra": "^11.3.2",
+    "yaml": "^2.8.1"
+  },
+  "devDependencies": {
+    "@types/fs-extra": "^11.0.4",
+    "ts-fusion": "^0.0.18"
+  }
+}
