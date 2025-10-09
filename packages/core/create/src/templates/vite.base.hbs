@@ -38,13 +38,6 @@ export default async (sourceFolderPath: string, config: UserConfig) => {
           // keys extracted from process.env and exposed to client
           keys: ["NODE_ENV", "DEBUG"],
         },
-        {
-          file: resolve(import.meta.dirname, ".env"),
-          keys: ["HOSTNAME"], // keys exposed to client
-          use(key, val) {
-            process.env[key] = val;
-          },
-        },
       ]),
     ],
   });
