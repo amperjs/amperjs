@@ -1,0 +1,33 @@
+import type { ValidationSchemas } from "@oreum/api";
+
+import { validationSchemaFactory } from "{{importPathmap.typebox}}";
+
+import schemas from "./typebox";
+
+export const validationSchemas: ValidationSchemas = {
+  params: validationSchemaFactory(schemas.{{route.params.id}}, {
+    scope: "params",
+  }),
+  payload: {
+    {{#each routeMethods}}
+    {{#if payloadType}}
+    {{#unless payloadType.skipValidation}}
+    {{method}}: validationSchemaFactory(schemas.{{payloadType.id}}, {
+      scope: "payload",
+    }),
+    {{/unless}}
+    {{/if}}
+    {{/each}}
+  },
+  response: {
+    {{#each routeMethods}}
+    {{#if responseType}}
+    {{#unless responseType.skipValidation}}
+    {{method}}: validationSchemaFactory(schemas.{{responseType.id}}, {
+      scope: "response",
+    }),
+    {{/unless}}
+    {{/if}}
+    {{/each}}
+  },
+};
