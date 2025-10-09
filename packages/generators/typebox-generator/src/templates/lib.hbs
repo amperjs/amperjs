@@ -1,0 +1,56 @@
+import type { TSchema } from "typebox";
+import { Compile } from "typebox/compile";
+import Value from "typebox/value";
+
+import {
+  type ValidationErrorScope,
+  type ValidationSchema,
+  ValidationError,
+} from "@oreum/api";
+
+import errorHandlerFactory from "./error-handler";
+
+{{#if importPathmap.customTypes}}
+import customTypes from "{{importPathmap.customTypes}}";
+{{else}}
+const customTypes = {} as const;
+{{/if}}
+
+const {
+  formatValidationErrors,
+  formatValidationErrorMessage,
+  getErrorSummary,
+} = errorHandlerFactory({{validationMessages}});
+
+export const validationSchemaFactory = (
+  schema: TSchema,
+  { scope }: {
+    scope: ValidationErrorScope;
+  },
+): ValidationSchema => {
+  const compiledSchema = Compile(customTypes, schema);
+  const getSchemaErrors = (data: unknown) => Value.Errors(schema, data);
+  return {
+    check(data) {
+      return compiledSchema.Check(data);
+    },
+    errors(data) {
+      return formatValidationErrors(getSchemaErrors(data));
+    },
+    errorMessage(data) {
+      return formatValidationErrorMessage(getSchemaErrors(data));
+    },
+    errorSummary(data) {
+      return getErrorSummary(getSchemaErrors(data));
+    },
+    validate(data) {
+      if (!this.check(data)) {
+        throw new ValidationError([scope, {
+          errors: this.errors(data),
+          errorMessage: this.errorMessage(data),
+          errorSummary: this.errorSummary(data),
+        }]);
+      }
+    },
+  };
+};
