@@ -1,0 +1,6 @@
+import Type from "typebox";
+
+export default {
+{{#each resolvedTypes}}  {{name}}: Type.Script(`{{text}}` as never),
+{{/each}}
+}
