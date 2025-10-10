@@ -1,6 +1,6 @@
 {
   "type": "module",
-  "name": "create-oreum",
+  "name": "oreum",
   "version": "0.0.0-alpha.0",
   "author": "Slee Woo",
   "license": "MIT",
@@ -11,7 +11,6 @@
     "pkg/*"
   ],
   "bin": {
-    "create-oreum": "pkg/index.js",
     "oreum": "pkg/index.js"
   },
   "scripts": {
@@ -26,6 +25,7 @@
     "prompts": "^2.4.2"
   },
   "devDependencies": {
+    "oreum": "workspace:^",
     "@oreum/api": "workspace:^",
     "@types/fs-extra": "^11.0.4",
     "@types/koa": "^3.0.0",
