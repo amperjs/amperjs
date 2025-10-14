@@ -8,7 +8,6 @@ import { flattener } from "ts-fusion";
 import {
   type ApiRoute,
   defaults,
-  type GeneratorConstructor,
   type PageRoute,
   type PluginOptionsResolved,
   pathResolver,
@@ -61,16 +60,9 @@ export default async (
 
   let resolveTypes = false;
 
-  const typesResolvedHooks: Array<
-    NonNullable<NonNullable<GeneratorConstructor["options"]>["typesResolved"]>
-  > = [];
-
   for (const { options } of generators) {
     if (options?.resolveTypes) {
       resolveTypes = true;
-      if (options.typesResolved) {
-        typesResolvedHooks.push(options.typesResolved);
-      }
     }
   }
 
@@ -280,15 +272,6 @@ export default async (
             { resolvedTypes },
             { formatters },
           );
-
-          if (resolvedTypes) {
-            for (const hook of typesResolvedHooks) {
-              await hook(resolvedTypes, entry, {
-                options: pluginOptions,
-                project,
-              });
-            }
-          }
 
           cache = await persistCache({
             methods,

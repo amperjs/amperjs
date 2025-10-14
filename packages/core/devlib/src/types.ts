@@ -179,21 +179,6 @@ export type GeneratorConstructor = {
      * generator execution, making complete type data available.
      * */
     resolveTypes?: boolean;
-
-    /**
-     * Optional callback invoked when types for an API route are fully resolved.
-     *
-     * Only active when `resolveTypes` is enabled. Provides access to the
-     * resolved types for side effects, logging, or further processing.
-     * */
-    typesResolved?: (
-      types: Array<import("ts-fusion").ResolvedType>,
-      routeEntry: RouteEntry,
-      assets: {
-        options: PluginOptionsResolved;
-        project: import("ts-morph").Project;
-      },
-    ) => void | Promise<void>;
   };
 };
 
