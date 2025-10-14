@@ -93,17 +93,17 @@ export const extractParamsRefinements = (
   | undefined => {
   const [firstGeneric] = extractGenerics(callExpression);
 
-  if (!firstGeneric?.node.isKind(SyntaxKind.TypeReference)) {
+  if (!firstGeneric?.node.isKind(SyntaxKind.TupleType)) {
     return;
   }
 
-  const typeArguments = firstGeneric.node.getTypeArguments();
+  const tupleElements = firstGeneric.node.getElements();
 
-  if (!typeArguments.length) {
+  if (!tupleElements?.length) {
     return;
   }
 
-  return typeArguments.map((node, index) => {
+  return tupleElements.map((node, index) => {
     return {
       index,
       text: node.getText(),
