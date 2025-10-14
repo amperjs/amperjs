@@ -29,6 +29,6 @@
     "@oreum/dev": "workspace:^"
   },
   "peerDependencies": {
-    "typebox": "^1.0.25"
+    "typebox": "^1.0.35"
   }
 }
