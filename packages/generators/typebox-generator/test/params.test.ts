@@ -1,6 +1,6 @@
 import { describe, expect, test } from "vitest";
 
-import { importSchema } from "./lib";
+import { generatePathCombinations, importSchema } from "./lib";
 
 describe("params", () => {
   describe("string param", async () => {
@@ -190,6 +190,32 @@ describe("params", () => {
 
     test("pass if no param provided", () => {
       expect(schema?.check({})).toEqual(true);
+    });
+  });
+
+  describe("rest params", async () => {
+    const schema = await importSchema("params/[...path]", "params");
+
+    test("pass without tokens", () => {
+      expect(schema?.check({ path: [] })).toBe(true);
+    });
+
+    test("pass with valid tokens", () => {
+      for (const path of generatePathCombinations(["a", "b", "c"])) {
+        expect(schema?.check({ path })).toBe(true);
+      }
+    });
+
+    test("fails with invalid tokens", () => {
+      for (const path of [
+        ["a", "x"],
+        ["y"],
+        ["x", "y", "b"],
+        ["abc", "xyz"],
+        [""],
+      ]) {
+        expect(schema?.check({ path })).toBe(false);
+      }
     });
   });
 });
