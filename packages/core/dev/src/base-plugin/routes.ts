@@ -298,6 +298,7 @@ export default async (
             payloadTypes: payloadTypes.map(({ text, ...rest }) => rest),
             responseTypes: responseTypes.map(({ text, ...rest }) => rest),
             referencedFiles,
+            resolvedTypes,
           });
         }
 
@@ -307,6 +308,7 @@ export default async (
           numericParams,
           payloadTypes,
           responseTypes,
+          resolvedTypes,
           referencedFiles,
         } = cache;
 
@@ -325,6 +327,17 @@ export default async (
           typeDeclarations,
           payloadTypes,
           responseTypes,
+          resolvedTypes: resolvedTypes
+            ? resolvedTypes.map((type) => {
+                return {
+                  ...type,
+                  // Escapes backticks and $ for safe use in template literals
+                  escapedText: type.text
+                    .replace(/(?<!\\)`/g, "\\`")
+                    .replace(/(?<!\\)\$\{/g, "\\${"),
+                };
+              })
+            : undefined,
           referencedFiles: Object.keys(referencedFiles).map(
             // expanding referenced files path,
             // they are stored as relative in cache

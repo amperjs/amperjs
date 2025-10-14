@@ -58,6 +58,14 @@ export type ApiRoute = RouteEntry & {
   typeDeclarations: Array<TypeDeclaration>;
   payloadTypes: Array<PayloadType>;
   responseTypes: Array<ResponseType>;
+  resolvedTypes:
+    | Array<
+        import("ts-fusion").ResolvedType & {
+          // text with escaped backticks and $
+          escapedText: string;
+        }
+      >
+    | undefined;
   // absolute path to referenced files
   referencedFiles: string[];
 };

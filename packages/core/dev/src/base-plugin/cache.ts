@@ -9,6 +9,7 @@ import { type ApiRoute, pathResolver } from "@oreum/devlib";
 export type Cache = {
   hash: number;
   referencedFiles: Record<string, number>;
+  resolvedTypes: Array<import("ts-fusion").ResolvedType> | undefined;
 } & Pick<
   ApiRoute,
   | "methods"
