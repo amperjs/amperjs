@@ -11,10 +11,7 @@ describe("extractParamsRefinements", () => {
 
   test("no refinements", ({ task }) => {
     const defaultExport = extractDefaultExport(
-      project.createSourceFile(
-        `${task.id}.ts`,
-        "export default defineRoute<Params>()",
-      ),
+      project.createSourceFile(`${task.id}.ts`, "export default defineRoute()"),
     );
     const refinements = defaultExport
       ? extractParamsRefinements(defaultExport)
@@ -26,7 +23,7 @@ describe("extractParamsRefinements", () => {
     const defaultExport = extractDefaultExport(
       project.createSourceFile(
         `${task.id}.ts`,
-        "export default defineRoute<Params<number>>()",
+        "export default defineRoute<[number]>()",
       ),
     );
     const refinements = defaultExport
@@ -44,7 +41,7 @@ describe("extractParamsRefinements", () => {
     const defaultExport = extractDefaultExport(
       project.createSourceFile(
         `${task.id}.ts`,
-        `export default defineRoute<Params<number, "a" | "b">>()`,
+        `export default defineRoute<[number, "a" | "b"]>()`,
       ),
     );
     const refinements = defaultExport
@@ -62,11 +59,11 @@ describe("extractParamsRefinements", () => {
     ]);
   });
 
-  test("with type references", ({ task }) => {
+  test("with referenced elements", ({ task }) => {
     const defaultExport = extractDefaultExport(
       project.createSourceFile(
         `${task.id}.ts`,
-        `type T = string; export default defineRoute<Params<T>>()`,
+        `type T = string; export default defineRoute<[T]>()`,
       ),
     );
     const refinements = defaultExport
@@ -78,5 +75,18 @@ describe("extractParamsRefinements", () => {
         text: "T",
       },
     ]);
+  });
+
+  test("should return undefined for referenced types", ({ task }) => {
+    const defaultExport = extractDefaultExport(
+      project.createSourceFile(
+        `${task.id}.ts`,
+        `type T = [string]; export default defineRoute<T>()`,
+      ),
+    );
+    const refinements = defaultExport
+      ? extractParamsRefinements(defaultExport)
+      : [];
+    expect(refinements).toBeUndefined();
   });
 });
