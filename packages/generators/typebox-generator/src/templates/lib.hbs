@@ -1,4 +1,4 @@
-import type { TSchema } from "typebox";
+import Type from "typebox";
 import { Compile } from "typebox/compile";
 import Value from "typebox/value";
 
@@ -23,11 +23,12 @@ const {
 } = errorHandlerFactory({{validationMessages}});
 
 export const validationSchemaFactory = (
-  schema: TSchema,
+  schemaText: string,
   { scope }: {
     scope: ValidationErrorScope;
   },
 ): ValidationSchema => {
+  const schema = Type.Script(schemaText);
   const compiledSchema = Compile(customTypes, schema);
   const getSchemaErrors = (data: unknown) => Value.Errors(schema, data);
   return {

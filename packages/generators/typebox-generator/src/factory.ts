@@ -9,23 +9,25 @@ import {
 } from "@oreum/devlib";
 
 import errorHandlerTpl from "./error-handler.ts?as=text";
-import type { ResolvedOptions } from "./types";
+import type { Options } from "./types";
 
 import envTpl from "./templates/env.hbs";
 import libTpl from "./templates/lib.hbs";
 import schemasTpl from "./templates/schemas.hbs";
 
-export const factory: GeneratorFactory<ResolvedOptions> = async (
+export const factory: GeneratorFactory<Options> = async (
   { appRoot, sourceFolder, formatters },
   options,
 ) => {
   const {
-    refineTypeName,
+    refineTypeName = "TRefine",
     validationMessages = {},
     importCustomTypes,
-  } = options;
+  } = { ...options };
 
   const { resolve } = pathResolver({ appRoot, sourceFolder });
+
+  const refineTypeRegex = new RegExp(`\\b${refineTypeName}\\s*<`, "g");
 
   for (const [file, template] of [
     ["env.d.ts", envTpl],
@@ -66,6 +68,21 @@ export const factory: GeneratorFactory<ResolvedOptions> = async (
               ),
             };
           }),
+          resolvedTypes: route.resolvedTypes
+            ? route.resolvedTypes.map(({ name, escapedText }) => {
+                return {
+                  name,
+                  text: escapedText
+                    /**
+                     * TypeBox's built-in `Options` type is not configurable.
+                     * To allow a custom type name, exposing `refineTypeName` option,
+                     * defaulted to TRefine, then renaming it to `Options`.
+                     * */
+                    .replace(refineTypeRegex, "Options<")
+                    .trim(),
+                };
+              })
+            : [],
           importPathmap: {
             typebox: join(defaults.appPrefix, defaults.libDir, "{typebox}"),
           },

@@ -2,7 +2,10 @@ import type { ValidationSchemas } from "@oreum/api";
 
 import { validationSchemaFactory } from "{{importPathmap.typebox}}";
 
-import schemas from "./typebox";
+const schemas = {
+{{#each resolvedTypes}}  {{name}}: `{{text}}`,
+{{/each}}
+}
 
 export const validationSchemas: ValidationSchemas = {
   params: validationSchemaFactory(schemas.{{route.params.id}}, {

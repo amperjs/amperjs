@@ -47,7 +47,3 @@ export type Options = {
    */
   refineTypeName?: string;
 };
-
-export type ResolvedOptions = Options & {
-  refineTypeName: string;
-};
