@@ -5,7 +5,7 @@ export default defineRoute(({ POST }) => [
     never,
     {
       query: TRefine<string, { minLength: 1; maxLength: 100 }>;
-      results: any[];
+      results: unknown[];
       pagination: {
         page: TRefine<number, { minimum: 1 }>;
         limit: TRefine<number, { minimum: 1; maximum: 100 }>;
@@ -15,7 +15,7 @@ export default defineRoute(({ POST }) => [
         hasPrev: boolean;
       };
       filters: {
-        applied: Record<string, any>;
+        applied: Record<string, unknown>;
         available: {
           categories: Array<{
             name: string;
