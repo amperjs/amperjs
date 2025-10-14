@@ -77,6 +77,7 @@ export const factory: GeneratorFactory<Options> = async (
 
       const context = {
         route,
+        params: route.params.schema,
       };
 
       for (const [file, template] of [

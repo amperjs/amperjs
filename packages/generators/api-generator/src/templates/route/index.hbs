@@ -1,15 +1,25 @@
-export { defineRoute } from "@oreum/api";
+import {
+  defineRoute as $defineRoute,
+  type DefineRouteHelpers,
+  type RouteDefinitionItem,
+} from "@oreum/api";
 
-{{#if route.params.schema.length}}
-export type ParamsT<
-  {{#each route.params.schema}}
-  P00{{@index}} = string,
-  {{/each}}
-> = {
-  {{#each route.params.schema}}
-  "{{name}}"{{#unless isRequired}}?{{/unless}}: P00{{@index}}{{#unless isRequired}} | undefined{{/unless}};
+type ParamsTuple = [{{#each params}}unknown?,{{/each}}];
+
+type ParamsMapper<T extends ParamsTuple> = {
+  {{#each params}}
+  "{{name}}"{{#unless isRequired}}?{{/unless}}: T[{{@index}}] extends undefined
+      ? string
+      : T[{{@index}}]{{#unless isRequired}} | undefined{{/unless}};
   {{/each}}
 };
-{{else}}
-export type ParamsT = {};
-{{/if}}
+
+export const defineRoute: <
+  P extends ParamsTuple = [{{#each params}}string{{#unless isRequired}}?{{/unless}},{{/each}}],
+  S extends object = object,
+  C extends object = object
+>(
+  factory: (
+    helpers: DefineRouteHelpers<ParamsMapper<P>, S, C>,
+  ) => Array<RouteDefinitionItem>,
+) => Array<RouteDefinitionItem> = $defineRoute;
