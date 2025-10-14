@@ -80,6 +80,7 @@ const scriptPatternsMapper = (pattern: string) => {
 for (const pattern of values.scripts.map(scriptPatternsMapper)) {
   const scripts = await glob(pattern, {
     onlyFiles: true,
+    ignore: ["publish/*"],
   });
 
   for (const script of scripts) {
