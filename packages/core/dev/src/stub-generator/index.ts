@@ -4,6 +4,7 @@ import {
   renderToFile,
 } from "@oreum/devlib";
 
+import envTpl from "./templates/env.d.ts?as=text";
 import schemasTpl from "./templates/schemas.hbs";
 
 /**
@@ -20,12 +21,19 @@ export default (): GeneratorConstructor => {
       return {
         async watchHandler(entries) {
           const { resolve } = pathResolver({ appRoot, sourceFolder });
+
+          /**
+           * exposing TRefine as a global type.
+           * not supposed to be overriden by generators.
+           * */
+          await renderToFile(resolve("libDir", "env.d.ts"), envTpl, {});
+
           for (const { kind, route } of entries) {
             if (kind === "api") {
               // Generating stub schemas file.
               // It is required by various generators, e.g. api-generator, fetch-generator.
               // Specialized generators (e.g. typebox-generator) may override this later.
-              renderToFile(
+              await renderToFile(
                 resolve("apiLibDir", route.importPath, "schemas.ts"),
                 schemasTpl,
                 { route },
