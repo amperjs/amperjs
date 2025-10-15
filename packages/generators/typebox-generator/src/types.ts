@@ -36,14 +36,4 @@ export type Options = {
    *
    */
   importCustomTypes?: string;
-
-  /**
-   * Name to use for custom TypeBox refinements.
-   *
-   * TypeBox's built-in `Options` type is not configurable, so this
-   * allows you to specify a custom name for refinements.
-   *
-   * @default "TRefine"
-   */
-  refineTypeName?: string;
 };

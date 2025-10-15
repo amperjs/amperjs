@@ -14,6 +14,7 @@ export const resolvedOptions: PluginOptionsResolved = {
     }),
   ],
   formatters: [],
+  refineTypeName: "TRefine",
   watcher: { delay: 0 },
   baseurl: "",
   apiurl: "",

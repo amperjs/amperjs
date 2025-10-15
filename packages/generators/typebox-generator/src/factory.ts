@@ -15,14 +15,10 @@ import libTpl from "./templates/lib.hbs";
 import schemasTpl from "./templates/schemas.hbs";
 
 export const factory: GeneratorFactory<Options> = async (
-  { appRoot, sourceFolder, formatters },
+  { appRoot, sourceFolder, formatters, refineTypeName },
   options,
 ) => {
-  const {
-    refineTypeName = "TRefine",
-    validationMessages = {},
-    importCustomTypes,
-  } = { ...options };
+  const { validationMessages = {}, importCustomTypes } = { ...options };
 
   const { resolve } = pathResolver({ appRoot, sourceFolder });
 
@@ -70,7 +66,7 @@ export const factory: GeneratorFactory<Options> = async (
             ? route.resolvedTypes.map(({ name, escapedText }) => {
                 return {
                   name,
-                  text: escapedText
+                  escapedText: escapedText
                     /**
                      * TypeBox's built-in `Options` type is not configurable.
                      * To allow a custom type name, exposing `refineTypeName` option,
