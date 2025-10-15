@@ -11,7 +11,6 @@ import {
 import errorHandlerTpl from "./error-handler.ts?as=text";
 import type { Options } from "./types";
 
-import envTpl from "./templates/env.hbs";
 import libTpl from "./templates/lib.hbs";
 import schemasTpl from "./templates/schemas.hbs";
 
@@ -30,7 +29,6 @@ export const factory: GeneratorFactory<Options> = async (
   const refineTypeRegex = new RegExp(`\\b${refineTypeName}\\s*<`, "g");
 
   for (const [file, template] of [
-    ["env.d.ts", envTpl],
     ["index.ts", libTpl],
     ["error-handler.ts", errorHandlerTpl],
   ]) {
