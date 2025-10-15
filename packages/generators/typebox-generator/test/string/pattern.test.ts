@@ -1,6 +1,6 @@
 import { describe, expect, test } from "vitest";
 
-import { importSchema } from "@test/lib";
+import { importSchema } from "..";
 
 describe("string/pattern", () => {
   describe("hex-color", async () => {

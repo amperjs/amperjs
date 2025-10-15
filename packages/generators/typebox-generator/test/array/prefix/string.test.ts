@@ -1,6 +1,6 @@
 import { describe, expect, test } from "vitest";
 
-import { importSchema } from "@test/lib";
+import { importSchema } from "../..";
 
 describe("array/prefix/string", async () => {
   const schema = await importSchema("array/prefix/string", "payload.POST");

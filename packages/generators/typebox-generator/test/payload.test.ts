@@ -2,7 +2,7 @@ import { describe, expect, test } from "vitest";
 
 import { MESSAGE_CODES } from "@/error-handler";
 
-import { importSchema } from "./lib";
+import { importSchema } from ".";
 
 describe("payload", () => {
   describe("UserRegistration", async () => {

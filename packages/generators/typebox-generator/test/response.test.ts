@@ -1,6 +1,6 @@
 import { describe, expect, test } from "vitest";
 
-import { importSchema } from "./lib";
+import { importSchema } from ".";
 
 describe("response", () => {
   describe("UserProfile", async () => {

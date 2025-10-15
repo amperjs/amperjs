@@ -1,8 +1,8 @@
 import { describe, expect, test } from "vitest";
 
-import { importSchema } from "@test/lib";
-
 import { MESSAGE_CODES } from "@/error-handler";
+
+import { importSchema } from "..";
 
 describe("errors/array", async () => {
   const schema = await importSchema("errors/array", "payload.POST");

@@ -1,6 +1,6 @@
 import { describe, expect, test } from "vitest";
 
-import { generatePathCombinations, importSchema } from "./lib";
+import { generatePathCombinations, importSchema } from ".";
 
 describe("params", () => {
   describe("string param", async () => {

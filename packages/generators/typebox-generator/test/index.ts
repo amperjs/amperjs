@@ -5,7 +5,7 @@ import { type PluginOptionsResolved, pathResolver } from "@oreum/devlib";
 
 import typeboxGenerator from "@/index";
 
-export const appRoot = resolve(import.meta.dirname, "../_fixtures/app");
+export const appRoot = resolve(import.meta.dirname, "_fixtures/app");
 
 export const resolvedOptions: PluginOptionsResolved = {
   generators: [

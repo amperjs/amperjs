@@ -3,7 +3,7 @@ import { rimraf } from "rimraf";
 import routesFactory from "@oreum/dev/routes";
 import type { RouteResolverEntry } from "@oreum/devlib";
 
-import { appRoot, resolvedOptions } from "./lib";
+import { appRoot, resolvedOptions } from ".";
 
 export default async () => {
   await rimraf(`${appRoot}/lib`, { preserveRoot: false });
