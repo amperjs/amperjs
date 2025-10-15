@@ -155,7 +155,12 @@ export default (apiurl: string, pluginOptions?: PluginOptions): Plugin => {
       };
 
       {
-        const { generators = [], formatters = [] } = { ...pluginOptions };
+        const {
+          generators = [],
+          formatters = [],
+          refineTypeName = "TRefine",
+        } = { ...pluginOptions };
+
         const _apiGenerator = generators.find((e) => e.kind === "api");
         const _fetchGenerator = generators.find((e) => e.kind === "fetch");
         resolvedOptions = {
@@ -172,6 +177,7 @@ export default (apiurl: string, pluginOptions?: PluginOptions): Plugin => {
             ...generators.filter((e) => !e.kind),
           ],
           formatters: formatters.map((e) => e.formatter),
+          refineTypeName,
           baseurl: config.base,
           apiurl,
           appRoot,

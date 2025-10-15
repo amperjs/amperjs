@@ -1,6 +1,12 @@
 export type PluginOptions = {
   generators?: Array<GeneratorConstructor>;
   formatters?: Array<FormatterConstructor>;
+
+  /**
+   * Name to use for custom runtime validation refinements.
+   * @default "TRefine"
+   * */
+  refineTypeName?: string;
 };
 
 export type PluginOptionsResolved = {
@@ -11,13 +17,14 @@ export type PluginOptionsResolved = {
   outDir: string;
   generators: Array<GeneratorConstructor>;
   formatters: Array<Formatter>;
+  refineTypeName: string;
   watcher: {
     // waits this many milliseconds before reacting after a change is detected
     delay: number;
     // copying watch options from vite config and passing down to workers
     options?: import("vite").WatchOptions;
   };
-} & Omit<PluginOptions, "generators" | "formatters">;
+} & Omit<PluginOptions, "generators" | "formatters" | "refineTypeName">;
 
 export type PathToken = {
   orig: string;

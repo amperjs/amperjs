@@ -51,6 +51,7 @@ export default async (
     sourceFolder,
     generators = [],
     formatters = [],
+    refineTypeName,
   } = pluginOptions;
 
   const project = createProject({
@@ -77,7 +78,7 @@ export default async (
     );
 
     const resolvedTypes = flattener(project, sourceFile, {
-      overrides: { ...overrides },
+      overrides: { ...overrides, [refineTypeName]: refineTypeName },
       stripComments: true,
     });
 
@@ -314,8 +315,8 @@ export default async (
             ? resolvedTypes.map((type) => {
                 return {
                   ...type,
-                  // Escapes backticks and $ for safe use in template literals
                   escapedText: type.text
+                    // Escapes backticks and $ for safe use in template literals
                     .replace(/(?<!\\)`/g, "\\`")
                     .replace(/(?<!\\)\$\{/g, "\\${"),
                 };

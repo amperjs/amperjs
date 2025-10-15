@@ -16,6 +16,7 @@ const pluginOptions = {
   outDir: ".dist",
   generators: [],
   formatters: [],
+  refineTypeName: "TRefine",
   watcher: {
     delay: 0,
   },
