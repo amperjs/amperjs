@@ -6,6 +6,7 @@ import {
   pathResolver,
   type RouteResolverEntry,
   renderToFile,
+  typeboxLiteralText,
 } from "@oreum/devlib";
 
 import errorHandlerTpl from "./error-handler.ts?as=text";
@@ -15,14 +16,13 @@ import libTpl from "./templates/lib.hbs";
 import schemasTpl from "./templates/schemas.hbs";
 
 export const factory: GeneratorFactory<Options> = async (
-  { appRoot, sourceFolder, formatters, refineTypeName },
+  pluginoptions,
   options,
 ) => {
+  const { appRoot, sourceFolder, formatters } = pluginoptions;
   const { validationMessages = {}, importCustomTypes } = { ...options };
 
   const { resolve } = pathResolver({ appRoot, sourceFolder });
-
-  const refineTypeRegex = new RegExp(`\\b${refineTypeName}\\s*<`, "g");
 
   for (const [file, template] of [
     ["index.ts", libTpl],
@@ -32,7 +32,6 @@ export const factory: GeneratorFactory<Options> = async (
       resolve("libDir", `{typebox}/${file}`),
       template,
       {
-        refineTypeName,
         validationMessages: JSON.stringify(validationMessages),
         importPathmap: {
           customTypes: importCustomTypes,
@@ -62,21 +61,24 @@ export const factory: GeneratorFactory<Options> = async (
               ),
             };
           }),
-          resolvedTypes: route.resolvedTypes
-            ? route.resolvedTypes.map(({ name, escapedText }) => {
-                return {
-                  name,
-                  escapedText: escapedText
-                    /**
-                     * TypeBox's built-in `Options` type is not configurable.
-                     * To allow a custom type name, exposing `refineTypeName` option,
-                     * defaulted to TRefine, then renaming it to `Options`.
-                     * */
-                    .replace(refineTypeRegex, "Options<")
-                    .trim(),
-                };
-              })
-            : [],
+          resolvedTypes: [
+            route.params.resolvedType,
+            ...route.payloadTypes.flatMap((e) =>
+              e.resolvedType ? [e.resolvedType] : [],
+            ),
+            ...route.responseTypes.flatMap((e) =>
+              e.resolvedType ? [e.resolvedType] : [],
+            ),
+          ].flatMap((resolvedType) => {
+            return resolvedType
+              ? [
+                  {
+                    ...resolvedType,
+                    text: typeboxLiteralText(resolvedType.text, pluginoptions),
+                  },
+                ]
+              : [];
+          }),
           importPathmap: {
             typebox: join(defaults.appPrefix, defaults.libDir, "{typebox}"),
           },

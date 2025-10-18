@@ -3,7 +3,7 @@ import type { ValidationSchemas } from "@oreum/api";
 import { validationSchemaFactory } from "{{importPathmap.typebox}}";
 
 const schemas = {
-{{#each resolvedTypes}}  {{name}}: `{{escapedText}}`,
+{{#each resolvedTypes}}  {{name}}: `{{text}}`,
 {{/each}}
 }
 
