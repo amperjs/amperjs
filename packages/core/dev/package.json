@@ -43,8 +43,8 @@
     "kleur": "^4.1.5",
     "picomatch": "^4.0.3",
     "tinyglobby": "^0.2.15",
-    "ts-fusion": "^0.0.20",
     "ts-morph": "^27.0.0",
+    "tsuit": "^0.0.22",
     "typescript": "^5.9.3"
   },
   "devDependencies": {
