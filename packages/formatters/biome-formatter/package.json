@@ -21,7 +21,7 @@
   },
   "dependencies": {
     "@biomejs/js-api": "^3.0.0",
-    "@biomejs/wasm-nodejs": "^2.2.5",
+    "@biomejs/wasm-nodejs": "^2.2.6",
     "@oreum/devlib": "workspace:^"
   }
 }

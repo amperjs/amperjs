@@ -24,7 +24,7 @@
     "@oreum/devlib": "workspace:^",
     "crc": "^4.3.2",
     "fs-extra": "^11.3.2",
-    "typebox": "^1.0.35",
+    "typebox": "^1.0.37",
     "yaml": "^2.8.1"
   },
   "devDependencies": {

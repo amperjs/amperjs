@@ -25,12 +25,12 @@
     "prompts": "^2.4.2"
   },
   "devDependencies": {
-    "oreum": "workspace:^",
     "@oreum/api": "workspace:^",
     "@types/fs-extra": "^11.0.4",
     "@types/koa": "^3.0.0",
     "@types/koa__router": "^12.0.4",
     "@types/prompts": "^2.4.9",
-    "vite": "^7.1.9"
+    "oreum": "workspace:^",
+    "vite": "^7.1.10"
   }
 }

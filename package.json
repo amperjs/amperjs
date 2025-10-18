@@ -24,11 +24,11 @@
     "pub:tags": "git push --follow-tags"
   },
   "devDependencies": {
-    "@biomejs/biome": "^2.2.5",
+    "@biomejs/biome": "^2.2.6",
     "@changesets/cli": "^2.29.7",
     "@oreum/config": "workspace:^",
     "@oreum/esbuilder": "workspace:^",
-    "@types/node": "^24.7.1",
+    "@types/node": "^24.7.2",
     "jsdom": "^27.0.0",
     "msw": "^2.11.5",
     "resolve-tspaths": "^0.8.23",

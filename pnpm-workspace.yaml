@@ -1,7 +1,7 @@
 minimumReleaseAge: 4320
 minimumReleaseAgeExclude:
   - typebox
-  - ts-fusion
+  - tsuit
 packages:
   - "packages/core/*"
   - "packages/generators/*"
