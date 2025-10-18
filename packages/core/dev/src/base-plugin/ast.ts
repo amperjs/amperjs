@@ -1,3 +1,5 @@
+import { resolve } from "node:path";
+
 import crc from "crc/crc32";
 import {
   type CallExpression,
@@ -8,11 +10,13 @@ import {
   type SourceFile,
   SyntaxKind,
 } from "ts-morph";
+import { flattener } from "tsuit";
 
 import { type HTTPMethod, HTTPMethods } from "@oreum/api";
 import type {
   ApiRoute,
   PayloadType,
+  PluginOptionsResolved,
   ResponseType,
   TypeDeclaration,
 } from "@oreum/devlib";
@@ -171,6 +175,7 @@ export const extractRouteMethods = (
           text: ["never", "object"].includes(responseText)
             ? "{}"
             : responseText,
+          resolvedType: undefined,
         }
       : undefined;
 
@@ -186,6 +191,7 @@ export const extractRouteMethods = (
             ? payloadText === "{}" || route.optionalParams
             : true,
           text: payloadText,
+          resolvedType: undefined,
         }
       : undefined;
 
@@ -366,4 +372,47 @@ const extractGenerics = (
         .map((range) => range.getText().trim()),
     };
   });
+};
+
+export const typeResolverFactory = ({ appRoot }: PluginOptionsResolved) => {
+  const project = createProject({
+    tsConfigFilePath: resolve(appRoot, "tsconfig.json"),
+    skipAddingFilesFromTsConfig: true,
+  });
+
+  const literalTypesResolver = (
+    literalTypes: string,
+    options: Parameters<typeof flattener>[2],
+  ) => {
+    const sourceFile = project.createSourceFile(
+      `${crc(literalTypes)}-${Date.now()}.ts`,
+      literalTypes,
+      { overwrite: true },
+    );
+
+    const resolvedTypes = flattener(project, sourceFile, {
+      ...options,
+      stripComments: true,
+    });
+
+    project.removeSourceFile(sourceFile);
+
+    return resolvedTypes;
+  };
+
+  return {
+    getSourceFile: (fileFullpath: string) => {
+      return (
+        project.getSourceFile(fileFullpath) ||
+        project.addSourceFileAtPath(fileFullpath)
+      );
+    },
+    refreshSourceFile: async (fileFullpath: string) => {
+      const sourceFile = project.getSourceFile(fileFullpath);
+      if (sourceFile) {
+        await sourceFile.refreshFromFileSystem();
+      }
+    },
+    literalTypesResolver,
+  };
 };

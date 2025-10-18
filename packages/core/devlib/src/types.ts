@@ -1,3 +1,5 @@
+import type { ResolvedType } from "tsuit";
+
 export type PluginOptions = {
   generators?: Array<GeneratorConstructor>;
   formatters?: Array<FormatterConstructor>;
@@ -58,6 +60,7 @@ export type ApiRoute = RouteEntry & {
   params: {
     id: string;
     schema: Array<Required<PathToken>["param"]>;
+    resolvedType: ResolvedType | undefined;
   };
   numericParams: Array<string>;
   optionalParams: boolean;
@@ -65,16 +68,8 @@ export type ApiRoute = RouteEntry & {
   typeDeclarations: Array<TypeDeclaration>;
   payloadTypes: Array<PayloadType>;
   responseTypes: Array<ResponseType>;
-  resolvedTypes:
-    | Array<
-        import("ts-fusion").ResolvedType & {
-          // text with escaped backticks and $
-          escapedText: string;
-        }
-      >
-    | undefined;
   // absolute path to referenced files
-  referencedFiles: string[];
+  referencedFiles: Array<string>;
 };
 
 export type PageRoute = RouteEntry & {
@@ -90,12 +85,14 @@ export type PayloadType = {
   method: string;
   skipValidation: boolean;
   isOptional: boolean;
+  resolvedType: ResolvedType | undefined;
 };
 
 export type ResponseType = {
   id: string;
   method: string;
   skipValidation: boolean;
+  resolvedType: ResolvedType | undefined;
 };
 
 export type TypeDeclaration = {

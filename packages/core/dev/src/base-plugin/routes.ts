@@ -3,7 +3,6 @@ import { dirname, join, resolve } from "node:path";
 import crc from "crc/crc32";
 import picomatch from "picomatch";
 import { glob } from "tinyglobby";
-import { flattener } from "ts-fusion";
 
 import {
   type ApiRoute,
@@ -18,11 +17,11 @@ import {
   renderToFile,
 } from "@oreum/devlib";
 
-import { createProject, resolveRouteSignature } from "./ast";
+import { resolveRouteSignature, typeResolverFactory } from "./ast";
 import { cacheFactory } from "./cache";
 
 import resolvedTypesTpl from "./templates/resolved-types.hbs";
-import typeLiteralsTpl from "./templates/type-literals.hbs";
+import typesFileTpl from "./templates/types.hbs";
 
 export type Resolvers = Map<string, RouteResolver>;
 
@@ -54,11 +53,6 @@ export default async (
     refineTypeName,
   } = pluginOptions;
 
-  const project = createProject({
-    tsConfigFilePath: resolve(appRoot, "tsconfig.json"),
-    skipAddingFilesFromTsConfig: true,
-  });
-
   let resolveTypes = false;
 
   for (const { options } of generators) {
@@ -67,25 +61,12 @@ export default async (
     }
   }
 
-  const typesResolver = (
-    typesFileContent: string,
-    overrides?: Record<string, string>,
-  ) => {
-    const sourceFile = project.createSourceFile(
-      `${crc(typesFileContent)}-${Date.now()}.ts`,
-      typesFileContent,
-      { overwrite: true },
-    );
-
-    const resolvedTypes = flattener(project, sourceFile, {
-      overrides: { ...overrides, [refineTypeName]: refineTypeName },
-      stripComments: true,
-    });
-
-    project.removeSourceFile(sourceFile);
-
-    return resolvedTypes;
-  };
+  const {
+    //
+    literalTypesResolver,
+    getSourceFile,
+    refreshSourceFile,
+  } = typeResolverFactory(pluginOptions);
 
   const routeFilePatterns = [
     `${defaults.apiDir}/**/index.ts`,
@@ -175,6 +156,7 @@ export default async (
         const params: ApiRoute["params"] = {
           id: ["ParamsT", crc(name)].join(""),
           schema: paramsSchema,
+          resolvedType: undefined,
         };
 
         const optionalParams = paramsSchema.length
@@ -194,10 +176,7 @@ export default async (
 
         if (!cache) {
           if (updatedFile === fileFullpath) {
-            const sourceFile = project.getSourceFile(fileFullpath);
-            if (sourceFile) {
-              await sourceFile.refreshFromFileSystem();
-            }
+            await refreshSourceFile(fileFullpath);
           }
 
           const {
@@ -211,9 +190,7 @@ export default async (
             { importName, fileFullpath, optionalParams },
             {
               withReferencedFiles: true,
-              sourceFile:
-                project.getSourceFile(fileFullpath) ||
-                project.addSourceFileAtPath(fileFullpath),
+              sourceFile: getSourceFile(fileFullpath),
               relpathResolver(path) {
                 return join(sourceFolder, defaults.apiDir, dirname(file), path);
               },
@@ -230,7 +207,13 @@ export default async (
               })
             : [];
 
-          const typesFileContent = render(typeLiteralsTpl, {
+          const typesFile = pathResolver({ appRoot, sourceFolder }).resolve(
+            "apiLibDir",
+            importPath,
+            "types.ts",
+          );
+
+          const typesFileContent = render(typesFileTpl, {
             params,
             paramsSchema: paramsSchema.map((param, index) => {
               return {
@@ -244,45 +227,55 @@ export default async (
           });
 
           const resolvedTypes = resolveTypes
-            ? typesResolver(
-                typesFileContent,
-                [...payloadTypes, ...responseTypes].reduce(
+            ? literalTypesResolver(typesFileContent, {
+                overrides: [...payloadTypes, ...responseTypes].reduce(
                   (map: Record<string, string>, { id, skipValidation }) => {
                     if (skipValidation) {
                       map[id] = "never";
                     }
                     return map;
                   },
-                  {},
+                  { [refineTypeName]: refineTypeName },
                 ),
-              )
+                withProperties: [params.id, ...payloadTypes.map((e) => e.id)],
+                formatters,
+              })
             : undefined;
 
-          /*
-           * writing types.ts file; required by core generators (like fetch).
-           * if types resolved, write resolved types;
+          /**
+           * Writing types.ts file; required by core generators (like fetch).
+           * If types resolved, write resolved types;
            * otherwise write original types extracted from API route.
            * */
           await renderToFile(
-            pathResolver({ appRoot, sourceFolder }).resolve(
-              "apiLibDir",
-              importPath,
-              "types.ts",
-            ),
+            typesFile,
             resolvedTypes ? resolvedTypesTpl : typesFileContent,
             { resolvedTypes },
-            { formatters },
+          );
+
+          params.resolvedType = resolvedTypes?.find(
+            (e) => e.name === params.id,
           );
 
           cache = await persistCache({
+            params,
             methods,
             typeDeclarations,
             numericParams,
             // text was needed at writing types.ts file, dropping from cache
-            payloadTypes: payloadTypes.map(({ text, ...rest }) => rest),
-            responseTypes: responseTypes.map(({ text, ...rest }) => rest),
+            payloadTypes: payloadTypes.map(({ text, ...rest }) => {
+              return {
+                ...rest,
+                resolvedType: resolvedTypes?.find((e) => e.name === rest.id),
+              };
+            }),
+            responseTypes: responseTypes.map(({ text, ...rest }) => {
+              return {
+                ...rest,
+                resolvedType: resolvedTypes?.find((e) => e.name === rest.id),
+              };
+            }),
             referencedFiles,
-            resolvedTypes,
           });
         }
 
@@ -292,7 +285,6 @@ export default async (
           numericParams,
           payloadTypes,
           responseTypes,
-          resolvedTypes,
           referencedFiles,
         } = cache;
 
@@ -311,17 +303,6 @@ export default async (
           typeDeclarations,
           payloadTypes,
           responseTypes,
-          resolvedTypes: resolvedTypes
-            ? resolvedTypes.map((type) => {
-                return {
-                  ...type,
-                  escapedText: type.text
-                    // Escapes backticks and $ for safe use in template literals
-                    .replace(/(?<!\\)`/g, "\\`")
-                    .replace(/(?<!\\)\$\{/g, "\\${"),
-                };
-              })
-            : undefined,
           referencedFiles: Object.keys(referencedFiles).map(
             // expanding referenced files path,
             // they are stored as relative in cache
