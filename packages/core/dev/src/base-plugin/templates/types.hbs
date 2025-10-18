@@ -6,7 +6,6 @@ export type {{params.id}} = {
   "{{name}}"{{#unless isRequired}}?{{/unless}}:{{#if isRest}} Array<{{/if}}
     {{#if refinement}}{{refinement.text}}{{else}}string{{/if}}
   {{#if isRest}}>{{/if}}
-  {{#unless isRequired}} | undefined{{/unless}};
   {{/each}}
 };
 
