@@ -1,8 +1,9 @@
 import type { GeneratorConstructor } from "@oreum/devlib";
 
-import { factory, type OpenapiOptions } from "./factory";
+import { factory } from "./factory";
+import type { Options } from "./types";
 
-export default (openapiOptions: OpenapiOptions): GeneratorConstructor => {
+export default (openapiOptions: Options): GeneratorConstructor => {
   return {
     name: "OpenApi",
     moduleImport: import.meta.filename,

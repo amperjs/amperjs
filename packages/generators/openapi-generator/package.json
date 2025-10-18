@@ -17,16 +17,22 @@
     }
   },
   "scripts": {
-    "build": "esbuilder src/index.ts"
+    "build": "esbuilder src/index.ts",
+    "test": "vitest --root ../../.. --project generators/openapi-generator"
   },
   "dependencies": {
     "@oreum/devlib": "workspace:^",
-    "@sinclair/typemap": "^0.10.1",
+    "crc": "^4.3.2",
     "fs-extra": "^11.3.2",
+    "typebox": "^1.0.35",
     "yaml": "^2.8.1"
   },
   "devDependencies": {
-    "@types/fs-extra": "^11.0.4",
-    "ts-fusion": "^0.0.18"
+    "@oreum/api": "workspace:^",
+    "@oreum/biome-formatter": "workspace:^",
+    "@oreum/dev": "workspace:^",
+    "@stoplight/spectral-core": "^1.20.0",
+    "@stoplight/spectral-rulesets": "^1.22.0",
+    "@types/fs-extra": "^11.0.4"
   }
 }
