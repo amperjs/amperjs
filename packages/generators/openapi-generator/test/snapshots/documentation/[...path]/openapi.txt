@@ -1,0 +1,183 @@
+{
+  "components": {
+    "parameters": {
+      "documentation_958675478_ParamsT958675478_path190089999": {
+        "in": "path",
+        "name": "path",
+        "required": true,
+        "schema": {
+          "items": {
+            "items": {
+              "type": "string",
+            },
+            "maxItems": 10,
+            "minItems": 1,
+            "type": "array",
+          },
+          "type": "array",
+        },
+      },
+    },
+    "schemas": {
+      "documentation_958675478_PayloadT3915253476_format3736761055": {
+        "anyOf": [
+          {
+            "const": "html",
+          },
+          {
+            "const": "markdown",
+          },
+          {
+            "const": "raw",
+          },
+        ],
+      },
+      "documentation_958675478_PayloadT3915253476_includeExamples2628883185": {
+        "type": "boolean",
+      },
+      "documentation_958675478_PayloadT3915253476_version3206337475": {
+        "anyOf": [
+          {
+            "const": "v1",
+          },
+          {
+            "const": "v2",
+          },
+          {
+            "const": "latest",
+          },
+        ],
+      },
+      "documentation_958675478_ResponseT3915253476": {
+        "properties": {
+          "content": {
+            "type": "string",
+          },
+          "path": {
+            "items": {
+              "type": "string",
+            },
+            "type": "array",
+          },
+          "sections": {
+            "items": {
+              "properties": {
+                "content": {
+                  "type": "string",
+                },
+                "title": {
+                  "type": "string",
+                },
+              },
+              "required": [
+                "title",
+                "content",
+              ],
+              "type": "object",
+            },
+            "type": "array",
+          },
+          "title": {
+            "type": "string",
+          },
+        },
+        "required": [
+          "path",
+          "content",
+          "title",
+          "sections",
+        ],
+        "type": "object",
+      },
+    },
+  },
+  "paths": {
+    "/documentation": {
+      "get": {
+        "parameters": [
+          {
+            "in": "query",
+            "name": "version",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/documentation_958675478_PayloadT3915253476_version3206337475",
+            },
+          },
+          {
+            "in": "query",
+            "name": "format",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/documentation_958675478_PayloadT3915253476_format3736761055",
+            },
+          },
+          {
+            "in": "query",
+            "name": "includeExamples",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/documentation_958675478_PayloadT3915253476_includeExamples2628883185",
+            },
+          },
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/documentation_958675478_ResponseT3915253476",
+                },
+              },
+            },
+            "description": "Success",
+          },
+        },
+      },
+    },
+    "/documentation/{path*}": {
+      "get": {
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/documentation_958675478_ParamsT958675478_path190089999",
+          },
+          {
+            "in": "query",
+            "name": "version",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/documentation_958675478_PayloadT3915253476_version3206337475",
+            },
+          },
+          {
+            "in": "query",
+            "name": "format",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/documentation_958675478_PayloadT3915253476_format3736761055",
+            },
+          },
+          {
+            "in": "query",
+            "name": "includeExamples",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/documentation_958675478_PayloadT3915253476_includeExamples2628883185",
+            },
+          },
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/documentation_958675478_ResponseT3915253476",
+                },
+              },
+            },
+            "description": "Success",
+          },
+        },
+      },
+    },
+  },
+}

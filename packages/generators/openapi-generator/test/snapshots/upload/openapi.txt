@@ -1,0 +1,61 @@
+{
+  "components": {
+    "parameters": {},
+    "schemas": {
+      "upload_398321183_PayloadT3588961556": {
+        "properties": {},
+        "type": "object",
+      },
+      "upload_398321183_ResponseT3588961556": {
+        "properties": {
+          "files": {
+            "items": {
+              "type": "string",
+            },
+            "type": "array",
+          },
+          "message": {
+            "type": "string",
+          },
+          "success": {
+            "type": "boolean",
+          },
+        },
+        "required": [
+          "success",
+          "files",
+          "message",
+        ],
+        "type": "object",
+      },
+    },
+  },
+  "paths": {
+    "/upload": {
+      "post": {
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/upload_398321183_PayloadT3588961556",
+              },
+            },
+          },
+          "required": false,
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/upload_398321183_ResponseT3588961556",
+                },
+              },
+            },
+            "description": "Success",
+          },
+        },
+      },
+    },
+  },
+}

@@ -1,0 +1,82 @@
+{
+  "components": {
+    "parameters": {},
+    "schemas": {
+      "index_2155046657_PayloadT4078336737_format3736761055": {
+        "anyOf": [
+          {
+            "const": "full",
+          },
+          {
+            "const": "minimal",
+          },
+        ],
+      },
+      "index_2155046657_PayloadT4078336737_includeEndpoints284570394": {
+        "type": "boolean",
+      },
+      "index_2155046657_ResponseT4078336737": {
+        "properties": {
+          "documentation": {
+            "type": "string",
+          },
+          "endpoints": {
+            "items": {
+              "type": "string",
+            },
+            "type": "array",
+          },
+          "name": {
+            "type": "string",
+          },
+          "version": {
+            "type": "string",
+          },
+        },
+        "required": [
+          "name",
+          "version",
+          "endpoints",
+          "documentation",
+        ],
+        "type": "object",
+      },
+    },
+  },
+  "paths": {
+    "/": {
+      "get": {
+        "parameters": [
+          {
+            "in": "query",
+            "name": "format",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/index_2155046657_PayloadT4078336737_format3736761055",
+            },
+          },
+          {
+            "in": "query",
+            "name": "includeEndpoints",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/index_2155046657_PayloadT4078336737_includeEndpoints284570394",
+            },
+          },
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/index_2155046657_ResponseT4078336737",
+                },
+              },
+            },
+            "description": "Success",
+          },
+        },
+      },
+    },
+  },
+}

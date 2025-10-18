@@ -1,0 +1,114 @@
+{
+  "components": {
+    "parameters": {
+      "usernames_2706213495_ParamsT2706213495_username4166911607": {
+        "in": "path",
+        "name": "username",
+        "required": true,
+        "schema": {
+          "maxLength": 20,
+          "minLength": 3,
+          "pattern": "^[a-zA-Z0-9_]{3,20}$",
+          "type": "string",
+        },
+      },
+    },
+    "schemas": {
+      "usernames_2706213495_PayloadT2681596337_includeBadges3156181363": {
+        "type": "boolean",
+      },
+      "usernames_2706213495_PayloadT2681596337_includeRecent2844427671": {
+        "type": "boolean",
+      },
+      "usernames_2706213495_PayloadT2681596337_includeStats3755947603": {
+        "type": "boolean",
+      },
+      "usernames_2706213495_ResponseT2681596337": {
+        "properties": {
+          "displayName": {
+            "type": "string",
+          },
+          "joinedAt": {
+            "format": "date-time",
+            "type": "string",
+          },
+          "stats": {
+            "properties": {
+              "followers": {
+                "type": "number",
+              },
+              "following": {
+                "type": "number",
+              },
+              "posts": {
+                "type": "number",
+              },
+            },
+            "required": [
+              "posts",
+              "followers",
+              "following",
+            ],
+            "type": "object",
+          },
+          "username": {
+            "type": "string",
+          },
+        },
+        "required": [
+          "username",
+          "displayName",
+          "joinedAt",
+        ],
+        "type": "object",
+      },
+    },
+  },
+  "paths": {
+    "/usernames/{username}": {
+      "get": {
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/usernames_2706213495_ParamsT2706213495_username4166911607",
+          },
+          {
+            "in": "query",
+            "name": "includeStats",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/usernames_2706213495_PayloadT2681596337_includeStats3755947603",
+            },
+          },
+          {
+            "in": "query",
+            "name": "includeRecent",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/usernames_2706213495_PayloadT2681596337_includeRecent2844427671",
+            },
+          },
+          {
+            "in": "query",
+            "name": "includeBadges",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/usernames_2706213495_PayloadT2681596337_includeBadges3156181363",
+            },
+          },
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/usernames_2706213495_ResponseT2681596337",
+                },
+              },
+            },
+            "description": "Success",
+          },
+        },
+      },
+    },
+  },
+}

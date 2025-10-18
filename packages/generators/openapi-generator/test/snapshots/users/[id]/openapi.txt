@@ -1,0 +1,258 @@
+{
+  "components": {
+    "parameters": {
+      "users_1482590779_ParamsT1482590779_id3208210256": {
+        "in": "path",
+        "name": "id",
+        "required": true,
+        "schema": {
+          "minimum": 1,
+          "type": "number",
+        },
+      },
+    },
+    "schemas": {
+      "users_1482590779_PayloadT1882830555_expand3016914599": {
+        "type": "boolean",
+      },
+      "users_1482590779_PayloadT1882830555_fields2128995208": {
+        "items": {
+          "type": "string",
+        },
+        "type": "array",
+      },
+      "users_1482590779_PayloadT1882830555_include1890413707": {
+        "anyOf": [
+          {
+            "const": "profile",
+          },
+          {
+            "const": "posts",
+          },
+          {
+            "const": "all",
+          },
+        ],
+      },
+      "users_1482590779_PayloadT596775295": {
+        "properties": {
+          "email": {
+            "format": "email",
+            "type": "string",
+          },
+          "name": {
+            "maxLength": 100,
+            "minLength": 1,
+            "type": "string",
+          },
+          "role": {
+            "anyOf": [
+              {
+                "const": "admin",
+              },
+              {
+                "const": "user",
+              },
+              {
+                "const": "moderator",
+              },
+            ],
+          },
+        },
+        "type": "object",
+      },
+      "users_1482590779_ResponseT1882830555": {
+        "properties": {
+          "createdAt": {
+            "format": "date-time",
+            "type": "string",
+          },
+          "email": {
+            "format": "email",
+            "type": "string",
+          },
+          "id": {
+            "type": "number",
+          },
+          "name": {
+            "maxLength": 100,
+            "minLength": 1,
+            "type": "string",
+          },
+          "role": {
+            "anyOf": [
+              {
+                "const": "admin",
+              },
+              {
+                "const": "user",
+              },
+              {
+                "const": "moderator",
+              },
+            ],
+          },
+        },
+        "required": [
+          "id",
+          "name",
+          "email",
+          "role",
+          "createdAt",
+        ],
+        "type": "object",
+      },
+      "users_1482590779_ResponseT596775295": {
+        "properties": {
+          "createdAt": {
+            "format": "date-time",
+            "type": "string",
+          },
+          "email": {
+            "format": "email",
+            "type": "string",
+          },
+          "id": {
+            "type": "number",
+          },
+          "name": {
+            "maxLength": 100,
+            "minLength": 1,
+            "type": "string",
+          },
+          "role": {
+            "anyOf": [
+              {
+                "const": "admin",
+              },
+              {
+                "const": "user",
+              },
+              {
+                "const": "moderator",
+              },
+            ],
+          },
+        },
+        "required": [
+          "id",
+          "name",
+          "email",
+          "role",
+          "createdAt",
+        ],
+        "type": "object",
+      },
+      "users_1482590779_ResponseT772730175": {
+        "properties": {
+          "message": {
+            "type": "string",
+          },
+          "success": {
+            "type": "boolean",
+          },
+        },
+        "required": [
+          "success",
+          "message",
+        ],
+        "type": "object",
+      },
+    },
+  },
+  "paths": {
+    "/users/{id}": {
+      "delete": {
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/users_1482590779_ParamsT1482590779_id3208210256",
+          },
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/users_1482590779_ResponseT772730175",
+                },
+              },
+            },
+            "description": "Success",
+          },
+        },
+      },
+      "get": {
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/users_1482590779_ParamsT1482590779_id3208210256",
+          },
+          {
+            "in": "query",
+            "name": "include",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/users_1482590779_PayloadT1882830555_include1890413707",
+            },
+          },
+          {
+            "in": "query",
+            "name": "fields",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/users_1482590779_PayloadT1882830555_fields2128995208",
+            },
+          },
+          {
+            "in": "query",
+            "name": "expand",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/users_1482590779_PayloadT1882830555_expand3016914599",
+            },
+          },
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/users_1482590779_ResponseT1882830555",
+                },
+              },
+            },
+            "description": "Success",
+          },
+        },
+      },
+      "put": {
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/users_1482590779_ParamsT1482590779_id3208210256",
+          },
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/users_1482590779_PayloadT596775295",
+              },
+            },
+          },
+          "required": true,
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/users_1482590779_ResponseT596775295",
+                },
+              },
+            },
+            "description": "Success",
+          },
+        },
+      },
+    },
+  },
+}

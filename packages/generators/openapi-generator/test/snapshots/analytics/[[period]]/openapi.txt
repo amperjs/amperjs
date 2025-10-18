@@ -1,0 +1,198 @@
+{
+  "components": {
+    "parameters": {
+      "analytics_766317247_ParamsT766317247_period3317178062": {
+        "in": "path",
+        "name": "period",
+        "required": true,
+        "schema": {
+          "anyOf": [
+            {
+              "const": "day",
+            },
+            {
+              "const": "week",
+            },
+            {
+              "const": "month",
+            },
+            {
+              "const": "year",
+            },
+          ],
+        },
+      },
+    },
+    "schemas": {
+      "analytics_766317247_PayloadT3984453425": {
+        "properties": {
+          "breakdown": {
+            "anyOf": [
+              {
+                "const": "day",
+              },
+              {
+                "const": "week",
+              },
+              {
+                "const": "month",
+              },
+            ],
+          },
+          "compareToPrevious": {
+            "type": "boolean",
+          },
+          "metrics": {
+            "items": {
+              "anyOf": [
+                {
+                  "const": "views",
+                },
+                {
+                  "const": "clicks",
+                },
+                {
+                  "const": "conversions",
+                },
+                {
+                  "const": "revenue",
+                },
+              ],
+            },
+            "type": "array",
+          },
+        },
+        "required": [
+          "metrics",
+        ],
+        "type": "object",
+      },
+      "analytics_766317247_ResponseT3984453425": {
+        "properties": {
+          "metrics": {
+            "items": {
+              "properties": {
+                "clicks": {
+                  "type": "number",
+                },
+                "conversions": {
+                  "type": "number",
+                },
+                "date": {
+                  "format": "date",
+                  "type": "string",
+                },
+                "revenue": {
+                  "type": "number",
+                },
+                "views": {
+                  "type": "number",
+                },
+              },
+              "required": [
+                "date",
+                "views",
+                "clicks",
+                "conversions",
+                "revenue",
+              ],
+              "type": "object",
+            },
+            "type": "array",
+          },
+          "period": {
+            "type": "string",
+          },
+          "summary": {
+            "properties": {
+              "totalClicks": {
+                "type": "number",
+              },
+              "totalConversions": {
+                "type": "number",
+              },
+              "totalRevenue": {
+                "type": "number",
+              },
+              "totalViews": {
+                "type": "number",
+              },
+            },
+            "required": [
+              "totalViews",
+              "totalClicks",
+              "totalConversions",
+              "totalRevenue",
+            ],
+            "type": "object",
+          },
+        },
+        "required": [
+          "period",
+          "metrics",
+          "summary",
+        ],
+        "type": "object",
+      },
+    },
+  },
+  "paths": {
+    "/analytics": {
+      "post": {
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/analytics_766317247_PayloadT3984453425",
+              },
+            },
+          },
+          "required": false,
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/analytics_766317247_ResponseT3984453425",
+                },
+              },
+            },
+            "description": "Success",
+          },
+        },
+      },
+    },
+    "/analytics/{period}": {
+      "post": {
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/analytics_766317247_ParamsT766317247_period3317178062",
+          },
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/analytics_766317247_PayloadT3984453425",
+              },
+            },
+          },
+          "required": false,
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/analytics_766317247_ResponseT3984453425",
+                },
+              },
+            },
+            "description": "Success",
+          },
+        },
+      },
+    },
+  },
+}

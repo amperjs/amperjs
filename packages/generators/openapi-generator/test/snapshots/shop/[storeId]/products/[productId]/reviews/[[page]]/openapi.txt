@@ -1,0 +1,238 @@
+{
+  "components": {
+    "parameters": {
+      "shop_4285257638_ParamsT4285257638_page336246304": {
+        "in": "path",
+        "name": "page",
+        "required": true,
+        "schema": {
+          "minimum": 1,
+          "type": "number",
+        },
+      },
+      "shop_4285257638_ParamsT4285257638_productId913937925": {
+        "in": "path",
+        "name": "productId",
+        "required": true,
+        "schema": {
+          "minimum": 1,
+          "type": "number",
+        },
+      },
+      "shop_4285257638_ParamsT4285257638_storeId796101202": {
+        "in": "path",
+        "name": "storeId",
+        "required": true,
+        "schema": {
+          "minimum": 1,
+          "type": "number",
+        },
+      },
+    },
+    "schemas": {
+      "shop_4285257638_PayloadT117928027_includeReplies2031277092": {
+        "type": "boolean",
+      },
+      "shop_4285257638_PayloadT117928027_minRating837778626": {
+        "maximum": 5,
+        "minimum": 1,
+        "type": "number",
+      },
+      "shop_4285257638_PayloadT117928027_verifiedOnly3469940295": {
+        "type": "boolean",
+      },
+      "shop_4285257638_ResponseT117928027": {
+        "properties": {
+          "averageRating": {
+            "type": "number",
+          },
+          "page": {
+            "type": "number",
+          },
+          "pagination": {
+            "properties": {
+              "hasMore": {
+                "type": "boolean",
+              },
+              "total": {
+                "type": "number",
+              },
+            },
+            "required": [
+              "total",
+              "hasMore",
+            ],
+            "type": "object",
+          },
+          "productId": {
+            "type": "number",
+          },
+          "reviews": {
+            "items": {
+              "properties": {
+                "comment": {
+                  "type": "string",
+                },
+                "createdAt": {
+                  "format": "date-time",
+                  "type": "string",
+                },
+                "id": {
+                  "type": "number",
+                },
+                "productId": {
+                  "type": "number",
+                },
+                "rating": {
+                  "type": "number",
+                },
+                "reviewer": {
+                  "properties": {
+                    "id": {
+                      "type": "number",
+                    },
+                    "name": {
+                      "type": "string",
+                    },
+                  },
+                  "required": [
+                    "id",
+                    "name",
+                  ],
+                  "type": "object",
+                },
+                "storeId": {
+                  "type": "number",
+                },
+              },
+              "required": [
+                "id",
+                "productId",
+                "storeId",
+                "rating",
+                "comment",
+                "reviewer",
+                "createdAt",
+              ],
+              "type": "object",
+            },
+            "type": "array",
+          },
+          "storeId": {
+            "type": "number",
+          },
+        },
+        "required": [
+          "storeId",
+          "productId",
+          "page",
+          "reviews",
+          "averageRating",
+          "pagination",
+        ],
+        "type": "object",
+      },
+    },
+  },
+  "paths": {
+    "/shop/{storeId}/products/{productId}/reviews": {
+      "get": {
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/shop_4285257638_ParamsT4285257638_storeId796101202",
+          },
+          {
+            "$ref": "#/components/parameters/shop_4285257638_ParamsT4285257638_productId913937925",
+          },
+          {
+            "in": "query",
+            "name": "minRating",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/shop_4285257638_PayloadT117928027_minRating837778626",
+            },
+          },
+          {
+            "in": "query",
+            "name": "verifiedOnly",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/shop_4285257638_PayloadT117928027_verifiedOnly3469940295",
+            },
+          },
+          {
+            "in": "query",
+            "name": "includeReplies",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/shop_4285257638_PayloadT117928027_includeReplies2031277092",
+            },
+          },
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/shop_4285257638_ResponseT117928027",
+                },
+              },
+            },
+            "description": "Success",
+          },
+        },
+      },
+    },
+    "/shop/{storeId}/products/{productId}/reviews/{page}": {
+      "get": {
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/shop_4285257638_ParamsT4285257638_storeId796101202",
+          },
+          {
+            "$ref": "#/components/parameters/shop_4285257638_ParamsT4285257638_productId913937925",
+          },
+          {
+            "$ref": "#/components/parameters/shop_4285257638_ParamsT4285257638_page336246304",
+          },
+          {
+            "in": "query",
+            "name": "minRating",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/shop_4285257638_PayloadT117928027_minRating837778626",
+            },
+          },
+          {
+            "in": "query",
+            "name": "verifiedOnly",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/shop_4285257638_PayloadT117928027_verifiedOnly3469940295",
+            },
+          },
+          {
+            "in": "query",
+            "name": "includeReplies",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/shop_4285257638_PayloadT117928027_includeReplies2031277092",
+            },
+          },
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/shop_4285257638_ResponseT117928027",
+                },
+              },
+            },
+            "description": "Success",
+          },
+        },
+      },
+    },
+  },
+}

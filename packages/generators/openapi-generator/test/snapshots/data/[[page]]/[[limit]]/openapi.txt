@@ -1,0 +1,304 @@
+{
+  "components": {
+    "parameters": {
+      "data_668522618_ParamsT668522618_limit2140596320": {
+        "in": "path",
+        "name": "limit",
+        "required": true,
+        "schema": {
+          "maximum": 100,
+          "minimum": 1,
+          "multipleOf": 1,
+          "type": "number",
+        },
+      },
+      "data_668522618_ParamsT668522618_page336246304": {
+        "in": "path",
+        "name": "page",
+        "required": true,
+        "schema": {
+          "maximum": 1000,
+          "minimum": 1,
+          "type": "number",
+        },
+      },
+    },
+    "schemas": {
+      "data_668522618_PayloadT3730705167_category105650625": {
+        "type": "string",
+      },
+      "data_668522618_PayloadT3730705167_maxValue4276626131": {
+        "type": "number",
+      },
+      "data_668522618_PayloadT3730705167_minValue411602226": {
+        "type": "number",
+      },
+      "data_668522618_PayloadT3730705167_sortBy1582199508": {
+        "anyOf": [
+          {
+            "const": "name",
+          },
+          {
+            "const": "value",
+          },
+          {
+            "const": "id",
+          },
+        ],
+      },
+      "data_668522618_PayloadT3730705167_sortOrder1063427325": {
+        "anyOf": [
+          {
+            "const": "asc",
+          },
+          {
+            "const": "desc",
+          },
+        ],
+      },
+      "data_668522618_ResponseT3730705167": {
+        "properties": {
+          "data": {
+            "items": {
+              "properties": {
+                "category": {
+                  "type": "string",
+                },
+                "id": {
+                  "type": "number",
+                },
+                "name": {
+                  "type": "string",
+                },
+                "value": {
+                  "type": "number",
+                },
+              },
+              "required": [
+                "id",
+                "name",
+                "value",
+                "category",
+              ],
+              "type": "object",
+            },
+            "type": "array",
+          },
+          "pagination": {
+            "properties": {
+              "hasMore": {
+                "type": "boolean",
+              },
+              "limit": {
+                "type": "number",
+              },
+              "page": {
+                "type": "number",
+              },
+              "total": {
+                "type": "number",
+              },
+            },
+            "required": [
+              "page",
+              "limit",
+              "total",
+              "hasMore",
+            ],
+            "type": "object",
+          },
+        },
+        "required": [
+          "data",
+          "pagination",
+        ],
+        "type": "object",
+      },
+    },
+  },
+  "paths": {
+    "/data": {
+      "get": {
+        "parameters": [
+          {
+            "in": "query",
+            "name": "category",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/data_668522618_PayloadT3730705167_category105650625",
+            },
+          },
+          {
+            "in": "query",
+            "name": "minValue",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/data_668522618_PayloadT3730705167_minValue411602226",
+            },
+          },
+          {
+            "in": "query",
+            "name": "maxValue",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/data_668522618_PayloadT3730705167_maxValue4276626131",
+            },
+          },
+          {
+            "in": "query",
+            "name": "sortBy",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/data_668522618_PayloadT3730705167_sortBy1582199508",
+            },
+          },
+          {
+            "in": "query",
+            "name": "sortOrder",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/data_668522618_PayloadT3730705167_sortOrder1063427325",
+            },
+          },
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/data_668522618_ResponseT3730705167",
+                },
+              },
+            },
+            "description": "Success",
+          },
+        },
+      },
+    },
+    "/data/{page}": {
+      "get": {
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/data_668522618_ParamsT668522618_page336246304",
+          },
+          {
+            "in": "query",
+            "name": "category",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/data_668522618_PayloadT3730705167_category105650625",
+            },
+          },
+          {
+            "in": "query",
+            "name": "minValue",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/data_668522618_PayloadT3730705167_minValue411602226",
+            },
+          },
+          {
+            "in": "query",
+            "name": "maxValue",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/data_668522618_PayloadT3730705167_maxValue4276626131",
+            },
+          },
+          {
+            "in": "query",
+            "name": "sortBy",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/data_668522618_PayloadT3730705167_sortBy1582199508",
+            },
+          },
+          {
+            "in": "query",
+            "name": "sortOrder",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/data_668522618_PayloadT3730705167_sortOrder1063427325",
+            },
+          },
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/data_668522618_ResponseT3730705167",
+                },
+              },
+            },
+            "description": "Success",
+          },
+        },
+      },
+    },
+    "/data/{page}/{limit}": {
+      "get": {
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/data_668522618_ParamsT668522618_page336246304",
+          },
+          {
+            "$ref": "#/components/parameters/data_668522618_ParamsT668522618_limit2140596320",
+          },
+          {
+            "in": "query",
+            "name": "category",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/data_668522618_PayloadT3730705167_category105650625",
+            },
+          },
+          {
+            "in": "query",
+            "name": "minValue",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/data_668522618_PayloadT3730705167_minValue411602226",
+            },
+          },
+          {
+            "in": "query",
+            "name": "maxValue",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/data_668522618_PayloadT3730705167_maxValue4276626131",
+            },
+          },
+          {
+            "in": "query",
+            "name": "sortBy",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/data_668522618_PayloadT3730705167_sortBy1582199508",
+            },
+          },
+          {
+            "in": "query",
+            "name": "sortOrder",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/data_668522618_PayloadT3730705167_sortOrder1063427325",
+            },
+          },
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/data_668522618_ResponseT3730705167",
+                },
+              },
+            },
+            "description": "Success",
+          },
+        },
+      },
+    },
+  },
+}

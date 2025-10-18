@@ -1,0 +1,236 @@
+{
+  "components": {
+    "parameters": {
+      "search_1773160490_ParamsT1773160490_page336246304": {
+        "in": "path",
+        "name": "page",
+        "required": true,
+        "schema": {
+          "minimum": 1,
+          "type": "number",
+        },
+      },
+      "search_1773160490_ParamsT1773160490_type2363381545": {
+        "in": "path",
+        "name": "type",
+        "required": true,
+        "schema": {
+          "anyOf": [
+            {
+              "const": "posts",
+            },
+            {
+              "const": "users",
+            },
+            {
+              "const": "all",
+            },
+          ],
+        },
+      },
+    },
+    "schemas": {
+      "search_1773160490_PayloadT3546546239_boostRecent570170941": {
+        "type": "boolean",
+      },
+      "search_1773160490_PayloadT3546546239_q4110462503": {
+        "type": "string",
+      },
+      "search_1773160490_PayloadT3546546239_type2363381545": {
+        "anyOf": [
+          {
+            "const": "all",
+          },
+          {
+            "const": "posts",
+          },
+          {
+            "const": "users",
+          },
+        ],
+      },
+      "search_1773160490_ResponseT3546546239": {
+        "properties": {
+          "page": {
+            "type": "number",
+          },
+          "query": {
+            "type": "string",
+          },
+          "results": {
+            "items": {
+              "properties": {
+                "id": {
+                  "type": "number",
+                },
+                "score": {
+                  "type": "number",
+                },
+                "title": {
+                  "type": "string",
+                },
+                "type": {
+                  "type": "string",
+                },
+              },
+              "required": [
+                "id",
+                "title",
+                "type",
+                "score",
+              ],
+              "type": "object",
+            },
+            "type": "array",
+          },
+          "total": {
+            "type": "number",
+          },
+        },
+        "required": [
+          "page",
+          "results",
+          "total",
+        ],
+        "type": "object",
+      },
+    },
+  },
+  "paths": {
+    "/search": {
+      "get": {
+        "parameters": [
+          {
+            "in": "query",
+            "name": "q",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/search_1773160490_PayloadT3546546239_q4110462503",
+            },
+          },
+          {
+            "in": "query",
+            "name": "type",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/search_1773160490_PayloadT3546546239_type2363381545",
+            },
+          },
+          {
+            "in": "query",
+            "name": "boostRecent",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/search_1773160490_PayloadT3546546239_boostRecent570170941",
+            },
+          },
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/search_1773160490_ResponseT3546546239",
+                },
+              },
+            },
+            "description": "Success",
+          },
+        },
+      },
+    },
+    "/search/{type}": {
+      "get": {
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/search_1773160490_ParamsT1773160490_type2363381545",
+          },
+          {
+            "in": "query",
+            "name": "q",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/search_1773160490_PayloadT3546546239_q4110462503",
+            },
+          },
+          {
+            "in": "query",
+            "name": "type",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/search_1773160490_PayloadT3546546239_type2363381545",
+            },
+          },
+          {
+            "in": "query",
+            "name": "boostRecent",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/search_1773160490_PayloadT3546546239_boostRecent570170941",
+            },
+          },
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/search_1773160490_ResponseT3546546239",
+                },
+              },
+            },
+            "description": "Success",
+          },
+        },
+      },
+    },
+    "/search/{type}/{page}": {
+      "get": {
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/search_1773160490_ParamsT1773160490_type2363381545",
+          },
+          {
+            "$ref": "#/components/parameters/search_1773160490_ParamsT1773160490_page336246304",
+          },
+          {
+            "in": "query",
+            "name": "q",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/search_1773160490_PayloadT3546546239_q4110462503",
+            },
+          },
+          {
+            "in": "query",
+            "name": "type",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/search_1773160490_PayloadT3546546239_type2363381545",
+            },
+          },
+          {
+            "in": "query",
+            "name": "boostRecent",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/search_1773160490_PayloadT3546546239_boostRecent570170941",
+            },
+          },
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/search_1773160490_ResponseT3546546239",
+                },
+              },
+            },
+            "description": "Success",
+          },
+        },
+      },
+    },
+  },
+}

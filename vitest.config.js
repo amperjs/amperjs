@@ -17,6 +17,12 @@ export default defineConfig({
       ["generators/api-generator"],
       ["generators/solid-generator"],
       [
+        "generators/openapi-generator",
+        {
+          globalSetup: [`packages/generators/openapi-generator/test/setup.ts`],
+        },
+      ],
+      [
         "generators/typebox-generator",
         {
           globalSetup: [`packages/generators/typebox-generator/test/setup.ts`],

@@ -1,0 +1,321 @@
+{
+  "components": {
+    "parameters": {
+      "metrics_3905147277_ParamsT3905147277_name1579384326": {
+        "in": "path",
+        "name": "name",
+        "required": true,
+        "schema": {
+          "type": "string",
+        },
+      },
+      "metrics_3905147277_ParamsT3905147277_period3317178062": {
+        "in": "path",
+        "name": "period",
+        "required": true,
+        "schema": {
+          "anyOf": [
+            {
+              "const": "hour",
+            },
+            {
+              "const": "day",
+            },
+            {
+              "const": "week",
+            },
+            {
+              "const": "month",
+            },
+            {
+              "const": "year",
+            },
+          ],
+        },
+      },
+    },
+    "schemas": {
+      "metrics_3905147277_PayloadT1897339246": {
+        "properties": {
+          "timestamp": {
+            "type": "string",
+          },
+          "value": {
+            "type": "number",
+          },
+        },
+        "required": [
+          "value",
+          "timestamp",
+        ],
+        "type": "object",
+      },
+      "metrics_3905147277_PayloadT3558105066_includeRaw2930872922": {
+        "type": "boolean",
+      },
+      "metrics_3905147277_PayloadT3558105066_resolution4258467722": {
+        "anyOf": [
+          {
+            "const": "hour",
+          },
+          {
+            "const": "day",
+          },
+          {
+            "const": "week",
+          },
+        ],
+      },
+      "metrics_3905147277_PayloadT3558105066_transform2008187309": {
+        "anyOf": [
+          {
+            "const": "none",
+          },
+          {
+            "const": "movingAverage",
+          },
+          {
+            "const": "cumulative",
+          },
+        ],
+      },
+      "metrics_3905147277_ResponseT1897339246": {
+        "properties": {
+          "id": {
+            "type": "number",
+          },
+          "metric": {
+            "type": "string",
+          },
+          "recorded": {
+            "type": "boolean",
+          },
+        },
+        "required": [
+          "recorded",
+          "metric",
+          "id",
+        ],
+        "type": "object",
+      },
+      "metrics_3905147277_ResponseT3558105066": {
+        "properties": {
+          "data": {
+            "items": {
+              "properties": {
+                "timestamp": {
+                  "type": "string",
+                },
+                "unit": {
+                  "type": "string",
+                },
+                "value": {
+                  "type": "number",
+                },
+              },
+              "required": [
+                "timestamp",
+                "value",
+                "unit",
+              ],
+              "type": "object",
+            },
+            "type": "array",
+          },
+          "metric": {
+            "type": "string",
+          },
+          "period": {
+            "type": "string",
+          },
+          "summary": {
+            "properties": {
+              "average": {
+                "type": "number",
+              },
+              "count": {
+                "type": "number",
+              },
+              "max": {
+                "type": "number",
+              },
+              "min": {
+                "type": "number",
+              },
+            },
+            "required": [
+              "average",
+              "min",
+              "max",
+              "count",
+            ],
+            "type": "object",
+          },
+        },
+        "required": [
+          "metric",
+          "period",
+          "data",
+          "summary",
+        ],
+        "type": "object",
+      },
+    },
+  },
+  "paths": {
+    "/metrics/{name}": {
+      "get": {
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/metrics_3905147277_ParamsT3905147277_name1579384326",
+          },
+          {
+            "in": "query",
+            "name": "resolution",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/metrics_3905147277_PayloadT3558105066_resolution4258467722",
+            },
+          },
+          {
+            "in": "query",
+            "name": "includeRaw",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/metrics_3905147277_PayloadT3558105066_includeRaw2930872922",
+            },
+          },
+          {
+            "in": "query",
+            "name": "transform",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/metrics_3905147277_PayloadT3558105066_transform2008187309",
+            },
+          },
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/metrics_3905147277_ResponseT3558105066",
+                },
+              },
+            },
+            "description": "Success",
+          },
+        },
+      },
+      "post": {
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/metrics_3905147277_ParamsT3905147277_name1579384326",
+          },
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/metrics_3905147277_PayloadT1897339246",
+              },
+            },
+          },
+          "required": true,
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/metrics_3905147277_ResponseT1897339246",
+                },
+              },
+            },
+            "description": "Success",
+          },
+        },
+      },
+    },
+    "/metrics/{name}/{period}": {
+      "get": {
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/metrics_3905147277_ParamsT3905147277_name1579384326",
+          },
+          {
+            "$ref": "#/components/parameters/metrics_3905147277_ParamsT3905147277_period3317178062",
+          },
+          {
+            "in": "query",
+            "name": "resolution",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/metrics_3905147277_PayloadT3558105066_resolution4258467722",
+            },
+          },
+          {
+            "in": "query",
+            "name": "includeRaw",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/metrics_3905147277_PayloadT3558105066_includeRaw2930872922",
+            },
+          },
+          {
+            "in": "query",
+            "name": "transform",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/metrics_3905147277_PayloadT3558105066_transform2008187309",
+            },
+          },
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/metrics_3905147277_ResponseT3558105066",
+                },
+              },
+            },
+            "description": "Success",
+          },
+        },
+      },
+      "post": {
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/metrics_3905147277_ParamsT3905147277_name1579384326",
+          },
+          {
+            "$ref": "#/components/parameters/metrics_3905147277_ParamsT3905147277_period3317178062",
+          },
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/metrics_3905147277_PayloadT1897339246",
+              },
+            },
+          },
+          "required": true,
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/metrics_3905147277_ResponseT1897339246",
+                },
+              },
+            },
+            "description": "Success",
+          },
+        },
+      },
+    },
+  },
+}

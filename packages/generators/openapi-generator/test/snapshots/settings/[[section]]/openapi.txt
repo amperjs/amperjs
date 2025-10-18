@@ -1,0 +1,406 @@
+{
+  "components": {
+    "parameters": {
+      "settings_4001032770_ParamsT4001032770_section762542831": {
+        "in": "path",
+        "name": "section",
+        "required": true,
+        "schema": {
+          "anyOf": [
+            {
+              "const": "notifications",
+            },
+            {
+              "const": "privacy",
+            },
+            {
+              "const": "general",
+            },
+          ],
+        },
+      },
+    },
+    "schemas": {
+      "settings_4001032770_PayloadT3913732431": {
+        "properties": {
+          "language": {
+            "type": "string",
+          },
+          "notifications": {
+            "properties": {
+              "email": {
+                "type": "boolean",
+              },
+              "frequency": {
+                "anyOf": [
+                  {
+                    "const": "instant",
+                  },
+                  {
+                    "const": "daily",
+                  },
+                  {
+                    "const": "weekly",
+                  },
+                ],
+              },
+              "push": {
+                "type": "boolean",
+              },
+              "sms": {
+                "type": "boolean",
+              },
+            },
+            "required": [
+              "email",
+              "push",
+              "sms",
+              "frequency",
+            ],
+            "type": "object",
+          },
+          "privacy": {
+            "properties": {
+              "dataSharing": {
+                "type": "boolean",
+              },
+              "profileVisibility": {
+                "anyOf": [
+                  {
+                    "const": "public",
+                  },
+                  {
+                    "const": "private",
+                  },
+                  {
+                    "const": "friends",
+                  },
+                ],
+              },
+              "searchEngineIndexing": {
+                "type": "boolean",
+              },
+            },
+            "required": [
+              "profileVisibility",
+              "dataSharing",
+              "searchEngineIndexing",
+            ],
+            "type": "object",
+          },
+          "timezone": {
+            "type": "string",
+          },
+        },
+        "type": "object",
+      },
+      "settings_4001032770_PayloadT55508079_format3736761055": {
+        "anyOf": [
+          {
+            "const": "full",
+          },
+          {
+            "const": "minimal",
+          },
+        ],
+      },
+      "settings_4001032770_PayloadT55508079_includeDefaults3940573690": {
+        "type": "boolean",
+      },
+      "settings_4001032770_ResponseT3913732431": {
+        "properties": {
+          "language": {
+            "type": "string",
+          },
+          "notifications": {
+            "properties": {
+              "email": {
+                "type": "boolean",
+              },
+              "frequency": {
+                "anyOf": [
+                  {
+                    "const": "instant",
+                  },
+                  {
+                    "const": "daily",
+                  },
+                  {
+                    "const": "weekly",
+                  },
+                ],
+              },
+              "push": {
+                "type": "boolean",
+              },
+              "sms": {
+                "type": "boolean",
+              },
+            },
+            "required": [
+              "email",
+              "push",
+              "sms",
+              "frequency",
+            ],
+            "type": "object",
+          },
+          "privacy": {
+            "properties": {
+              "dataSharing": {
+                "type": "boolean",
+              },
+              "profileVisibility": {
+                "anyOf": [
+                  {
+                    "const": "public",
+                  },
+                  {
+                    "const": "private",
+                  },
+                  {
+                    "const": "friends",
+                  },
+                ],
+              },
+              "searchEngineIndexing": {
+                "type": "boolean",
+              },
+            },
+            "required": [
+              "profileVisibility",
+              "dataSharing",
+              "searchEngineIndexing",
+            ],
+            "type": "object",
+          },
+          "timezone": {
+            "type": "string",
+          },
+          "updatedAt": {
+            "format": "date-time",
+            "type": "string",
+          },
+        },
+        "required": [
+          "notifications",
+          "privacy",
+          "language",
+          "timezone",
+          "updatedAt",
+        ],
+        "type": "object",
+      },
+      "settings_4001032770_ResponseT55508079": {
+        "properties": {
+          "language": {
+            "type": "string",
+          },
+          "notifications": {
+            "properties": {
+              "email": {
+                "type": "boolean",
+              },
+              "frequency": {
+                "anyOf": [
+                  {
+                    "const": "instant",
+                  },
+                  {
+                    "const": "daily",
+                  },
+                  {
+                    "const": "weekly",
+                  },
+                ],
+              },
+              "push": {
+                "type": "boolean",
+              },
+              "sms": {
+                "type": "boolean",
+              },
+            },
+            "required": [
+              "email",
+              "push",
+              "sms",
+              "frequency",
+            ],
+            "type": "object",
+          },
+          "privacy": {
+            "properties": {
+              "dataSharing": {
+                "type": "boolean",
+              },
+              "profileVisibility": {
+                "anyOf": [
+                  {
+                    "const": "public",
+                  },
+                  {
+                    "const": "private",
+                  },
+                  {
+                    "const": "friends",
+                  },
+                ],
+              },
+              "searchEngineIndexing": {
+                "type": "boolean",
+              },
+            },
+            "required": [
+              "profileVisibility",
+              "dataSharing",
+              "searchEngineIndexing",
+            ],
+            "type": "object",
+          },
+          "timezone": {
+            "type": "string",
+          },
+          "updatedAt": {
+            "format": "date-time",
+            "type": "string",
+          },
+        },
+        "required": [
+          "notifications",
+          "privacy",
+          "language",
+          "timezone",
+          "updatedAt",
+        ],
+        "type": "object",
+      },
+    },
+  },
+  "paths": {
+    "/settings": {
+      "get": {
+        "parameters": [
+          {
+            "in": "query",
+            "name": "format",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/settings_4001032770_PayloadT55508079_format3736761055",
+            },
+          },
+          {
+            "in": "query",
+            "name": "includeDefaults",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/settings_4001032770_PayloadT55508079_includeDefaults3940573690",
+            },
+          },
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/settings_4001032770_ResponseT55508079",
+                },
+              },
+            },
+            "description": "Success",
+          },
+        },
+      },
+      "patch": {
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/settings_4001032770_PayloadT3913732431",
+              },
+            },
+          },
+          "required": false,
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/settings_4001032770_ResponseT3913732431",
+                },
+              },
+            },
+            "description": "Success",
+          },
+        },
+      },
+    },
+    "/settings/{section}": {
+      "get": {
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/settings_4001032770_ParamsT4001032770_section762542831",
+          },
+          {
+            "in": "query",
+            "name": "format",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/settings_4001032770_PayloadT55508079_format3736761055",
+            },
+          },
+          {
+            "in": "query",
+            "name": "includeDefaults",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/settings_4001032770_PayloadT55508079_includeDefaults3940573690",
+            },
+          },
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/settings_4001032770_ResponseT55508079",
+                },
+              },
+            },
+            "description": "Success",
+          },
+        },
+      },
+      "patch": {
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/settings_4001032770_ParamsT4001032770_section762542831",
+          },
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/settings_4001032770_PayloadT3913732431",
+              },
+            },
+          },
+          "required": false,
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/settings_4001032770_ResponseT3913732431",
+                },
+              },
+            },
+            "description": "Success",
+          },
+        },
+      },
+    },
+  },
+}

@@ -1,0 +1,82 @@
+{
+  "components": {
+    "parameters": {},
+    "schemas": {
+      "health_3470402323_ResponseT3549018236": {
+        "properties": {
+          "memory": {
+            "properties": {
+              "arrayBuffers": {
+                "type": "number",
+              },
+              "external": {
+                "type": "number",
+              },
+              "heapTotal": {
+                "type": "number",
+              },
+              "heapUsed": {
+                "type": "number",
+              },
+              "rss": {
+                "type": "number",
+              },
+            },
+            "required": [
+              "rss",
+              "heapTotal",
+              "heapUsed",
+              "external",
+              "arrayBuffers",
+            ],
+            "type": "object",
+          },
+          "status": {
+            "anyOf": [
+              {
+                "const": "healthy",
+              },
+              {
+                "const": "degraded",
+              },
+              {
+                "const": "unhealthy",
+              },
+            ],
+          },
+          "timestamp": {
+            "type": "string",
+          },
+          "uptime": {
+            "type": "number",
+          },
+        },
+        "required": [
+          "status",
+          "timestamp",
+          "uptime",
+          "memory",
+        ],
+        "type": "object",
+      },
+    },
+  },
+  "paths": {
+    "/health": {
+      "get": {
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/health_3470402323_ResponseT3549018236",
+                },
+              },
+            },
+            "description": "Success",
+          },
+        },
+      },
+    },
+  },
+}

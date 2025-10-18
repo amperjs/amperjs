@@ -1,0 +1,193 @@
+{
+  "components": {
+    "parameters": {
+      "users_1806413811_ParamsT1806413811_id3208210256": {
+        "in": "path",
+        "name": "id",
+        "required": true,
+        "schema": {
+          "minimum": 1,
+          "type": "number",
+        },
+      },
+      "users_1806413811_ParamsT1806413811_page336246304": {
+        "in": "path",
+        "name": "page",
+        "required": true,
+        "schema": {
+          "minimum": 1,
+          "type": "number",
+        },
+      },
+    },
+    "schemas": {
+      "users_1806413811_PayloadT2295316628_includeContent668435367": {
+        "type": "boolean",
+      },
+      "users_1806413811_PayloadT2295316628_sort1361375778": {
+        "anyOf": [
+          {
+            "const": "newest",
+          },
+          {
+            "const": "oldest",
+          },
+        ],
+      },
+      "users_1806413811_PayloadT2295316628_status2063623452": {
+        "anyOf": [
+          {
+            "const": "published",
+          },
+          {
+            "const": "draft",
+          },
+          {
+            "const": "all",
+          },
+        ],
+      },
+      "users_1806413811_ResponseT2295316628": {
+        "properties": {
+          "page": {
+            "type": "number",
+          },
+          "posts": {
+            "items": {
+              "properties": {
+                "content": {
+                  "type": "string",
+                },
+                "createdAt": {
+                  "format": "date-time",
+                  "type": "string",
+                },
+                "id": {
+                  "type": "number",
+                },
+                "title": {
+                  "type": "string",
+                },
+              },
+              "required": [
+                "id",
+                "title",
+                "createdAt",
+              ],
+              "type": "object",
+            },
+            "type": "array",
+          },
+          "total": {
+            "type": "number",
+          },
+          "userId": {
+            "type": "number",
+          },
+        },
+        "required": [
+          "userId",
+          "page",
+          "posts",
+          "total",
+        ],
+        "type": "object",
+      },
+    },
+  },
+  "paths": {
+    "/users/{id}/posts": {
+      "get": {
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/users_1806413811_ParamsT1806413811_id3208210256",
+          },
+          {
+            "in": "query",
+            "name": "status",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/users_1806413811_PayloadT2295316628_status2063623452",
+            },
+          },
+          {
+            "in": "query",
+            "name": "sort",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/users_1806413811_PayloadT2295316628_sort1361375778",
+            },
+          },
+          {
+            "in": "query",
+            "name": "includeContent",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/users_1806413811_PayloadT2295316628_includeContent668435367",
+            },
+          },
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/users_1806413811_ResponseT2295316628",
+                },
+              },
+            },
+            "description": "Success",
+          },
+        },
+      },
+    },
+    "/users/{id}/posts/{page}": {
+      "get": {
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/users_1806413811_ParamsT1806413811_id3208210256",
+          },
+          {
+            "$ref": "#/components/parameters/users_1806413811_ParamsT1806413811_page336246304",
+          },
+          {
+            "in": "query",
+            "name": "status",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/users_1806413811_PayloadT2295316628_status2063623452",
+            },
+          },
+          {
+            "in": "query",
+            "name": "sort",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/users_1806413811_PayloadT2295316628_sort1361375778",
+            },
+          },
+          {
+            "in": "query",
+            "name": "includeContent",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/users_1806413811_PayloadT2295316628_includeContent668435367",
+            },
+          },
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/users_1806413811_ResponseT2295316628",
+                },
+              },
+            },
+            "description": "Success",
+          },
+        },
+      },
+    },
+  },
+}

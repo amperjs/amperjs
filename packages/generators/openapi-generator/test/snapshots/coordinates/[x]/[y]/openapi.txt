@@ -1,0 +1,121 @@
+{
+  "components": {
+    "parameters": {
+      "coordinates_2786993400_ParamsT2786993400_x2363233923": {
+        "in": "path",
+        "name": "x",
+        "required": true,
+        "schema": {
+          "maximum": 180,
+          "minimum": -180,
+          "multipleOf": 0.000001,
+          "type": "number",
+        },
+      },
+      "coordinates_2786993400_ParamsT2786993400_y4225443349": {
+        "in": "path",
+        "name": "y",
+        "required": true,
+        "schema": {
+          "maximum": 90,
+          "minimum": -90,
+          "multipleOf": 0.000001,
+          "type": "number",
+        },
+      },
+    },
+    "schemas": {
+      "coordinates_2786993400_PayloadT269124932_format3736761055": {
+        "anyOf": [
+          {
+            "const": "decimal",
+          },
+          {
+            "const": "dms",
+          },
+        ],
+      },
+      "coordinates_2786993400_PayloadT269124932_includeElevation4039203883": {
+        "type": "boolean",
+      },
+      "coordinates_2786993400_PayloadT269124932_includeTimezone3495988515": {
+        "type": "boolean",
+      },
+      "coordinates_2786993400_ResponseT269124932": {
+        "properties": {
+          "elevation": {
+            "type": "number",
+          },
+          "location": {
+            "type": "string",
+          },
+          "timezone": {
+            "type": "string",
+          },
+          "x": {
+            "type": "number",
+          },
+          "y": {
+            "type": "number",
+          },
+        },
+        "required": [
+          "x",
+          "y",
+          "location",
+        ],
+        "type": "object",
+      },
+    },
+  },
+  "paths": {
+    "/coordinates/{x}/{y}": {
+      "get": {
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/coordinates_2786993400_ParamsT2786993400_x2363233923",
+          },
+          {
+            "$ref": "#/components/parameters/coordinates_2786993400_ParamsT2786993400_y4225443349",
+          },
+          {
+            "in": "query",
+            "name": "format",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/coordinates_2786993400_PayloadT269124932_format3736761055",
+            },
+          },
+          {
+            "in": "query",
+            "name": "includeTimezone",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/coordinates_2786993400_PayloadT269124932_includeTimezone3495988515",
+            },
+          },
+          {
+            "in": "query",
+            "name": "includeElevation",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/coordinates_2786993400_PayloadT269124932_includeElevation4039203883",
+            },
+          },
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/coordinates_2786993400_ResponseT269124932",
+                },
+              },
+            },
+            "description": "Success",
+          },
+        },
+      },
+    },
+  },
+}

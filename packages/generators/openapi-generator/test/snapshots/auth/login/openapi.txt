@@ -1,0 +1,94 @@
+{
+  "components": {
+    "parameters": {},
+    "schemas": {
+      "auth_login_1829279652_PayloadT1883205745": {
+        "properties": {
+          "email": {
+            "format": "email",
+            "type": "string",
+          },
+          "password": {
+            "minLength": 8,
+            "type": "string",
+          },
+          "rememberMe": {
+            "type": "boolean",
+          },
+        },
+        "required": [
+          "email",
+          "password",
+        ],
+        "type": "object",
+      },
+      "auth_login_1829279652_ResponseT1883205745": {
+        "properties": {
+          "expiresIn": {
+            "type": "number",
+          },
+          "token": {
+            "type": "string",
+          },
+          "user": {
+            "properties": {
+              "email": {
+                "type": "string",
+              },
+              "id": {
+                "type": "number",
+              },
+              "name": {
+                "type": "string",
+              },
+              "role": {
+                "type": "string",
+              },
+            },
+            "required": [
+              "id",
+              "name",
+              "email",
+              "role",
+            ],
+            "type": "object",
+          },
+        },
+        "required": [
+          "token",
+          "user",
+          "expiresIn",
+        ],
+        "type": "object",
+      },
+    },
+  },
+  "paths": {
+    "/auth/login": {
+      "post": {
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/auth_login_1829279652_PayloadT1883205745",
+              },
+            },
+          },
+          "required": false,
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/auth_login_1829279652_ResponseT1883205745",
+                },
+              },
+            },
+            "description": "Success",
+          },
+        },
+      },
+    },
+  },
+}

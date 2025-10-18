@@ -1,0 +1,129 @@
+{
+  "components": {
+    "parameters": {
+      "hex_1393281580_ParamsT1393281580_color1716930793": {
+        "in": "path",
+        "name": "color",
+        "required": true,
+        "schema": {
+          "pattern": "^#[0-9A-Fa-f]{6}$",
+          "type": "string",
+        },
+      },
+    },
+    "schemas": {
+      "hex_1393281580_PayloadT924346986_format3736761055": {
+        "anyOf": [
+          {
+            "const": "hex",
+          },
+          {
+            "const": "rgb",
+          },
+          {
+            "const": "hsl",
+          },
+          {
+            "const": "all",
+          },
+        ],
+      },
+      "hex_1393281580_PayloadT924346986_includeName3458752990": {
+        "type": "boolean",
+      },
+      "hex_1393281580_ResponseT924346986": {
+        "properties": {
+          "hex": {
+            "type": "string",
+          },
+          "hsl": {
+            "properties": {
+              "h": {
+                "type": "number",
+              },
+              "l": {
+                "type": "number",
+              },
+              "s": {
+                "type": "number",
+              },
+            },
+            "required": [
+              "h",
+              "s",
+              "l",
+            ],
+            "type": "object",
+          },
+          "name": {
+            "type": "string",
+          },
+          "rgb": {
+            "properties": {
+              "b": {
+                "type": "number",
+              },
+              "g": {
+                "type": "number",
+              },
+              "r": {
+                "type": "number",
+              },
+            },
+            "required": [
+              "r",
+              "g",
+              "b",
+            ],
+            "type": "object",
+          },
+        },
+        "required": [
+          "hex",
+          "rgb",
+          "hsl",
+        ],
+        "type": "object",
+      },
+    },
+  },
+  "paths": {
+    "/hex/{color}": {
+      "get": {
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/hex_1393281580_ParamsT1393281580_color1716930793",
+          },
+          {
+            "in": "query",
+            "name": "format",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/hex_1393281580_PayloadT924346986_format3736761055",
+            },
+          },
+          {
+            "in": "query",
+            "name": "includeName",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/hex_1393281580_PayloadT924346986_includeName3458752990",
+            },
+          },
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/hex_1393281580_ResponseT924346986",
+                },
+              },
+            },
+            "description": "Success",
+          },
+        },
+      },
+    },
+  },
+}

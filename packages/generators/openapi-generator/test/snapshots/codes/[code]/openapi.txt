@@ -1,0 +1,111 @@
+{
+  "components": {
+    "parameters": {
+      "codes_2885117477_ParamsT2885117477_code1997877400": {
+        "in": "path",
+        "name": "code",
+        "required": true,
+        "schema": {
+          "pattern": "^[A-Z0-9]{3,10}$",
+          "type": "string",
+        },
+      },
+    },
+    "schemas": {
+      "codes_2885117477_PayloadT662496740_includeUsage1483935625": {
+        "type": "boolean",
+      },
+      "codes_2885117477_PayloadT662496740_validateOnly3276629258": {
+        "type": "boolean",
+      },
+      "codes_2885117477_ResponseT662496740": {
+        "properties": {
+          "code": {
+            "type": "string",
+          },
+          "details": {
+            "properties": {
+              "discount": {
+                "type": "number",
+              },
+              "type": {
+                "anyOf": [
+                  {
+                    "const": "promo",
+                  },
+                  {
+                    "const": "discount",
+                  },
+                  {
+                    "const": "referral",
+                  },
+                ],
+              },
+              "usageLimit": {
+                "type": "number",
+              },
+              "validUntil": {
+                "type": "string",
+              },
+            },
+            "required": [
+              "type",
+              "discount",
+              "validUntil",
+              "usageLimit",
+            ],
+            "type": "object",
+          },
+          "valid": {
+            "type": "boolean",
+          },
+        },
+        "required": [
+          "code",
+          "valid",
+          "details",
+        ],
+        "type": "object",
+      },
+    },
+  },
+  "paths": {
+    "/codes/{code}": {
+      "get": {
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/codes_2885117477_ParamsT2885117477_code1997877400",
+          },
+          {
+            "in": "query",
+            "name": "validateOnly",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/codes_2885117477_PayloadT662496740_validateOnly3276629258",
+            },
+          },
+          {
+            "in": "query",
+            "name": "includeUsage",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/codes_2885117477_PayloadT662496740_includeUsage1483935625",
+            },
+          },
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/codes_2885117477_ResponseT662496740",
+                },
+              },
+            },
+            "description": "Success",
+          },
+        },
+      },
+    },
+  },
+}

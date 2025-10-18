@@ -1,0 +1,115 @@
+{
+  "components": {
+    "parameters": {
+      "articles_3442148210_ParamsT3442148210_id3208210256": {
+        "in": "path",
+        "name": "id",
+        "required": true,
+        "schema": {
+          "minimum": 1,
+          "type": "number",
+        },
+      },
+    },
+    "schemas": {
+      "articles_3442148210_PayloadT2151867301_format3736761055": {
+        "anyOf": [
+          {
+            "const": "full",
+          },
+          {
+            "const": "summary",
+          },
+        ],
+      },
+      "articles_3442148210_PayloadT2151867301_includeAuthor2034633249": {
+        "type": "boolean",
+      },
+      "articles_3442148210_PayloadT2151867301_includeComments3103762846": {
+        "type": "boolean",
+      },
+      "articles_3442148210_ResponseT2151867301": {
+        "properties": {
+          "author": {
+            "type": "string",
+          },
+          "content": {
+            "type": "string",
+          },
+          "id": {
+            "type": "number",
+          },
+          "publishedAt": {
+            "format": "date-time",
+            "type": "string",
+          },
+          "tags": {
+            "items": {
+              "type": "string",
+            },
+            "type": "array",
+          },
+          "title": {
+            "type": "string",
+          },
+        },
+        "required": [
+          "id",
+          "title",
+          "content",
+          "author",
+          "publishedAt",
+          "tags",
+        ],
+        "type": "object",
+      },
+    },
+  },
+  "paths": {
+    "/articles/{id}": {
+      "get": {
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/articles_3442148210_ParamsT3442148210_id3208210256",
+          },
+          {
+            "in": "query",
+            "name": "includeComments",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/articles_3442148210_PayloadT2151867301_includeComments3103762846",
+            },
+          },
+          {
+            "in": "query",
+            "name": "includeAuthor",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/articles_3442148210_PayloadT2151867301_includeAuthor2034633249",
+            },
+          },
+          {
+            "in": "query",
+            "name": "format",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/articles_3442148210_PayloadT2151867301_format3736761055",
+            },
+          },
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/articles_3442148210_ResponseT2151867301",
+                },
+              },
+            },
+            "description": "Success",
+          },
+        },
+      },
+    },
+  },
+}

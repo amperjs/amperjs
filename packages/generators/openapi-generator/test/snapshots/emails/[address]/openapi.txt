@@ -1,0 +1,85 @@
+{
+  "components": {
+    "parameters": {
+      "emails_3047612475_ParamsT3047612475_address223244161": {
+        "in": "path",
+        "name": "address",
+        "required": true,
+        "schema": {
+          "format": "email",
+          "type": "string",
+        },
+      },
+    },
+    "schemas": {
+      "emails_3047612475_PayloadT4255078835_includeStats3755947603": {
+        "type": "boolean",
+      },
+      "emails_3047612475_PayloadT4255078835_includeUser496552337": {
+        "type": "boolean",
+      },
+      "emails_3047612475_ResponseT4255078835": {
+        "properties": {
+          "email": {
+            "type": "string",
+          },
+          "primary": {
+            "type": "boolean",
+          },
+          "userId": {
+            "type": "number",
+          },
+          "verified": {
+            "type": "boolean",
+          },
+        },
+        "required": [
+          "email",
+          "verified",
+          "primary",
+          "userId",
+        ],
+        "type": "object",
+      },
+    },
+  },
+  "paths": {
+    "/emails/{address}": {
+      "get": {
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/emails_3047612475_ParamsT3047612475_address223244161",
+          },
+          {
+            "in": "query",
+            "name": "includeUser",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/emails_3047612475_PayloadT4255078835_includeUser496552337",
+            },
+          },
+          {
+            "in": "query",
+            "name": "includeStats",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/emails_3047612475_PayloadT4255078835_includeStats3755947603",
+            },
+          },
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/emails_3047612475_ResponseT4255078835",
+                },
+              },
+            },
+            "description": "Success",
+          },
+        },
+      },
+    },
+  },
+}

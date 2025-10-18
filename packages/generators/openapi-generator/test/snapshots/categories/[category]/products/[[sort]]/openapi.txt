@@ -1,0 +1,225 @@
+{
+  "components": {
+    "parameters": {
+      "categories_2817762847_ParamsT2817762847_category105650625": {
+        "in": "path",
+        "name": "category",
+        "required": true,
+        "schema": {
+          "anyOf": [
+            {
+              "const": "electronics",
+            },
+            {
+              "const": "clothing",
+            },
+            {
+              "const": "books",
+            },
+            {
+              "const": "home",
+            },
+          ],
+        },
+      },
+      "categories_2817762847_ParamsT2817762847_sort1361375778": {
+        "in": "path",
+        "name": "sort",
+        "required": true,
+        "schema": {
+          "anyOf": [
+            {
+              "const": "price",
+            },
+            {
+              "const": "rating",
+            },
+            {
+              "const": "name",
+            },
+            {
+              "const": "date",
+            },
+          ],
+        },
+      },
+    },
+    "schemas": {
+      "categories_2817762847_PayloadT2658291286_inStock4251530779": {
+        "type": "boolean",
+      },
+      "categories_2817762847_PayloadT2658291286_maxPrice693590078": {
+        "type": "number",
+      },
+      "categories_2817762847_PayloadT2658291286_minPrice3476551647": {
+        "type": "number",
+      },
+      "categories_2817762847_PayloadT2658291286_minRating837778626": {
+        "maximum": 5,
+        "minimum": 1,
+        "type": "number",
+      },
+      "categories_2817762847_ResponseT2658291286": {
+        "properties": {
+          "category": {
+            "type": "string",
+          },
+          "products": {
+            "items": {
+              "properties": {
+                "category": {
+                  "type": "string",
+                },
+                "id": {
+                  "type": "number",
+                },
+                "name": {
+                  "type": "string",
+                },
+                "price": {
+                  "type": "number",
+                },
+                "rating": {
+                  "type": "number",
+                },
+              },
+              "required": [
+                "id",
+                "name",
+                "price",
+                "category",
+                "rating",
+              ],
+              "type": "object",
+            },
+            "type": "array",
+          },
+          "sort": {
+            "type": "string",
+          },
+          "total": {
+            "type": "number",
+          },
+        },
+        "required": [
+          "category",
+          "sort",
+          "products",
+          "total",
+        ],
+        "type": "object",
+      },
+    },
+  },
+  "paths": {
+    "/categories/{category}/products": {
+      "get": {
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/categories_2817762847_ParamsT2817762847_category105650625",
+          },
+          {
+            "in": "query",
+            "name": "minPrice",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/categories_2817762847_PayloadT2658291286_minPrice3476551647",
+            },
+          },
+          {
+            "in": "query",
+            "name": "maxPrice",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/categories_2817762847_PayloadT2658291286_maxPrice693590078",
+            },
+          },
+          {
+            "in": "query",
+            "name": "minRating",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/categories_2817762847_PayloadT2658291286_minRating837778626",
+            },
+          },
+          {
+            "in": "query",
+            "name": "inStock",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/categories_2817762847_PayloadT2658291286_inStock4251530779",
+            },
+          },
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/categories_2817762847_ResponseT2658291286",
+                },
+              },
+            },
+            "description": "Success",
+          },
+        },
+      },
+    },
+    "/categories/{category}/products/{sort}": {
+      "get": {
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/categories_2817762847_ParamsT2817762847_category105650625",
+          },
+          {
+            "$ref": "#/components/parameters/categories_2817762847_ParamsT2817762847_sort1361375778",
+          },
+          {
+            "in": "query",
+            "name": "minPrice",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/categories_2817762847_PayloadT2658291286_minPrice3476551647",
+            },
+          },
+          {
+            "in": "query",
+            "name": "maxPrice",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/categories_2817762847_PayloadT2658291286_maxPrice693590078",
+            },
+          },
+          {
+            "in": "query",
+            "name": "minRating",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/categories_2817762847_PayloadT2658291286_minRating837778626",
+            },
+          },
+          {
+            "in": "query",
+            "name": "inStock",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/categories_2817762847_PayloadT2658291286_inStock4251530779",
+            },
+          },
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/categories_2817762847_ResponseT2658291286",
+                },
+              },
+            },
+            "description": "Success",
+          },
+        },
+      },
+    },
+  },
+}

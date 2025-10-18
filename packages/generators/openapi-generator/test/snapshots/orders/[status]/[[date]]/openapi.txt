@@ -1,0 +1,316 @@
+{
+  "components": {
+    "parameters": {
+      "orders_2095219978_ParamsT2095219978_date2862495610": {
+        "in": "path",
+        "name": "date",
+        "required": true,
+        "schema": {
+          "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$",
+          "type": "string",
+        },
+      },
+      "orders_2095219978_ParamsT2095219978_status2063623452": {
+        "in": "path",
+        "name": "status",
+        "required": true,
+        "schema": {
+          "anyOf": [
+            {
+              "const": "pending",
+            },
+            {
+              "const": "processing",
+            },
+            {
+              "const": "shipped",
+            },
+            {
+              "const": "delivered",
+            },
+            {
+              "const": "cancelled",
+            },
+          ],
+        },
+      },
+    },
+    "schemas": {
+      "orders_2095219978_PayloadT1324883840_includeCustomer1717088701": {
+        "type": "boolean",
+      },
+      "orders_2095219978_PayloadT1324883840_includeItems1770436788": {
+        "type": "boolean",
+      },
+      "orders_2095219978_PayloadT1324883840_limit2140596320": {
+        "maximum": 100,
+        "minimum": 1,
+        "type": "number",
+      },
+      "orders_2095219978_PayloadT3706355048": {
+        "properties": {
+          "items": {
+            "items": {
+              "properties": {
+                "id": {
+                  "type": "number",
+                },
+                "quantity": {
+                  "type": "number",
+                },
+              },
+              "required": [
+                "id",
+                "quantity",
+              ],
+              "type": "object",
+            },
+            "type": "array",
+          },
+        },
+        "required": [
+          "items",
+        ],
+        "type": "object",
+      },
+      "orders_2095219978_ResponseT1324883840": {
+        "properties": {
+          "date": {
+            "type": "string",
+          },
+          "orders": {
+            "items": {
+              "properties": {
+                "customer": {
+                  "type": "string",
+                },
+                "id": {
+                  "type": "number",
+                },
+                "items": {
+                  "items": {
+                    "properties": {
+                      "id": {
+                        "type": "number",
+                      },
+                      "name": {
+                        "type": "string",
+                      },
+                      "price": {
+                        "type": "number",
+                      },
+                      "quantity": {
+                        "type": "number",
+                      },
+                    },
+                    "required": [
+                      "id",
+                      "name",
+                      "quantity",
+                      "price",
+                    ],
+                    "type": "object",
+                  },
+                  "type": "array",
+                },
+                "total": {
+                  "type": "number",
+                },
+              },
+              "required": [
+                "id",
+                "items",
+                "total",
+              ],
+              "type": "object",
+            },
+            "type": "array",
+          },
+          "status": {
+            "type": "string",
+          },
+        },
+        "required": [
+          "status",
+          "orders",
+        ],
+        "type": "object",
+      },
+      "orders_2095219978_ResponseT3706355048": {
+        "properties": {
+          "orderId": {
+            "type": "number",
+          },
+          "status": {
+            "type": "string",
+          },
+          "total": {
+            "type": "number",
+          },
+        },
+        "required": [
+          "orderId",
+          "status",
+          "total",
+        ],
+        "type": "object",
+      },
+    },
+  },
+  "paths": {
+    "/orders/{status}": {
+      "get": {
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/orders_2095219978_ParamsT2095219978_status2063623452",
+          },
+          {
+            "in": "query",
+            "name": "includeItems",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/orders_2095219978_PayloadT1324883840_includeItems1770436788",
+            },
+          },
+          {
+            "in": "query",
+            "name": "includeCustomer",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/orders_2095219978_PayloadT1324883840_includeCustomer1717088701",
+            },
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/orders_2095219978_PayloadT1324883840_limit2140596320",
+            },
+          },
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/orders_2095219978_ResponseT1324883840",
+                },
+              },
+            },
+            "description": "Success",
+          },
+        },
+      },
+      "post": {
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/orders_2095219978_ParamsT2095219978_status2063623452",
+          },
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/orders_2095219978_PayloadT3706355048",
+              },
+            },
+          },
+          "required": true,
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/orders_2095219978_ResponseT3706355048",
+                },
+              },
+            },
+            "description": "Success",
+          },
+        },
+      },
+    },
+    "/orders/{status}/{date}": {
+      "get": {
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/orders_2095219978_ParamsT2095219978_status2063623452",
+          },
+          {
+            "$ref": "#/components/parameters/orders_2095219978_ParamsT2095219978_date2862495610",
+          },
+          {
+            "in": "query",
+            "name": "includeItems",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/orders_2095219978_PayloadT1324883840_includeItems1770436788",
+            },
+          },
+          {
+            "in": "query",
+            "name": "includeCustomer",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/orders_2095219978_PayloadT1324883840_includeCustomer1717088701",
+            },
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/orders_2095219978_PayloadT1324883840_limit2140596320",
+            },
+          },
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/orders_2095219978_ResponseT1324883840",
+                },
+              },
+            },
+            "description": "Success",
+          },
+        },
+      },
+      "post": {
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/orders_2095219978_ParamsT2095219978_status2063623452",
+          },
+          {
+            "$ref": "#/components/parameters/orders_2095219978_ParamsT2095219978_date2862495610",
+          },
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/orders_2095219978_PayloadT3706355048",
+              },
+            },
+          },
+          "required": true,
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/orders_2095219978_ResponseT3706355048",
+                },
+              },
+            },
+            "description": "Success",
+          },
+        },
+      },
+    },
+  },
+}

@@ -1,0 +1,101 @@
+{
+  "components": {
+    "parameters": {},
+    "schemas": {
+      "webhooks_stripe_837743219_PayloadT4042882700": {
+        "properties": {
+          "created": {
+            "type": "number",
+          },
+          "data": {
+            "properties": {
+              "object": {
+                "properties": {
+                  "amount": {
+                    "type": "number",
+                  },
+                  "currency": {
+                    "type": "string",
+                  },
+                  "id": {
+                    "type": "string",
+                  },
+                },
+                "required": [
+                  "id",
+                  "amount",
+                  "currency",
+                ],
+                "type": "object",
+              },
+            },
+            "required": [
+              "object",
+            ],
+            "type": "object",
+          },
+          "id": {
+            "type": "string",
+          },
+          "type": {
+            "type": "string",
+          },
+        },
+        "required": [
+          "id",
+          "type",
+          "data",
+          "created",
+        ],
+        "type": "object",
+      },
+      "webhooks_stripe_837743219_ResponseT4042882700": {
+        "properties": {
+          "processed": {
+            "type": "string",
+          },
+          "received": {
+            "type": "boolean",
+          },
+          "timestamp": {
+            "type": "string",
+          },
+        },
+        "required": [
+          "received",
+          "processed",
+          "timestamp",
+        ],
+        "type": "object",
+      },
+    },
+  },
+  "paths": {
+    "/webhooks/stripe": {
+      "post": {
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/webhooks_stripe_837743219_PayloadT4042882700",
+              },
+            },
+          },
+          "required": false,
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/webhooks_stripe_837743219_ResponseT4042882700",
+                },
+              },
+            },
+            "description": "Success",
+          },
+        },
+      },
+    },
+  },
+}

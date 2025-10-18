@@ -1,0 +1,90 @@
+{
+  "components": {
+    "parameters": {},
+    "schemas": {
+      "static_nested_3450092225_PayloadT765576493_format3736761055": {
+        "anyOf": [
+          {
+            "const": "full",
+          },
+          {
+            "const": "minimal",
+          },
+        ],
+      },
+      "static_nested_3450092225_PayloadT765576493_includeMetadata2826242976": {
+        "type": "boolean",
+      },
+      "static_nested_3450092225_ResponseT765576493": {
+        "properties": {
+          "data": {
+            "properties": {
+              "count": {
+                "type": "number",
+              },
+              "items": {
+                "items": {
+                  "type": "string",
+                },
+                "type": "array",
+              },
+            },
+            "required": [
+              "items",
+              "count",
+            ],
+            "type": "object",
+          },
+          "level": {
+            "type": "number",
+          },
+          "message": {
+            "type": "string",
+          },
+        },
+        "required": [
+          "message",
+          "level",
+          "data",
+        ],
+        "type": "object",
+      },
+    },
+  },
+  "paths": {
+    "/static/nested": {
+      "get": {
+        "parameters": [
+          {
+            "in": "query",
+            "name": "format",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/static_nested_3450092225_PayloadT765576493_format3736761055",
+            },
+          },
+          {
+            "in": "query",
+            "name": "includeMetadata",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/static_nested_3450092225_PayloadT765576493_includeMetadata2826242976",
+            },
+          },
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/static_nested_3450092225_ResponseT765576493",
+                },
+              },
+            },
+            "description": "Success",
+          },
+        },
+      },
+    },
+  },
+}

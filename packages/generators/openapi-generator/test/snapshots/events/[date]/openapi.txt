@@ -1,0 +1,127 @@
+{
+  "components": {
+    "parameters": {
+      "events_1490977605_ParamsT1490977605_date2862495610": {
+        "in": "path",
+        "name": "date",
+        "required": true,
+        "schema": {
+          "format": "date",
+          "type": "string",
+        },
+      },
+    },
+    "schemas": {
+      "events_1490977605_PayloadT70303657_category105650625": {
+        "anyOf": [
+          {
+            "const": "conference",
+          },
+          {
+            "const": "meetup",
+          },
+          {
+            "const": "workshop",
+          },
+        ],
+      },
+      "events_1490977605_PayloadT70303657_limit2140596320": {
+        "maximum": 100,
+        "minimum": 1,
+        "type": "number",
+      },
+      "events_1490977605_PayloadT70303657_location1587448267": {
+        "type": "string",
+      },
+      "events_1490977605_ResponseT70303657": {
+        "properties": {
+          "date": {
+            "type": "string",
+          },
+          "events": {
+            "items": {
+              "properties": {
+                "date": {
+                  "type": "string",
+                },
+                "description": {
+                  "type": "string",
+                },
+                "id": {
+                  "type": "number",
+                },
+                "location": {
+                  "type": "string",
+                },
+                "title": {
+                  "type": "string",
+                },
+              },
+              "required": [
+                "id",
+                "title",
+                "date",
+                "location",
+                "description",
+              ],
+              "type": "object",
+            },
+            "type": "array",
+          },
+        },
+        "required": [
+          "date",
+          "events",
+        ],
+        "type": "object",
+      },
+    },
+  },
+  "paths": {
+    "/events/{date}": {
+      "get": {
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/events_1490977605_ParamsT1490977605_date2862495610",
+          },
+          {
+            "in": "query",
+            "name": "category",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/events_1490977605_PayloadT70303657_category105650625",
+            },
+          },
+          {
+            "in": "query",
+            "name": "location",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/events_1490977605_PayloadT70303657_location1587448267",
+            },
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/events_1490977605_PayloadT70303657_limit2140596320",
+            },
+          },
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/events_1490977605_ResponseT70303657",
+                },
+              },
+            },
+            "description": "Success",
+          },
+        },
+      },
+    },
+  },
+}
