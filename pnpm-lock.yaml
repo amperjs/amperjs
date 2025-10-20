@@ -273,9 +273,6 @@ importers:
       '@types/prompts':
         specifier: ^2.4.9
         version: 2.4.9
-      oreum:
-        specifier: workspace:^
-        version: 'link:'
       vite:
         specifier: ^7.1.10
         version: 7.1.10(@types/node@24.7.2)(yaml@2.8.1)

@@ -56,8 +56,8 @@
       "includes": [
         "./packages/build/esbuilder/src/index.ts",
         "./packages/core/dev/src/base-plugin/api-handler.ts",
-        "./packages/core/create/src/index.ts",
-        "./packages/core/create/src/templates/**/*.ts"
+        "./packages/core/oreum/src/index.ts",
+        "./packages/core/oreum/src/templates/**/*.ts"
       ],
       "linter": {
         "rules": {
