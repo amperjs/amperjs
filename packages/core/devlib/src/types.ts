@@ -145,13 +145,16 @@ export type WatchHandler = (
   event?: WatcherEvent,
 ) => Promise<void>;
 
-type GeneratorSignature = {
+type GeneratorFactoryReturn = {
   watchHandler: WatchHandler;
 };
 
 export type GeneratorFactory<T = undefined> = T extends undefined
-  ? (options: PluginOptionsResolved) => Promise<GeneratorSignature>
-  : (options: PluginOptionsResolved, extra: T) => Promise<GeneratorSignature>;
+  ? (options: PluginOptionsResolved) => Promise<GeneratorFactoryReturn>
+  : (
+      options: PluginOptionsResolved,
+      extra: T,
+    ) => Promise<GeneratorFactoryReturn>;
 
 export type GeneratorConstructor = {
   /*
