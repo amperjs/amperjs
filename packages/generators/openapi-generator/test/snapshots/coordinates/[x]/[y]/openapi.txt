@@ -29,9 +29,11 @@
         "anyOf": [
           {
             "const": "decimal",
+            "type": "string",
           },
           {
             "const": "dms",
+            "type": "string",
           },
         ],
       },

@@ -9,12 +9,15 @@
           "anyOf": [
             {
               "const": "json",
+              "type": "string",
             },
             {
               "const": "xml",
+              "type": "string",
             },
             {
               "const": "yaml",
+              "type": "string",
             },
           ],
         },
@@ -27,12 +30,15 @@
           "anyOf": [
             {
               "const": "v1",
+              "type": "string",
             },
             {
               "const": "v2",
+              "type": "string",
             },
             {
               "const": "v3",
+              "type": "string",
             },
           ],
         },

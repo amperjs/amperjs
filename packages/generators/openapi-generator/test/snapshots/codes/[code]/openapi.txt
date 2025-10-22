@@ -32,12 +32,15 @@
                 "anyOf": [
                   {
                     "const": "promo",
+                    "type": "string",
                   },
                   {
                     "const": "discount",
+                    "type": "string",
                   },
                   {
                     "const": "referral",
+                    "type": "string",
                   },
                 ],
               },

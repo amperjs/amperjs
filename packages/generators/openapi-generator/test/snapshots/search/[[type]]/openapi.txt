@@ -9,12 +9,15 @@
           "anyOf": [
             {
               "const": "posts",
+              "type": "string",
             },
             {
               "const": "users",
+              "type": "string",
             },
             {
               "const": "all",
+              "type": "string",
             },
           ],
         },
@@ -29,12 +32,15 @@
                 "anyOf": [
                   {
                     "const": "tech",
+                    "type": "string",
                   },
                   {
                     "const": "science",
+                    "type": "string",
                   },
                   {
                     "const": "arts",
+                    "type": "string",
                   },
                 ],
               },
@@ -120,12 +126,15 @@
                   "anyOf": [
                     {
                       "const": "post",
+                      "type": "string",
                     },
                     {
                       "const": "user",
+                      "type": "string",
                     },
                     {
                       "const": "comment",
+                      "type": "string",
                     },
                   ],
                 },

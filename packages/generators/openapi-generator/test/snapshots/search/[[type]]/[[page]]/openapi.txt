@@ -18,12 +18,15 @@
           "anyOf": [
             {
               "const": "posts",
+              "type": "string",
             },
             {
               "const": "users",
+              "type": "string",
             },
             {
               "const": "all",
+              "type": "string",
             },
           ],
         },
@@ -40,12 +43,15 @@
         "anyOf": [
           {
             "const": "all",
+            "type": "string",
           },
           {
             "const": "posts",
+            "type": "string",
           },
           {
             "const": "users",
+            "type": "string",
           },
         ],
       },

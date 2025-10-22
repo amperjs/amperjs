@@ -9,15 +9,19 @@
           "anyOf": [
             {
               "const": "electronics",
+              "type": "string",
             },
             {
               "const": "clothing",
+              "type": "string",
             },
             {
               "const": "books",
+              "type": "string",
             },
             {
               "const": "home",
+              "type": "string",
             },
           ],
         },
@@ -30,15 +34,19 @@
           "anyOf": [
             {
               "const": "price",
+              "type": "string",
             },
             {
               "const": "rating",
+              "type": "string",
             },
             {
               "const": "name",
+              "type": "string",
             },
             {
               "const": "date",
+              "type": "string",
             },
           ],
         },

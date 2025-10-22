@@ -37,12 +37,15 @@
         "anyOf": [
           {
             "const": "name",
+            "type": "string",
           },
           {
             "const": "value",
+            "type": "string",
           },
           {
             "const": "id",
+            "type": "string",
           },
         ],
       },
@@ -50,9 +53,11 @@
         "anyOf": [
           {
             "const": "asc",
+            "type": "string",
           },
           {
             "const": "desc",
+            "type": "string",
           },
         ],
       },

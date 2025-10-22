@@ -23,12 +23,15 @@
         "anyOf": [
           {
             "const": "html",
+            "type": "string",
           },
           {
             "const": "markdown",
+            "type": "string",
           },
           {
             "const": "raw",
+            "type": "string",
           },
         ],
       },
@@ -39,12 +42,15 @@
         "anyOf": [
           {
             "const": "v1",
+            "type": "string",
           },
           {
             "const": "v2",
+            "type": "string",
           },
           {
             "const": "latest",
+            "type": "string",
           },
         ],
       },

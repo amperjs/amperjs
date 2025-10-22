@@ -25,12 +25,15 @@
         "anyOf": [
           {
             "const": "profile",
+            "type": "string",
           },
           {
             "const": "posts",
+            "type": "string",
           },
           {
             "const": "all",
+            "type": "string",
           },
         ],
       },
@@ -49,12 +52,15 @@
             "anyOf": [
               {
                 "const": "admin",
+                "type": "string",
               },
               {
                 "const": "user",
+                "type": "string",
               },
               {
                 "const": "moderator",
+                "type": "string",
               },
             ],
           },
@@ -83,12 +89,15 @@
             "anyOf": [
               {
                 "const": "admin",
+                "type": "string",
               },
               {
                 "const": "user",
+                "type": "string",
               },
               {
                 "const": "moderator",
+                "type": "string",
               },
             ],
           },
@@ -124,12 +133,15 @@
             "anyOf": [
               {
                 "const": "admin",
+                "type": "string",
               },
               {
                 "const": "user",
+                "type": "string",
               },
               {
                 "const": "moderator",
+                "type": "string",
               },
             ],
           },

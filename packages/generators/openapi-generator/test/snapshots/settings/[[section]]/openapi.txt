@@ -9,12 +9,15 @@
           "anyOf": [
             {
               "const": "notifications",
+              "type": "string",
             },
             {
               "const": "privacy",
+              "type": "string",
             },
             {
               "const": "general",
+              "type": "string",
             },
           ],
         },
@@ -35,12 +38,15 @@
                 "anyOf": [
                   {
                     "const": "instant",
+                    "type": "string",
                   },
                   {
                     "const": "daily",
+                    "type": "string",
                   },
                   {
                     "const": "weekly",
+                    "type": "string",
                   },
                 ],
               },
@@ -68,12 +74,15 @@
                 "anyOf": [
                   {
                     "const": "public",
+                    "type": "string",
                   },
                   {
                     "const": "private",
+                    "type": "string",
                   },
                   {
                     "const": "friends",
+                    "type": "string",
                   },
                 ],
               },
@@ -98,9 +107,11 @@
         "anyOf": [
           {
             "const": "full",
+            "type": "string",
           },
           {
             "const": "minimal",
+            "type": "string",
           },
         ],
       },
@@ -121,12 +132,15 @@
                 "anyOf": [
                   {
                     "const": "instant",
+                    "type": "string",
                   },
                   {
                     "const": "daily",
+                    "type": "string",
                   },
                   {
                     "const": "weekly",
+                    "type": "string",
                   },
                 ],
               },
@@ -154,12 +168,15 @@
                 "anyOf": [
                   {
                     "const": "public",
+                    "type": "string",
                   },
                   {
                     "const": "private",
+                    "type": "string",
                   },
                   {
                     "const": "friends",
+                    "type": "string",
                   },
                 ],
               },
@@ -205,12 +222,15 @@
                 "anyOf": [
                   {
                     "const": "instant",
+                    "type": "string",
                   },
                   {
                     "const": "daily",
+                    "type": "string",
                   },
                   {
                     "const": "weekly",
+                    "type": "string",
                   },
                 ],
               },
@@ -238,12 +258,15 @@
                 "anyOf": [
                   {
                     "const": "public",
+                    "type": "string",
                   },
                   {
                     "const": "private",
+                    "type": "string",
                   },
                   {
                     "const": "friends",
+                    "type": "string",
                   },
                 ],
               },

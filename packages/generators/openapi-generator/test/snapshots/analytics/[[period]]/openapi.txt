@@ -9,15 +9,19 @@
           "anyOf": [
             {
               "const": "day",
+              "type": "string",
             },
             {
               "const": "week",
+              "type": "string",
             },
             {
               "const": "month",
+              "type": "string",
             },
             {
               "const": "year",
+              "type": "string",
             },
           ],
         },
@@ -30,12 +34,15 @@
             "anyOf": [
               {
                 "const": "day",
+                "type": "string",
               },
               {
                 "const": "week",
+                "type": "string",
               },
               {
                 "const": "month",
+                "type": "string",
               },
             ],
           },
@@ -47,15 +54,19 @@
               "anyOf": [
                 {
                   "const": "views",
+                  "type": "string",
                 },
                 {
                   "const": "clicks",
+                  "type": "string",
                 },
                 {
                   "const": "conversions",
+                  "type": "string",
                 },
                 {
                   "const": "revenue",
+                  "type": "string",
                 },
               ],
             },

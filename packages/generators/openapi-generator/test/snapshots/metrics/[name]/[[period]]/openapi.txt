@@ -17,18 +17,23 @@
           "anyOf": [
             {
               "const": "hour",
+              "type": "string",
             },
             {
               "const": "day",
+              "type": "string",
             },
             {
               "const": "week",
+              "type": "string",
             },
             {
               "const": "month",
+              "type": "string",
             },
             {
               "const": "year",
+              "type": "string",
             },
           ],
         },
@@ -57,12 +62,15 @@
         "anyOf": [
           {
             "const": "hour",
+            "type": "string",
           },
           {
             "const": "day",
+            "type": "string",
           },
           {
             "const": "week",
+            "type": "string",
           },
         ],
       },
@@ -70,12 +78,15 @@
         "anyOf": [
           {
             "const": "none",
+            "type": "string",
           },
           {
             "const": "movingAverage",
+            "type": "string",
           },
           {
             "const": "cumulative",
+            "type": "string",
           },
         ],
       },

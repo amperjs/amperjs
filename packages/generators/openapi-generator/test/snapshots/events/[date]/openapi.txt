@@ -16,12 +16,15 @@
         "anyOf": [
           {
             "const": "conference",
+            "type": "string",
           },
           {
             "const": "meetup",
+            "type": "string",
           },
           {
             "const": "workshop",
+            "type": "string",
           },
         ],
       },

@@ -28,9 +28,11 @@
         "anyOf": [
           {
             "const": "newest",
+            "type": "string",
           },
           {
             "const": "oldest",
+            "type": "string",
           },
         ],
       },
@@ -38,12 +40,15 @@
         "anyOf": [
           {
             "const": "published",
+            "type": "string",
           },
           {
             "const": "draft",
+            "type": "string",
           },
           {
             "const": "all",
+            "type": "string",
           },
         ],
       },

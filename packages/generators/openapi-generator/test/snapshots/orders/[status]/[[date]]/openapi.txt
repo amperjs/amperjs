@@ -18,18 +18,23 @@
           "anyOf": [
             {
               "const": "pending",
+              "type": "string",
             },
             {
               "const": "processing",
+              "type": "string",
             },
             {
               "const": "shipped",
+              "type": "string",
             },
             {
               "const": "delivered",
+              "type": "string",
             },
             {
               "const": "cancelled",
+              "type": "string",
             },
           ],
         },

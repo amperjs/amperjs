@@ -9,9 +9,11 @@
         "anyOf": [
           {
             "const": "full",
+            "type": "string",
           },
           {
             "const": "minimal",
+            "type": "string",
           },
         ],
       },

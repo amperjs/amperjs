@@ -18,12 +18,15 @@
         "anyOf": [
           {
             "const": "newest",
+            "type": "string",
           },
           {
             "const": "oldest",
+            "type": "string",
           },
           {
             "const": "popular",
+            "type": "string",
           },
         ],
       },

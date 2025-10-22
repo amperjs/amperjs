@@ -30,15 +30,19 @@
         "anyOf": [
           {
             "const": "newest",
+            "type": "string",
           },
           {
             "const": "oldest",
+            "type": "string",
           },
           {
             "const": "highest",
+            "type": "string",
           },
           {
             "const": "lowest",
+            "type": "string",
           },
         ],
       },

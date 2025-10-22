@@ -16,15 +16,19 @@
         "anyOf": [
           {
             "const": "hex",
+            "type": "string",
           },
           {
             "const": "rgb",
+            "type": "string",
           },
           {
             "const": "hsl",
+            "type": "string",
           },
           {
             "const": "all",
+            "type": "string",
           },
         ],
       },
