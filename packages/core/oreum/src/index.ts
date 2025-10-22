@@ -281,4 +281,31 @@ if (viteBaseExists) {
       await renderToFile(targetDir(file), template, context);
     }
   }
+
+  for (const line of [
+    "",
+    "🎉  Well Done! Your new Oreum project is ready.",
+    `─────────────────────────────────────────────────`,
+    "",
+
+    `📂 Next steps:`,
+    `- Navigate to your app dir - ${styleText("blue", `cd ./${project.name}`)}`,
+    `- Install dependencies using your favorite package manager:`,
+
+    ...["npm install", "pnpm install", "yarn install"].map((cmd) =>
+      styleText("blue", `  ${cmd}`),
+    ),
+    "",
+
+    `🚀 Once dependencies installed, create a source folder by running \`${styleText("blue", "npx oreum")}\` again.`,
+
+    styleText(
+      ["dim", "gray"],
+      "When run in an application directory, Oreum will recognize it and guide you through creating a source folder.\n",
+    ),
+
+    "📘  Docs: https://oreumjs.dev",
+  ]) {
+    console.log(line);
+  }
 }
