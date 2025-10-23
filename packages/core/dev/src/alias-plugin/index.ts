@@ -15,7 +15,7 @@ export default (
   );
 
   return {
-    name: "@oreum:aliasPlugin",
+    name: "@amperjs:aliasPlugin",
 
     config() {
       const aliasmap: Array<Alias> = [];

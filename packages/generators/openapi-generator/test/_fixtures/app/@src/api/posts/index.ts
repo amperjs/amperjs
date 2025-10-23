@@ -1,4 +1,4 @@
-import { defineRoute } from "@oreum/api";
+import { defineRoute } from "@amperjs/api";
 
 type CreatePostPayload = {
   title: TRefine<string, { minLength: 1; maxLength: 255 }>;

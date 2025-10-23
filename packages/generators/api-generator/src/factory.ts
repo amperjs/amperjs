@@ -12,7 +12,7 @@ import {
   pathTokensFactory,
   type RouteResolverEntry,
   renderToFile,
-} from "@oreum/devlib";
+} from "@amperjs/devlib";
 
 import type { Options } from "./types";
 

@@ -1,4 +1,4 @@
-import type { GeneratorConstructor } from "@oreum/devlib";
+import type { GeneratorConstructor } from "@amperjs/devlib";
 
 import { factory } from "./factory";
 import type { Options } from "./types";

@@ -1,6 +1,6 @@
 import Koa from "koa";
 
-import withQueryparser from "@oreum/api/queryparser";
+import withQueryparser from "@amperjs/api/queryparser";
 
 import type { CreateApp } from "./types";
 

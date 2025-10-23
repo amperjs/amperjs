@@ -2,7 +2,7 @@ import {
   type GeneratorConstructor,
   pathResolver,
   renderToFile,
-} from "@oreum/devlib";
+} from "@amperjs/devlib";
 
 import envTpl from "./templates/env.d.ts?as=text";
 import schemasTpl from "./templates/schemas.hbs";

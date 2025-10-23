@@ -4,7 +4,8 @@
   "files": {
     "includes": [
       "*.js",
-      "packages/*/*/{src,test}/**/*.ts",
+      "packages/amperjs/{src,test}/**/*.ts",
+      "packages/{!amperjs}/*/{src,test}/**/*.ts",
       "!packages/*/*/test/_fixtures/app/lib/*"
     ]
   },
@@ -56,8 +57,8 @@
       "includes": [
         "./packages/build/esbuilder/src/index.ts",
         "./packages/core/dev/src/base-plugin/api-handler.ts",
-        "./packages/core/oreum/src/index.ts",
-        "./packages/core/oreum/src/templates/**/*.ts"
+        "./packages/amperjs/src/index.ts",
+        "./packages/amperjs/src/templates/**/*.ts"
       ],
       "linter": {
         "rules": {
@@ -82,7 +83,7 @@
                 ":PACKAGE:",
                 ":PACKAGE_WITH_PROTOCOL:",
                 "!@test/**",
-                "!@oreum/**"
+                "!@amperjs/**"
               ],
               ":BLANK_LINE:",
 
@@ -90,12 +91,16 @@
                 ":PACKAGE:",
                 ":PACKAGE_WITH_PROTOCOL:",
                 "!@test/**",
-                "@oreum/**",
-                "!@oreum/**/*-generator"
+                "@amperjs/**",
+                "!@amperjs/**/*-generator"
               ],
               ":BLANK_LINE:",
 
-              [":PACKAGE:", ":PACKAGE_WITH_PROTOCOL:", "@oreum/**/*-generator"],
+              [
+                ":PACKAGE:",
+                ":PACKAGE_WITH_PROTOCOL:",
+                "@amperjs/**/*-generator"
+              ],
               ":BLANK_LINE:",
 
               [":PACKAGE:", "@test/**"],

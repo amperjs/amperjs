@@ -11,7 +11,7 @@ type Entry = {
 
 export default (entries: Array<Entry>): Plugin => {
   return {
-    name: "@oreum:definePlugin",
+    name: "@amperjs:definePlugin",
 
     async config() {
       const define: Record<string, unknown> = {};

@@ -5,7 +5,7 @@ import {
   pathResolver,
   type RouteResolverEntry,
   renderToFile,
-} from "@oreum/devlib";
+} from "@amperjs/devlib";
 
 import openapiFactory from "./openapi";
 import type { Options } from "./types";

@@ -1,7 +1,7 @@
 import { rimraf } from "rimraf";
 
-import routesFactory from "@oreum/dev/routes";
-import type { RouteResolverEntry } from "@oreum/devlib";
+import routesFactory from "@amperjs/dev/routes";
+import type { RouteResolverEntry } from "@amperjs/devlib";
 
 import { appRoot, resolvedOptions } from ".";
 

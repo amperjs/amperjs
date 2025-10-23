@@ -1,5 +1,5 @@
 {
-  "extends": "@oreum/config/tsconfig.vite.json",
+  "extends": "@amperjs/config/tsconfig.vite.json",
   "compilerOptions": {
     "paths": {
       "@/*": ["./*", "./lib/*"],

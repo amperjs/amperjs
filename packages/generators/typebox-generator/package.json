@@ -1,6 +1,6 @@
 {
   "type": "module",
-  "name": "@oreum/typebox-generator",
+  "name": "@amperjs/typebox-generator",
   "version": "0.0.0-alpha.0",
   "cacheVersion": "1",
   "author": "Slee Woo",
@@ -22,11 +22,11 @@
     "test": "vitest --root ../../.. --project generators/typebox-generator"
   },
   "dependencies": {
-    "@oreum/devlib": "workspace:^"
+    "@amperjs/devlib": "workspace:^"
   },
   "devDependencies": {
-    "@oreum/api": "workspace:^",
-    "@oreum/dev": "workspace:^"
+    "@amperjs/api": "workspace:^",
+    "@amperjs/dev": "workspace:^"
   },
   "peerDependencies": {
     "typebox": "^1.0.37"

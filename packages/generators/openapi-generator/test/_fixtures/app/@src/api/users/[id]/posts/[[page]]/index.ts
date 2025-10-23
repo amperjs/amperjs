@@ -1,4 +1,4 @@
-import { defineRoute } from "@oreum/api";
+import { defineRoute } from "@amperjs/api";
 
 type UserPost = {
   id: number;

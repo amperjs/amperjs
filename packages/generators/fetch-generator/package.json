@@ -1,6 +1,6 @@
 {
   "type": "module",
-  "name": "@oreum/fetch-generator",
+  "name": "@amperjs/fetch-generator",
   "version": "0.0.0-alpha.0",
   "author": "Slee Woo",
   "license": "MIT",
@@ -20,6 +20,6 @@
     "build": "esbuilder src/index.ts"
   },
   "dependencies": {
-    "@oreum/devlib": "workspace:^"
+    "@amperjs/devlib": "workspace:^"
   }
 }

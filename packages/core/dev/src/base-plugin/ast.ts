@@ -12,14 +12,14 @@ import {
 } from "ts-morph";
 import { flattener } from "tsuit";
 
-import { type HTTPMethod, HTTPMethods } from "@oreum/api";
+import { type HTTPMethod, HTTPMethods } from "@amperjs/api";
 import type {
   ApiRoute,
   PayloadType,
   PluginOptionsResolved,
   ResponseType,
   TypeDeclaration,
-} from "@oreum/devlib";
+} from "@amperjs/devlib";
 
 type PathResolver = (path: string) => string;
 

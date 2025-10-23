@@ -3,8 +3,8 @@ import { resolve } from "node:path";
 import crc from "crc/crc32";
 import fsx from "fs-extra";
 
-import pkg from "@oreum/dev/package.json" with { type: "json" };
-import { type ApiRoute, pathResolver } from "@oreum/devlib";
+import pkg from "@amperjs/dev/package.json" with { type: "json" };
+import { type ApiRoute, pathResolver } from "@amperjs/devlib";
 
 export type Cache = {
   hash: number;

@@ -6,7 +6,7 @@ import {
   pathResolver,
   type RouteResolverEntry,
   renderToFile,
-} from "@oreum/devlib";
+} from "@amperjs/devlib";
 
 import fetchTpl from "./templates/fetch.hbs";
 import indexTpl from "./templates/index.hbs";

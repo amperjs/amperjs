@@ -1,5 +1,5 @@
 {
-  "name": "@oreum/esbuilder",
+  "name": "@amperjs/esbuilder",
   "type": "module",
   "private": true,
   "files": [

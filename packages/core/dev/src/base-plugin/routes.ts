@@ -15,7 +15,7 @@ import {
   type RouteResolver,
   render,
   renderToFile,
-} from "@oreum/devlib";
+} from "@amperjs/devlib";
 
 import { resolveRouteSignature, typeResolverFactory } from "./ast";
 import { cacheFactory } from "./cache";

@@ -1,7 +1,7 @@
 import { resolve } from "node:path";
 
-import type { ValidationSchemas } from "@oreum/api";
-import { type PluginOptionsResolved, pathResolver } from "@oreum/devlib";
+import type { ValidationSchemas } from "@amperjs/api";
+import { type PluginOptionsResolved, pathResolver } from "@amperjs/devlib";
 
 import typeboxGenerator from "@/index";
 

@@ -1,4 +1,4 @@
-import useFetch from "@oreum/fetch";
+import useFetch from "@amperjs/fetch";
 
 import { baseurl, apiurl } from "{{importPathmap.config}}";
 import { validationSchemas } from "./schemas";
@@ -12,7 +12,7 @@ import {
   createHost,
 } from "{{importPathmap.fetchLib}}";
 
-export { ValidationError } from "@oreum/api";
+export { ValidationError } from "@amperjs/api";
 
 export type ParamsT = [
   {{#each route.params.schema}}

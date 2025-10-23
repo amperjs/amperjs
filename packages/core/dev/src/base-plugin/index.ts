@@ -12,11 +12,11 @@ import {
   type SpinnerFactory,
   spinnerFactory,
   withSpinner,
-} from "@oreum/devlib";
+} from "@amperjs/devlib";
 
-import apiGenerator from "@oreum/api-generator";
-import stubGenerator from "@oreum/dev/stub-generator";
-import fetchGenerator from "@oreum/fetch-generator";
+import apiGenerator from "@amperjs/api-generator";
+import stubGenerator from "@amperjs/dev/stub-generator";
+import fetchGenerator from "@amperjs/fetch-generator";
 
 import apiHandlerFactory from "./api-handler";
 import routesFactory from "./routes";
@@ -122,7 +122,7 @@ export default (apiurl: string, pluginOptions?: PluginOptions): Plugin => {
   };
 
   return {
-    name: "@oreum:basePlugin",
+    name: "@amperjs:basePlugin",
 
     config(config) {
       if (!config.build?.outDir) {

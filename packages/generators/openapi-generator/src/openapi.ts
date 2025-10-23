@@ -8,7 +8,7 @@ import {
   type PluginOptionsResolved,
   type ResponseType,
   typeboxLiteralText,
-} from "@oreum/devlib";
+} from "@amperjs/devlib";
 
 import type {
   JsonSchema,

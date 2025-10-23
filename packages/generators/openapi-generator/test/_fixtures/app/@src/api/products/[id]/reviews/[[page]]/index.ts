@@ -1,4 +1,4 @@
-import { defineRoute } from "@oreum/api";
+import { defineRoute } from "@amperjs/api";
 
 type CreateReviewPayload = {
   rating: TRefine<number, { minimum: 1; maximum: 5 }>;

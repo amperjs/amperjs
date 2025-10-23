@@ -134,8 +134,8 @@ try {
     entryPoints: positionals,
     outdir: "./pkg",
     define: {
-      "process.env.OREUM__NODE_VERSION": JSON.stringify(nodeVersion),
-      "process.env.OREUM__ESBUILD_TARGET": JSON.stringify(target),
+      "process.env.AMPERJS__NODE_VERSION": JSON.stringify(nodeVersion),
+      "process.env.AMPERJS__ESBUILD_TARGET": JSON.stringify(target),
     },
   });
   spinner.succeed();

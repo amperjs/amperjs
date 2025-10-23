@@ -2,7 +2,7 @@ import { resolve } from "node:path";
 
 import { describe, expect, test } from "vitest";
 
-import type { ApiRoute, RouteResolverEntry } from "@oreum/devlib";
+import type { ApiRoute, RouteResolverEntry } from "@amperjs/devlib";
 
 import routesResolver from "@/base-plugin/routes";
 

@@ -1,6 +1,6 @@
 import { describe, expect, test } from "vitest";
 
-import { runMiddleware } from "@oreum/devlib/test";
+import { runMiddleware } from "@amperjs/devlib/test";
 
 import { middlewareStackBuilder } from "../lib";
 

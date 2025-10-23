@@ -4,8 +4,8 @@ import { join, resolve } from "node:path";
 import { context, build as esbuild, type Plugin } from "esbuild";
 import { green, red } from "kleur/colors";
 
-import type { App } from "@oreum/api";
-import { defaults, type PluginOptionsResolved } from "@oreum/devlib";
+import type { App } from "@amperjs/api";
+import { defaults, type PluginOptionsResolved } from "@amperjs/devlib";
 
 export default async (options: PluginOptionsResolved) => {
   const { appRoot, sourceFolder, baseurl, apiurl } = options;

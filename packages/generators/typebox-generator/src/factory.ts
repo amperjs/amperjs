@@ -7,7 +7,7 @@ import {
   type RouteResolverEntry,
   renderToFile,
   typeboxLiteralText,
-} from "@oreum/devlib";
+} from "@amperjs/devlib";
 
 import errorHandlerTpl from "./error-handler.ts?as=text";
 import type { Options } from "./types";

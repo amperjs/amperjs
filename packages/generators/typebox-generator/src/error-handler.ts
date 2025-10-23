@@ -2,7 +2,7 @@ import { format } from "node:util";
 
 import type { TValidationError } from "typebox/error";
 
-import type { ValidationErrorEntry } from "@oreum/api";
+import type { ValidationErrorEntry } from "@amperjs/api";
 
 /**
  * Message codes for i18n/l10n support

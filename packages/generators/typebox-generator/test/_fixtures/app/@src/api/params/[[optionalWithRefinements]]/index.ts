@@ -1,4 +1,4 @@
-import { defineRoute } from "@oreum/api";
+import { defineRoute } from "@amperjs/api";
 
 export default defineRoute<[TRefine<string, { minLength: 1; maxLength: 5 }>]>(
   ({ GET }) => [

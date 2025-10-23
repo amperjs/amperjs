@@ -13,7 +13,7 @@ import {
   type SpinnerFactory,
   type WatcherEvent,
   type WatchHandler,
-} from "@oreum/devlib";
+} from "@amperjs/devlib";
 
 import routesFactory from "./routes";
 

@@ -1,6 +1,6 @@
 {
   "type": "module",
-  "name": "@oreum/api",
+  "name": "@amperjs/api",
   "version": "0.0.0-alpha.0",
   "author": "Slee Woo",
   "license": "MIT",
@@ -43,7 +43,7 @@
     "string-width": "^8.1.0"
   },
   "devDependencies": {
-    "@oreum/devlib": "workspace:^",
+    "@amperjs/devlib": "workspace:^",
     "@types/formidable": "^3.4.6",
     "@types/koa": "^3.0.0",
     "@types/koa__router": "^12.0.4",

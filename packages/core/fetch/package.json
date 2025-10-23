@@ -1,6 +1,6 @@
 {
   "type": "module",
-  "name": "@oreum/fetch",
+  "name": "@amperjs/fetch",
   "version": "0.0.0-alpha.0",
   "author": "Slee Woo",
   "license": "MIT",

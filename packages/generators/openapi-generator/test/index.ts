@@ -1,7 +1,7 @@
 import { resolve } from "node:path";
 
-import formatter from "@oreum/biome-formatter";
-import type { PluginOptionsResolved } from "@oreum/devlib";
+import formatter from "@amperjs/biome-formatter";
+import type { PluginOptionsResolved } from "@amperjs/devlib";
 
 export const appRoot = resolve(import.meta.dirname, "_fixtures/app");
 
