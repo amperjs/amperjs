@@ -106,7 +106,10 @@ export const factory: GeneratorFactory<Options> = async (
           router: join(sourceFolder, "{solid}/router"),
         },
       },
-      { overwrite: false, formatters },
+      {
+        overwrite: (fileContent) => !fileContent?.trim().length,
+        formatters,
+      },
     );
   }
 
