@@ -132,10 +132,6 @@ try {
     loader: { ".hbs": "text" },
     entryPoints: positionals,
     outdir: "./pkg",
-    define: {
-      "process.env.AMPERJS__NODE_VERSION": JSON.stringify(nodeVersion),
-      "process.env.AMPERJS__ESBUILD_TARGET": JSON.stringify(target),
-    },
   });
   spinner.succeed();
 } catch (error) {
