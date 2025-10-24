@@ -93,7 +93,7 @@ export default async (options: PluginOptionsResolved) => {
       const handler = devMiddlewareFactory(app);
       await handler(req, res, next);
     } else {
-      !req?.url || !new RegExp(`${join(baseurl, apiurl)}($|/)`).test(req.url)
+      !req?.url || !new RegExp(`^${join(baseurl, apiurl)}($|/)`).test(req.url)
         ? next() // do not await here
         : await app?.callback()(req, res);
     }
