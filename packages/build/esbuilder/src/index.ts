@@ -1,10 +1,9 @@
 import { execFile } from "node:child_process";
 import { readFile } from "node:fs/promises";
 import { resolve } from "node:path";
-import { parseArgs } from "node:util";
+import { parseArgs, styleText } from "node:util";
 
 import { build, type Plugin } from "esbuild";
-import colors from "kleur";
 import ora from "ora";
 import { glob } from "tinyglobby";
 import { workspaceRoot } from "workspace-root";
@@ -17,7 +16,7 @@ const nodeVersion =
     : undefined;
 
 if (!nodeVersion) {
-  throw colors.red("Unsupported runtime: expected node runtime");
+  throw styleText("red", "Unsupported runtime: expected node runtime");
 }
 
 const target = `node${nodeVersion.split(".")[0].replace(/[^\d]/g, "")}`;
@@ -37,7 +36,7 @@ const { values, positionals } = parseArgs({
 const root = await workspaceRoot();
 
 if (!root) {
-  throw colors.red("Could not detect workspace root");
+  throw styleText("red", "Could not detect workspace root");
 }
 
 const tsAsTextPlugin = (): Plugin => {
@@ -92,18 +91,18 @@ for (const pattern of values.scripts.map(scriptPatternsMapper)) {
       const child = execFile("bash", [script], (error, stdout, stderr) => {
         if (error) {
           spinner.fail();
-          console.error(colors.red(error.message));
+          console.error(styleText("red", error.message));
           console.log(stdout);
           console.error(stderr);
           process.exit(1);
         }
 
         if (stderr?.trim()) {
-          spinner.text = `${spinner.text}\n${colors.red(stderr)}`;
+          spinner.text = `${spinner.text}\n${styleText("red", stderr)}`;
         }
 
         if (stdout?.trim()) {
-          spinner.text = `${spinner.text}\n${colors.cyan(stdout)}`;
+          spinner.text = `${spinner.text}\n${styleText("cyan", stdout)}`;
         }
       });
 
