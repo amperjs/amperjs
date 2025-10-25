@@ -107,6 +107,7 @@ export const factory: GeneratorFactory<Options> = async (
         },
       },
       {
+        // write only to blank files
         overwrite: (fileContent) => !fileContent?.trim().length,
         formatters,
       },
@@ -129,7 +130,7 @@ export const factory: GeneratorFactory<Options> = async (
         { route },
         {
           // write only to blank files
-          overwrite: (content) => content?.trim().length === 0,
+          overwrite: (fileContent) => !fileContent?.trim().length,
           formatters,
         },
       );
@@ -245,9 +246,14 @@ export const factory: GeneratorFactory<Options> = async (
 
   return {
     async watchHandler(entries, event) {
-      if (event?.kind === "create") {
+      // Fill empty route files with templates (default or custom)
+      // - Initial call (event is undefined): process all routes
+      // - Create event: process newly added route
+      if (!event || event.kind === "create") {
         await generatePublicFiles(entries);
       }
+
+      // Always regenerate index files to keep router in sync
       await generateIndexFiles(entries);
     },
   };
