@@ -53,6 +53,11 @@ export default (pluginOptions: PluginOptionsResolved) => {
     ].join("/");
   };
 
+  const calculatePathSpecificity = (path: string) => {
+    // number of static sections actually
+    return path.split("/").reduce((a, e) => a + (e.includes("{") ? 0 : 1), 0);
+  };
+
   /**
    * Path Variation Generator
    *   variations for a/b/c:
@@ -77,7 +82,11 @@ export default (pluginOptions: PluginOptionsResolved) => {
       .sort(
         /**
          * Sorting paths by sections length in reverse order,
-         * so ones with more sections - more specific - goes first.
+         * so more specific goes first.
+         *
+         * Specificity is determined by the number of static sections.
+         * So, /priority/profile is more specific than /priority/{id}/{page}
+         * even though the second route has more sections.
          *
          * WARN: without this sorting, more specific paths
          * may override schemas for less specific ones.
@@ -96,7 +105,7 @@ export default (pluginOptions: PluginOptionsResolved) => {
          *   /search
          *
          * */
-        (a, b) => b.split("/").length - a.split("/").length,
+        (a, b) => calculatePathSpecificity(b) - calculatePathSpecificity(a),
       );
   };
 
