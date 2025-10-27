@@ -21,21 +21,9 @@ describe("pathFactory", () => {
     );
   });
 
-  test("required params with extension", () => {
-    expect(pathFactory(pathTokensFactory("some/[param].html"))).toEqual(
-      "some/:param.html",
-    );
-  });
-
   test("optional params", () => {
     expect(pathFactory(pathTokensFactory("some/[[param]]"))).toEqual(
       "some/:param?",
-    );
-  });
-
-  test("optional params with extension", () => {
-    expect(pathFactory(pathTokensFactory("some/[[param]].html"))).toEqual(
-      "some/:param.html?",
     );
   });
 
@@ -45,28 +33,12 @@ describe("pathFactory", () => {
     );
   });
 
-  test("rest params with extension", () => {
-    expect(pathFactory(pathTokensFactory("some/[...param].html"))).toEqual(
-      "some/*param.html",
-    );
-  });
-
   test("combined params", () => {
     expect(
       pathFactory(
         pathTokensFactory("some/[required]/with/[[optional]]/and/[...rest]"),
       ),
     ).toEqual("some/:required/with/:optional?/and/*rest");
-  });
-
-  test("combined params with extension", () => {
-    expect(
-      pathFactory(
-        pathTokensFactory(
-          "some/[required]/with/[[optional]]/and/[...rest].html",
-        ),
-      ),
-    ).toEqual("some/:required/with/:optional?/and/*rest.html");
   });
 
   test("index prefix replaced with /", () => {

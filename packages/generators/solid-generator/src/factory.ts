@@ -261,22 +261,18 @@ export const factory: GeneratorFactory<Options> = async (
 
 export const pathFactory = (pathTokens: Array<PathToken>) => {
   return pathTokens
-    .flatMap(({ param, orig, ext }, i) => {
+    .flatMap(({ path, param }) => {
+      if (param?.isRest) {
+        return [`*${param.name}`];
+      }
+      if (param?.isOptional) {
+        return [`:${param.name}?`];
+      }
       if (param) {
-        if (param.isRest) {
-          return `*${param.name}${ext}`;
-        }
-        if (param.isOptional) {
-          return `:${param.name}${ext}?`;
-        }
-        return `:${param.name}${ext}`;
+        return [`:${param.name}`];
       }
-      if (i === 0) {
-        return orig === "index" ? [] : [orig];
-      }
-      return [orig];
+      return path === "/" ? [] : [path];
     })
     .join("/")
-    .replace(/\n+/g, "")
     .replace(/\+/g, "\\\\+");
 };
