@@ -1,8 +1,3 @@
 {
-  "extends": "@amperjs/config/tsconfig.amperjs.json",
-  "compilerOptions": {
-    "noEmit": true,
-    "declaration": false,
-    "emitDeclarationOnly": false
-  }
+  "extends": "@amperjs/config/tsconfig.amperjs.json"
 }
