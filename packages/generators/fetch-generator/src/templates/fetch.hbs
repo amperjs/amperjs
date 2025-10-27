@@ -44,18 +44,28 @@ const paramsMapper = (params: ParamsT) => {
   }
 }
 
-const parametrize = (params: ParamsT) => {
-  const copy = [ ...params ]
-  const chunks: Array<string | number> = [
+const pathTokens: Array<[ path: string, param?: { isRest: boolean } ]> = [
   {{#each route.pathTokens}}
-    {{#if param}}
-    copy.splice(0, 1)[0],
-    {{else}}
-    "{{orig}}",
-    {{/if}}
+  [
+    "{{path}}",{{#if param}}
+    { isRest: {{#if param.isRest}}true{{else}}false{{/if}} }{{/if}}
+  ],
   {{/each}}
-  ].filter((e) => e !== undefined)
-  return join(...chunks);
+];
+
+const parametrize = (params: ParamsT) => {
+  const paramsClone = structuredClone(params);
+  return pathTokens
+    .flatMap(([ path, param ]) => {
+      if (param?.isRest) {
+        return paramsClone;
+      }
+      if (param) {
+        return paramsClone.splice(0, 1);
+      }
+      return [path];
+    })
+    .join("/");
 }
 
 const fetchApi = useFetch(join(baseurl, apiurl), { stringify });
