@@ -1,5 +1,5 @@
 {{#if param.isRest}}
 ...{{param.name}}: Array<string | number>
 {{else}}
-{{param.name}}{{#if param.isOptional}}?{{/if}}: string | number{{#if param.isOptional}} | undefined{{/if}}
+{{param.name}}{{#unless param.isRequired}}?{{/unless}}: string | number
 {{/if}}
