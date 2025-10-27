@@ -2,15 +2,26 @@ import { type HostOpt, createHost, stringify, join } from "{{importPathmap.fetch
 import { baseurl } from "{{importPathmap.config}}";
 
 const resolverFactory = <ParamsT extends Array<number | string>>(
-  pathTokens: Array<[ path: string, param?: boolean ]>
+  pathTokens: Array<[ path: string, param?: { isRest: boolean } ]>
 ) => {
   type QueryT = Record<string, unknown>;
 
   return {
     parametrize(params: ParamsT) {
-      const copy = [ ...params ];
+      const paramsClone = structuredClone(params);
       return pathTokens
-        .map(([ path, param ]) => param ? copy.splice(0, 1)[0] : path)
+        .flatMap(([ path, param ], i) => {
+          if (param?.isRest) {
+            return paramsClone;
+          }
+          if (param) {
+            const val = paramsClone.splice(0, 1)[0];
+            return val === undefined ? [] : [val];
+          }
+          return path === "index" && i === 0 //
+            ? []
+            : [path];
+        })
         .join("/");
     },
 
@@ -44,7 +55,11 @@ const resolverFactory = <ParamsT extends Array<number | string>>(
 export default {
   {{#each routes}}
   "{{name}}": resolverFactory<[ {{paramsLiteral}} ]>([
-    {{#each pathTokens}}[ "{{path}}", {{#if param}}true{{else}}false{{/if}} ],
+    {{#each pathTokens}}
+    [
+      "{{path}}",{{#if param}}
+      { isRest: {{#if param.isRest}}true{{else}}false{{/if}} }{{/if}}
+    ],
     {{/each}}
   ]),
   {{/each}}
