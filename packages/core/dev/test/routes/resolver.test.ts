@@ -95,6 +95,7 @@ describe("routes resolver", async () => {
       paramsSchema: [
         {
           name: "category",
+          const: "category",
           isRequired: true,
           isOptional: false,
           isRest: false,
@@ -117,6 +118,7 @@ describe("routes resolver", async () => {
             isRequired: true,
             isRest: false,
             name: "category",
+            const: "category",
           },
         },
       ],
@@ -129,6 +131,7 @@ describe("routes resolver", async () => {
       paramsSchema: [
         {
           name: "id",
+          const: "id",
           isRequired: true,
           isOptional: false,
           isRest: false,
@@ -143,6 +146,7 @@ describe("routes resolver", async () => {
           ext: ".json",
           param: {
             name: "id",
+            const: "id",
             isRequired: true,
             isOptional: false,
             isRest: false,
@@ -158,6 +162,7 @@ describe("routes resolver", async () => {
       paramsSchema: [
         {
           name: "folder",
+          const: "folder",
           isRequired: false,
           isOptional: true,
           isRest: false,
@@ -172,6 +177,7 @@ describe("routes resolver", async () => {
           ext: "",
           param: {
             name: "folder",
+            const: "folder",
             isRequired: false,
             isOptional: true,
             isRest: false,
@@ -187,12 +193,14 @@ describe("routes resolver", async () => {
       paramsSchema: [
         {
           name: "folder",
+          const: "folder",
           isRequired: false,
           isOptional: true,
           isRest: false,
         },
         {
           name: "id",
+          const: "id",
           isRequired: false,
           isOptional: true,
           isRest: false,
@@ -207,6 +215,7 @@ describe("routes resolver", async () => {
           ext: "",
           param: {
             name: "folder",
+            const: "folder",
             isRequired: false,
             isOptional: true,
             isRest: false,
@@ -219,6 +228,7 @@ describe("routes resolver", async () => {
           ext: ".json",
           param: {
             name: "id",
+            const: "id",
             isRequired: false,
             isOptional: true,
             isRest: false,
@@ -234,12 +244,14 @@ describe("routes resolver", async () => {
       paramsSchema: [
         {
           name: "category",
+          const: "category",
           isRequired: true,
           isOptional: false,
           isRest: false,
         },
         {
           name: "author",
+          const: "author",
           isRequired: false,
           isOptional: true,
           isRest: false,
@@ -254,6 +266,7 @@ describe("routes resolver", async () => {
           ext: "",
           param: {
             name: "category",
+            const: "category",
             isRequired: true,
             isOptional: false,
             isRest: false,
@@ -266,6 +279,7 @@ describe("routes resolver", async () => {
           ext: "",
           param: {
             name: "author",
+            const: "author",
             isRequired: false,
             isOptional: true,
             isRest: false,
@@ -281,6 +295,7 @@ describe("routes resolver", async () => {
       paramsSchema: [
         {
           name: "path",
+          const: "path",
           isRequired: false,
           isOptional: false,
           isRest: true,
@@ -295,6 +310,7 @@ describe("routes resolver", async () => {
           ext: "",
           param: {
             name: "path",
+            const: "path",
             isRequired: false,
             isOptional: false,
             isRest: true,
@@ -310,6 +326,7 @@ describe("routes resolver", async () => {
       paramsSchema: [
         {
           name: "path",
+          const: "path",
           isRequired: false,
           isOptional: false,
           isRest: true,
@@ -324,6 +341,7 @@ describe("routes resolver", async () => {
           ext: ".html",
           param: {
             name: "path",
+            const: "path",
             isRequired: false,
             isOptional: false,
             isRest: true,

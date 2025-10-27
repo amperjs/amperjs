@@ -35,6 +35,7 @@ export type PathToken = {
   ext: string;
   param?: {
     name: string;
+    const: string;
     isRequired?: boolean;
     isOptional?: boolean;
     isRest?: boolean;

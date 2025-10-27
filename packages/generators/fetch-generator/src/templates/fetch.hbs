@@ -17,9 +17,9 @@ export { ValidationError } from "@amperjs/api";
 export type ParamsT = [
   {{#each route.params.schema}}
   {{#if isRest}}
-  ...{{name}}: Array<string | number>
+  ...{{const}}: Array<string | number>
   {{else}}
-  {{name}}{{#if isOptional}}?{{/if}}: import("./types").{{../route.params.id}}["{{name}}"],
+  {{const}}{{#unless isRequired}}?{{/unless}}: import("./types").{{../route.params.id}}["{{name}}"],
   {{/if}}
   {{/each}}
 ];

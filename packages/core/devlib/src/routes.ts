@@ -1,3 +1,5 @@
+import crc from "crc/crc32";
+
 import type { PathToken } from "./types";
 
 export const pathTokensFactory = (path: string): Array<PathToken> => {
@@ -8,7 +10,15 @@ export const pathTokensFactory = (path: string): Array<PathToken> => {
   return path.split("/").map((orig, i) => {
     const [base, ext = ""] = orig.split(/(\.([\w\d-]+)$)/);
 
-    const paramName = (regex: RegExp) => base.replace(regex, "$1") || base;
+    const paramBase = (regex: RegExp) => {
+      const name = base.replace(regex, "$1") || base;
+      return {
+        name,
+        const: /\W/.test(name)
+          ? [name.replace(/\W/g, "_"), crc(orig)].join("_")
+          : name,
+      };
+    };
 
     let param: PathToken["param"] | undefined;
 
@@ -16,21 +26,21 @@ export const pathTokensFactory = (path: string): Array<PathToken> => {
       // order is highly important!
       if (restParamRegex.test(base)) {
         param = {
-          name: paramName(restParamRegex),
+          ...paramBase(restParamRegex),
           isRequired: false,
           isOptional: false,
           isRest: true,
         };
       } else if (optionalParamRegex.test(base)) {
         param = {
-          name: paramName(optionalParamRegex),
+          ...paramBase(optionalParamRegex),
           isRequired: false,
           isOptional: true,
           isRest: false,
         };
       } else if (requiredParamRegex.test(base)) {
         param = {
-          name: paramName(requiredParamRegex),
+          ...paramBase(requiredParamRegex),
           isRequired: true,
           isOptional: false,
           isRest: false,
