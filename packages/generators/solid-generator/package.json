@@ -28,12 +28,9 @@
     "tinyglobby": "^0.2.15"
   },
   "devDependencies": {
-    "@solidjs/router": "^0.15.3",
     "@types/fs-extra": "^11.0.4",
     "@types/picomatch": "^4.0.2",
-    "solid-js": "^1.9.9",
-    "vite": "^7.1.10",
-    "vite-plugin-solid": "^2.11.9"
+    "vite": "^7.1.10"
   },
   "peerDependencies": {
     "@solidjs/router": "^0.15.3",
