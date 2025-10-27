@@ -10,17 +10,14 @@ const resolverFactory = <ParamsT extends Array<number | string>>(
     parametrize(params: ParamsT) {
       const paramsClone = structuredClone(params);
       return pathTokens
-        .flatMap(([ path, param ], i) => {
+        .flatMap(([ path, param ]) => {
           if (param?.isRest) {
             return paramsClone;
           }
           if (param) {
-            const val = paramsClone.splice(0, 1)[0];
-            return val === undefined ? [] : [val];
+            return paramsClone.splice(0, 1);
           }
-          return path === "index" && i === 0 //
-            ? []
-            : [path];
+          return [path];
         })
         .join("/");
     },
