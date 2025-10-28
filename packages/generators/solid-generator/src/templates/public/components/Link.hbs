@@ -7,21 +7,21 @@ import type { LinkProps } from "{{importPathmap.router}}";
 import { baseurl } from "{{importPathmap.config}}";
 
 export default function Link(
-  props: Omit<AnchorProps, "href"> & {
-    href?: LinkProps;
+  props: AnchorProps & {
+    to?: LinkProps;
     query?: Record<string | number, unknown>;
     children: JSXElement;
   },
 ) {
   const [knownProps, restProps] = splitProps(props, [
-    "href",
+    "to",
     "query",
     "children",
   ]);
 
   const href = () => {
-    if (knownProps.href) {
-      const [key, ...params] = knownProps.href;
+    if (knownProps.to) {
+      const [key, ...params] = knownProps.to;
       return pageMap[key]?.base(params as never, knownProps.query);
     }
     const path = useLocation().pathname.replace(
