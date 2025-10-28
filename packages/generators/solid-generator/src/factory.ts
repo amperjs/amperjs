@@ -25,6 +25,7 @@ import paramTpl from "./templates/param.hbs";
 import publicAppTpl from "./templates/public/App.hbs";
 import publicComponentsLinkTpl from "./templates/public/components/Link.hbs";
 import publicIndexTpl from "./templates/public/index.hbs";
+import publicIndexHtml from "./templates/public/index.html.hbs";
 import publicPageTpl from "./templates/public/page.hbs";
 import publicRouterTpl from "./templates/public/router.hbs";
 
@@ -92,8 +93,9 @@ export const factory: GeneratorFactory<Options> = async (
   for (const [file, template] of [
     ["components/Link.tsx", publicComponentsLinkTpl],
     ["App.tsx", publicAppTpl],
-    ["index.ts", publicIndexTpl],
     ["router.tsx", publicRouterTpl],
+    ["index.tsx", publicIndexTpl],
+    ["index.html", publicIndexHtml],
   ]) {
     await renderToFile(
       resolve("@", file),
