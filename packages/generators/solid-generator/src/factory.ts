@@ -1,3 +1,4 @@
+import { mkdir, writeFile } from "node:fs/promises";
 import { basename, join } from "node:path";
 import { styleText } from "node:util";
 
@@ -21,13 +22,29 @@ import libFetchUnwrapTpl from "./templates/lib/fetch/unwrap.hbs";
 import libPagesTpl from "./templates/lib/pages.hbs";
 import libSolidIndexTpl from "./templates/lib/solid/index.hbs";
 import libSolidRouterTpl from "./templates/lib/solid/router.hbs";
+import stylesTpl from "./templates/lib/solid/styles.css?as=text";
 import paramTpl from "./templates/param.hbs";
 import publicAppTpl from "./templates/public/App.hbs";
 import publicComponentsLinkTpl from "./templates/public/components/Link.hbs";
 import publicIndexTpl from "./templates/public/index.hbs";
-import publicIndexHtml from "./templates/public/index.html.hbs";
+import publicIndexHtml from "./templates/public/index.html?as=text";
 import publicPageTpl from "./templates/public/page.hbs";
 import publicRouterTpl from "./templates/public/router.hbs";
+import welcomePageTpl from "./templates/public/welcome-page.hbs";
+
+function randomCongratMessage(): string {
+  const messages = [
+    "🎉 Well done! You just created a new Solid route.",
+    "🚀 Success! A fresh Solid route is ready to roll.",
+    "🌟 Nice work! Another Solid route added to your app.",
+    "🧩 All set! A new Solid route has been scaffolded.",
+    "🔧 Scaffold complete! Your new Solid route is in place.",
+    "⚡ Quick and easy! Your new Solid route is good to go.",
+    "🥳 Congrats! Your app just leveled up with a new Solid route.",
+    "🔗 Done! A new Solid route has joined your project.",
+  ];
+  return messages[Math.floor(Math.random() * messages.length)];
+}
 
 export const factory: GeneratorFactory<Options> = async (
   { appRoot, sourceFolder, formatters },
@@ -83,6 +100,14 @@ export const factory: GeneratorFactory<Options> = async (
 
   const { resolve } = pathResolver({ appRoot, sourceFolder });
 
+  await mkdir(resolve("libDir", sourceFolder, "{solid}"), { recursive: true });
+
+  await writeFile(
+    resolve("libDir", sourceFolder, "{solid}/styles.module.css"),
+    stylesTpl,
+    "utf8",
+  );
+
   await renderToFile(
     resolve("fetchLibDir", "unwrap.ts"),
     libFetchUnwrapTpl,
@@ -130,8 +155,17 @@ export const factory: GeneratorFactory<Options> = async (
 
       await renderToFile(
         resolve("pagesDir", route.file),
-        customTemplate?.[1] || publicPageTpl,
-        { route },
+        route.name === "index"
+          ? welcomePageTpl
+          : customTemplate?.[1] || publicPageTpl,
+        {
+          defaults,
+          route,
+          message: randomCongratMessage(),
+          importPathmap: {
+            styles: join(sourceFolder, "{solid}/styles.module.css"),
+          },
+        },
         {
           // write only to blank files
           overwrite: (fileContent) => !fileContent?.trim().length,

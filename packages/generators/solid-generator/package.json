@@ -22,12 +22,10 @@
   },
   "dependencies": {
     "@amperjs/devlib": "workspace:^",
-    "fs-extra": "^11.3.2",
     "picomatch": "^4.0.3",
     "tinyglobby": "^0.2.15"
   },
   "devDependencies": {
-    "@types/fs-extra": "^11.0.4",
     "@types/picomatch": "^4.0.2",
     "vite": "^7.1.10"
   },

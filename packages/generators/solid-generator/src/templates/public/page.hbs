@@ -1,4 +1,40 @@
-{{! INFO: HMR broken if default export is an anonymous function }}
+import styles from "{{importPathmap.styles}}";
+
 export default function Page() {
-  return <div>Automatically generated Solid Page: [ {{route.name}} ]</div>;
+  return (
+    <div class={styles.container}>
+      <div class={styles.card}>
+
+        <h2 class={styles.subtitle}>
+          {{message}}
+        </h2>
+        <br />
+
+        <div class={styles.stepsBox}>
+          <ul class={styles.stepsList}>
+            <li>
+              Edit this page at <code>{{defaults.pagesDir}}/{{route.file}}</code>
+            </li>
+            <li>Create new routes by adding folders in <code>{{defaults.pagesDir}}/</code></li>
+            <li>Add API endpoints in <code>{{defaults.apiDir}}/</code></li>
+          </ul>
+        </div>
+
+        <div class={styles.footer}>
+          <p class={styles.footerText}>
+            Built for reliability and developer experience
+          </p>
+          <br />
+          <a
+            href="https://amperjs.dev/"
+            class={styles.docsLink}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            AmperJS Documentation ➜
+          </a>
+        </div>
+      </div>
+    </div>
+  );
 }
