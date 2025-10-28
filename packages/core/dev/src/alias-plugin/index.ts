@@ -41,9 +41,19 @@ export default (
               // escaping symbols that may break glob pattern matching
               const src = _src.replace(/(\$|\^|\+|\(|\)|\[|\])/g, "\\$1");
 
-              const patterns = paths.flatMap((e) => [
-                `${e}/${src}.*`,
-                `${e}/${src}/index.*`,
+              // Build a list of possible file resolution patterns for a given source path.
+              // Covers explicit extensions, implicit extensions, and folder-based index files.
+              const patterns = paths.flatMap((path) => [
+                // Case 1: Extension is explicitly provided
+                // e.g. import styles from "@admin/{solid}/styles.module.css"
+                `${path}/${src}*`,
+
+                // Case 2: No extension provided
+                // Match any extension and return the first match
+                `${path}/${src}.*`,
+
+                // Case 3: Folder containing an index file of any extension
+                `${path}/${src}/index.*`,
               ]);
 
               const [file] = await glob(patterns, {
