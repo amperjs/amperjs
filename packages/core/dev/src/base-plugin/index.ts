@@ -1,7 +1,7 @@
 import { basename, join, resolve } from "node:path";
+import { styleText } from "node:util";
 import { Worker } from "node:worker_threads";
 
-import { red } from "kleur/colors";
 import type { Plugin, ResolvedConfig } from "vite";
 
 import {
@@ -96,10 +96,10 @@ export default (apiurl: string, pluginOptions?: PluginOptions): Plugin => {
           const { error } = msg;
           if (error.stack) {
             const [message, ...stack] = error.stack.split("\n");
-            console.error(red(message));
+            console.error(styleText("red", message));
             console.error(stack.join("\n"));
           } else if (error?.message) {
-            console.error(`${red(error?.name)}: ${error.message}`);
+            console.error(`${styleText("red", error?.name)}: ${error.message}`);
           } else {
             console.error(error);
           }

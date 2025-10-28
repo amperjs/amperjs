@@ -1,6 +1,6 @@
 import { basename, join } from "node:path";
+import { styleText } from "node:util";
 
-import { blue, cyan, grey, red } from "kleur/colors";
 import picomatch, { type Matcher } from "picomatch";
 import { glob } from "tinyglobby";
 
@@ -48,18 +48,20 @@ export const factory: GeneratorFactory<Options> = async (
 
   if (tsconfig?.compilerOptions?.jsxImportSource !== "solid-js") {
     console.error();
-    console.error(red("✗ SolidGenerator: tsconfig issue detected"));
+    console.error(
+      styleText("red", "✗ SolidGenerator: tsconfig issue detected"),
+    );
     console.error(
       [
         `It is highly recommended to add the following lines`,
-        `to your ${blue(basename(tsconfigFile))},`,
-        `inside the ${red("compilerOptions")} section:`,
+        `to your ${styleText("blue", basename(tsconfigFile))},`,
+        `inside the ${styleText("magenta", "compilerOptions")} section:`,
       ].join(" "),
     );
-    console.error(grey(`"compilerOptions": {`));
-    console.error(cyan(`  "jsxImportSource": "solid-js",`));
-    console.error(cyan(`  "jsx": "preserve",`));
-    console.error(grey("}"));
+    console.error(styleText("gray", `"compilerOptions": {`));
+    console.error(styleText("cyan", `  "jsxImportSource": "solid-js",`));
+    console.error(styleText("cyan", `  "jsx": "preserve",`));
+    console.error(styleText("gray", "}"));
     console.error();
   }
 

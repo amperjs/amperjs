@@ -17,13 +17,6 @@ import {
 
 import routesFactory from "./routes";
 
-// By default, kleur (and similar libs) won't emit ANSI escapes when running
-// inside a worker thread, since no TTY is detected.
-// Setting FORCE_COLOR would force color output.
-// (effective in the worker only, does not propagate to the parent process)
-// INFO: should be set before loading generators.
-process.env.FORCE_COLOR = "1";
-
 export type WorkerData = Omit<
   PluginOptionsResolved,
   "generators" | "formatters"

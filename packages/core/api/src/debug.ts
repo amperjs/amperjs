@@ -1,4 +1,5 @@
-import { bgBlue, black, blue, cyan, dim, green, grey, red } from "kleur/colors";
+import { styleText } from "node:util";
+
 import picomatch from "picomatch";
 import stringWidth from "string-width";
 
@@ -9,15 +10,17 @@ type Printer = (line: string) => void;
 const dot = "·";
 
 const colorizeMethod = (method: string): string => {
-  const color = {
-    HEAD: grey,
-    GET: green,
-    POST: blue,
-    PATCH: blue,
-    PUT: blue,
-    DELETE: red,
-  }[method];
-  return color?.(method) || method;
+  const color = (
+    {
+      HEAD: "grey",
+      GET: "green",
+      POST: "blue",
+      PATCH: "blue",
+      PUT: "blue",
+      DELETE: "red",
+    } as const
+  )[method];
+  return color ? styleText(color, method) : method;
 };
 
 export default (
@@ -39,29 +42,29 @@ export default (
     const lines: Array<string> = [];
 
     lines.push(
-      [`[ ${bgBlue(black(` ${path} `))} ]`, grey(file)]
-        .filter((e) => e)
-        .join(" "),
+      `[ ${styleText("bgBlue", styleText("black", ` ${path} `))} ] ${styleText("gray", file)}`,
     );
 
     const methodsLine = methods
       .map((method) => {
         const coloredMethod = colorizeMethod(method);
         if (method === "GET" && kind === "handler") {
-          return coloredMethod + grey("|HEAD");
+          return coloredMethod + styleText("gray", "|HEAD");
         }
         return coloredMethod;
       })
       .join(" ");
 
-    lines.push(`${dim("  methods:")} ${methodsLine}`);
+    lines.push(`${styleText("dim", "  methods:")} ${methodsLine}`);
 
     if (slot) {
-      lines.push(`${dim("  slot:   ")} ${cyan(slot)}`);
+      lines.push(
+        `${styleText("dim", "  slot:   ")} ${styleText("cyan", slot)}`,
+      );
     }
 
     if (debug) {
-      lines.push(`  ${cyan(debug)}`);
+      lines.push(`  ${styleText("cyan", debug)}`);
     }
 
     const maxColumns = process.stdout.isTTY
@@ -72,7 +75,11 @@ export default (
       const freeColumns = maxColumns - stringWidth(line);
       printer(
         freeColumns > 0 //
-          ? line + dim(grey(Array(freeColumns).fill(dot).join("")))
+          ? line +
+              styleText(
+                "dim",
+                styleText("gray", Array(freeColumns).fill(dot).join("")),
+              )
           : line,
       );
     }
