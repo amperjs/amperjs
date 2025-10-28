@@ -9,7 +9,8 @@
       "@/lib/*": ["${configDir}/test/_fixtures/app/*", "${configDir}/test/_fixtures/app/lib/*"],
       "@/core/*": ["${configDir}/test/_fixtures/app/core/*"],
       "@test/*": ["${configDir}/test/*"],
-      "@/*": ["${configDir}/src/*"]
+      "@/*": ["${configDir}/src/*"],
+      "~/*": ["${configDir}/../*", "${configDir}/../../*"]
     },
     "declaration": true,
     "emitDeclarationOnly": true
