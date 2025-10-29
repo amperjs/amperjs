@@ -1,0 +1,37 @@
+import { lazy } from "react";
+import type { RouteObject } from "react-router";
+
+type ComponentModule = {
+  loader?: (args: { params: Record<string, string | undefined> }) => Promise<unknown>;
+}
+
+export type LinkProps ={{#unless routes.length}} never{{/unless}}
+  {{#each routes}}
+  | [ "{{name}}", {{paramsLiteral}} ]
+  {{/each}};
+
+export type RouteName ={{#unless routes.length}} never{{/unless}}
+  {{#each routes}}
+  | "{{name}}"
+  {{/each}};
+
+export const routeMap: Record<RouteName, RouteObject> = {
+  {{#each routes}}
+  "{{name}}": {
+    path: "{{path}}",
+    Component: lazy(() => import("{{importPathmap.page}}")),
+    loader: async ({ params }) => {
+      const module = await import("{{importPathmap.page}}") as ComponentModule;
+      if (module.loader) {
+        return module.loader({ params });
+      }
+      return null;
+    },
+    {{#if meta}}
+    handle: {{meta}},
+    {{/if}}
+  },
+  {{/each}}
+};
+
+export const routes = Object.values(routeMap);

@@ -1,0 +1,63 @@
+import { type HostOpt, createHost, stringify, join } from "{{importPathmap.fetch}}/lib";
+import { baseurl } from "{{importPathmap.config}}";
+
+const resolverFactory = <ParamsT>(
+  pathTokens: Array<[ path: string, param?: { isRest: boolean } ]>
+) => {
+  type QueryT = Record<string, unknown>;
+
+  return {
+    parametrize(params: ParamsT) {
+      const paramsClone = structuredClone(params) as Array<string>;
+      return pathTokens
+        .flatMap(([ path, param ]) => {
+          if (param?.isRest) {
+            return paramsClone;
+          }
+          if (param) {
+            return paramsClone.splice(0, 1);
+          }
+          return [path];
+        })
+        .join("/");
+    },
+
+    base(
+      params: ParamsT,
+      query?: QueryT,
+    ) {
+      const base = join("/", this.parametrize(params));
+      return query
+        ? [ base, stringify(query) ].join("?")
+        : base;
+    },
+
+    path(
+      params: ParamsT,
+      query?: QueryT,
+    ) {
+      return join(baseurl, this.base(params, query));
+    },
+
+    href(
+      host: HostOpt,
+      params: ParamsT,
+      query?: QueryT,
+    ) {
+      return createHost(host) + this.path(params, query);
+    },
+  }
+}
+
+export default {
+  {{#each routes}}
+  "{{name}}": resolverFactory<[ {{paramsLiteral}} ]>([
+    {{#each pathTokens}}
+    [
+      "{{path}}",{{#if param}}
+      { isRest: {{#if param.isRest}}true{{else}}false{{/if}} }{{/if}}
+    ],
+    {{/each}}
+  ]),
+  {{/each}}
+}
