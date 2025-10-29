@@ -2,6 +2,11 @@
 /packages/*/*/test/_fixtures/app/lib/
 /packages/*/*/pkg/
 /packages/*/*/var/
+
+/docs/.vitepress/dist/
+/docs/.vitepress/cache/
+/docs/.vitepress/.temp/
+
 /test/__test_app/
 /var/
 /.tmuxinator*

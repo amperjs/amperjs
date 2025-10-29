@@ -4,6 +4,7 @@
   "files": {
     "includes": [
       "vitest.config.js",
+      "docs/**/*.ts",
       "test/**/*.ts",
       "packages/amperjs/{src,test}/**/*.ts",
       "packages/{build,core,formatters,generators}/*/{src,test}/**/*.ts",

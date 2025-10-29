@@ -8,3 +8,4 @@ packages:
   - "packages/generators/*"
   - "packages/formatters/*"
   - "packages/build/*"
+  - "docs"
