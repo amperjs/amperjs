@@ -18,7 +18,7 @@
   },
   "scripts": {
     "build": "esbuilder src/index.ts",
-    "test": "vitest --root ../../.. --project generators/solid-generator"
+    "test": "vitest run --root=../../.. --project=integration solid"
   },
   "dependencies": {
     "@amperjs/devlib": "workspace:^",
