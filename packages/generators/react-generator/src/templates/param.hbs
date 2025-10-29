@@ -1,0 +1,5 @@
+{{#if param.isRest}}
+...{{param.const}}: Array<string | number>
+{{else}}
+{{param.const}}{{#unless param.isRequired}}?{{/unless}}: string | number
+{{/if}}
