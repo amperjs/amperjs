@@ -4,6 +4,13 @@ import fsx from "fs-extra";
 
 import { defaults, renderToFile } from "@amperjs/devlib";
 
+import reactGenerator from "~/generators/react-generator/package.json" with {
+  type: "json",
+};
+import solidGenerator from "~/generators/solid-generator/package.json" with {
+  type: "json",
+};
+
 import packageJson from "../package.json" with { type: "json" };
 
 import srcApiAppTpl from "./templates/@src/api/app.hbs";
@@ -127,7 +134,14 @@ export default async (
     }
   };
 
-  const createSourceFolder = async (app: App, folder: SourceFolder) => {
+  const createSourceFolder = async (
+    app: App,
+    folder: SourceFolder,
+    assets?: {
+      dependencies?: Record<string, string>;
+      devDependencies?: Record<string, string>;
+    },
+  ) => {
     const appDir = resolve(root, app.name);
     const targetDir = resolve(appDir, folder.name);
 
@@ -156,49 +170,62 @@ export default async (
     const plugins: Array<Plugin> = [];
     const generators: Array<Generator> = [];
 
-    for (const framework of ["solid", "react"] as const) {
-      if (folder.framework.name === framework) {
-        generators.push({
-          importDeclaration: `import ${framework}Generator from "@amperjs/${framework}-generator";`,
-          importName: `${framework}Generator`,
-          options: folder.framework.options
-            ? JSON.stringify(folder.framework.options)
-            : "",
-        });
-      }
-    }
-
-    let dependencies: Record<string, string> | undefined;
-    let devDependencies: Record<string, string> | undefined;
+    const dependencies: Record<string, string> = {};
+    const devDependencies: Record<string, string> = {};
 
     if (folder.framework.name === "solid") {
-      devDependencies = {
+      Object.assign(dependencies, {
         "@solidjs/router": deps["@solidjs/router"],
         "solid-js": deps["solid-js"],
+      });
+
+      Object.assign(devDependencies, {
+        "@amperjs/solid-generator": `^${solidGenerator.version}`,
         "vite-plugin-solid": deps["vite-plugin-solid"],
-      };
+      });
 
       plugins.push({
         importDeclaration: `import solidPlugin from "vite-plugin-solid";`,
         importName: "solidPlugin",
       });
 
+      generators.push({
+        importDeclaration: `import solidGenerator from "@amperjs/solid-generator";`,
+        importName: "solidGenerator",
+        options: folder.framework.options
+          ? JSON.stringify(folder.framework.options)
+          : "",
+      });
+
       compilerOptions.jsxImportSource = "solid-js";
       compilerOptions.jsx = "preserve";
     } else if (folder.framework.name === "react") {
-      devDependencies = {
-        "@vitejs/plugin-react": deps["@vitejs/plugin-react"],
+      Object.assign(dependencies, {
         react: deps.react,
+        "react-router": deps["react-router"],
+      });
+
+      Object.assign(devDependencies, {
+        "@amperjs/react-generator": `^${reactGenerator.version}`,
+        "@vitejs/plugin-react": deps["@vitejs/plugin-react"],
+        "@types/react": deps["@types/react"],
+        "@types/react-dom": deps["@types/react-dom"],
         "react-dom": deps["react-dom"],
-        "react-router-dom": deps["react-router-dom"],
-      };
+      });
 
       plugins.push({
         importDeclaration: `import reactPlugin from "@vitejs/plugin-react";`,
         importName: "reactPlugin",
       });
 
-      compilerOptions.jsxImportSource = "react";
+      generators.push({
+        importDeclaration: `import reactGenerator from "@amperjs/react-generator";`,
+        importName: "reactGenerator",
+        options: folder.framework.options
+          ? JSON.stringify(folder.framework.options)
+          : "",
+      });
+
       compilerOptions.jsx = "react-jsx";
     }
 
@@ -220,12 +247,15 @@ export default async (
       [`${defaults.apiDir}/server.ts`, srcApiServerTpl],
       [`${defaults.apiDir}/use.ts`, srcApiUseTpl],
       ["vite.config.ts", srcViteConfigTpl],
-      // stub files for initial build to pass
+      // stub files for initial build to pass;
+      // generators will fill them with appropriate content.
       [`${defaults.apiDir}/index/index.ts`, ""],
       ...(["solid", "react"].includes(folder.framework.name)
-        ? [[`${defaults.pagesDir}/index/index.tsx`, ""]]
+        ? [
+            [`${defaults.pagesDir}/index/index.tsx`, ""],
+            ["index.tsx", ""],
+          ]
         : []),
-      ["index.ts", ""],
     ]) {
       await renderToFile(resolve(targetDir, file), template, context);
     }
@@ -247,21 +277,21 @@ export default async (
 
     await fsx.outputJson(tsconfigFile, tsconfigUpdated, { spaces: 2 });
 
-    if (dependencies || devDependencies) {
-      const packageUpdated = {
-        ...packageImport,
-        dependencies: {
-          ...packageImport.dependencies,
-          ...dependencies,
-        },
-        devDependencies: {
-          ...packageImport.devDependencies,
-          ...devDependencies,
-        },
-      };
+    const packageUpdated = {
+      ...packageImport,
+      dependencies: {
+        ...packageImport.dependencies,
+        ...dependencies,
+        ...assets?.dependencies,
+      },
+      devDependencies: {
+        ...packageImport.devDependencies,
+        ...devDependencies,
+        ...assets?.devDependencies,
+      },
+    };
 
-      await fsx.outputJson(packageFile, packageUpdated, { spaces: 2 });
-    }
+    await fsx.outputJson(packageFile, packageUpdated, { spaces: 2 });
   };
 
   return {

@@ -57,7 +57,7 @@
       "includes": [
         "./packages/build/esbuilder/src/index.ts",
         "./packages/core/dev/src/base-plugin/api-handler.ts",
-        "./packages/amperjs/src/index.ts",
+        "./packages/amperjs/src/cli.ts",
         "./packages/amperjs/src/templates/**/*.ts"
       ],
       "linter": {
