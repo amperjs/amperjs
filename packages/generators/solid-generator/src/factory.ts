@@ -60,11 +60,14 @@ export const factory: GeneratorFactory<Options> = async (
     throw new Error("SolidGenerator: missing tsconfig.json* file");
   }
 
-  const tsconfig = await import(tsconfigFile, {
+  const compilerOptions = await import(tsconfigFile, {
     with: { type: "json" },
-  }).then((e) => e.default);
+  }).then((e) => e.default.compilerOptions);
 
-  if (tsconfig?.compilerOptions?.jsxImportSource !== "solid-js") {
+  if (
+    compilerOptions?.jsx !== "preserve" ||
+    compilerOptions?.jsxImportSource !== "solid-js"
+  ) {
     console.error();
     console.error(
       styleText("red", "✗ SolidGenerator: tsconfig issue detected"),
