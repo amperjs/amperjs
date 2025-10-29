@@ -54,6 +54,10 @@ export default (apiurl: string, pluginOptions?: PluginOptions): Plugin => {
 
     return new Worker(resolve(import.meta.dirname, "base-plugin/worker.js"), {
       workerData,
+      env: {
+        ...process.env,
+        FORCE_COLOR: "1",
+      },
     });
   };
 
