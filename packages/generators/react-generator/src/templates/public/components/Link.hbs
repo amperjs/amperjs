@@ -1,0 +1,36 @@
+import { Link as RouterLink, type LinkProps as RouterLinkProps, useLocation } from "react-router";
+import type { ReactNode } from "react";
+
+import { stringify } from "{{importPathmap.fetch}}/lib";
+import pageMap from "{{importPathmap.pageMap}}";
+import type { LinkProps } from "{{importPathmap.router}}";
+import { baseurl } from "{{importPathmap.config}}";
+
+export default function Link(
+  props: Omit<RouterLinkProps, "to"> & {
+    to?: LinkProps;
+    query?: Record<string | number, unknown>;
+    children: ReactNode;
+  },
+) {
+  const { to, query, children, ...restProps } = props;
+  const location = useLocation();
+
+  const href = (() => {
+    if (to) {
+      const [key, ...params] = to;
+      return pageMap[key]?.base(params as never, query);
+    }
+    const path = location.pathname.replace(
+      new RegExp(`^${baseurl.replace(/\/+$/, "")}/`),
+      "/",
+    );
+    return query ? [path, stringify(query)].join("?") : path;
+  })();
+
+  return (
+    <RouterLink {...restProps} to={href}>
+      {children}
+    </RouterLink>
+  );
+}

@@ -1,0 +1,29 @@
+import { createBrowserRouter, Outlet, RouterProvider } from "react-router";
+
+import { routes } from "{{importPathmap.router}}";
+
+import App from "./App";
+import { baseurl } from "./config";
+
+const router = createBrowserRouter(
+  [
+    {
+      path: "/",
+      element: (
+        <App>
+          <Outlet />
+        </App>
+      ),
+      HydrateFallback: () => <div>Loading...</div>,
+      children: routes,
+    },
+  ],
+  {
+    basename: baseurl,
+  },
+);
+
+{{! INFO: HMR broken if default export is an anonymous function }}
+export default function Router() {
+  return <RouterProvider router={router} />;
+}
