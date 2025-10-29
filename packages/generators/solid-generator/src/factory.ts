@@ -71,10 +71,10 @@ export const factory: GeneratorFactory<Options> = async (
     );
     console.error(
       [
-        `It is highly recommended to add the following lines`,
-        `to your ${styleText("blue", basename(tsconfigFile))},`,
+        `» It is highly recommended to add the following lines\n`,
+        `to your ${styleText("blue", basename(tsconfigFile))}, `,
         `inside the ${styleText("magenta", "compilerOptions")} section:`,
-      ].join(" "),
+      ].join(""),
     );
     console.error(styleText("gray", `"compilerOptions": {`));
     console.error(styleText("cyan", `  "jsxImportSource": "solid-js",`));
