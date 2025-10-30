@@ -13,3 +13,29 @@
 .text-nowrap {
   white-space: nowrap !important;
 }
+
+.VPHero .image {
+  position: relative;       /* create positioning context */
+  display: flex;
+  justify-content: center;  /* center the <img> */
+  align-items: center;      /* vertical centering too */
+}
+
+.VPHero .image::before {
+  content: "";
+  position: absolute;
+  inset: 0;                 /* stretch to wrapper */
+  margin: auto;             /* center within wrapper */
+  width:  50%;              /* bigger than the img */
+  height: 50%;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 50%;
+  filter: blur(100px);
+  z-index: 0;
+}
+
+.VPHero .image img {
+  position: relative;
+  z-index: 1;   /* image above glow */
+  max-width: 100%; /* stays responsive */
+}
