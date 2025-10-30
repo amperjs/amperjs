@@ -12,6 +12,12 @@ const icons = {
 export default defineConfig({
   lang: "en-US",
   title: "⚡ AmperJS",
+  lastUpdated: true,
+
+  sitemap: {
+    hostname: "https://amperjs.dev",
+    lastmodDateOnly: true,
+  },
 
   vite: {
     plugins: [llmstxt(), groupIconVitePlugin()],
