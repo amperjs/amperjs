@@ -3,7 +3,7 @@ title: Generators - SolidJS
 description: Generators - SolidJS
 ---
 
-The SolidJS generator integrates `AmperJS`'s directory-based routing
+The SolidJS generator integrates `KappaJS`'s directory-based routing
 with SolidJS's reactive primitives and router.
 
 This creates a seamless development experience where your page components
@@ -21,15 +21,15 @@ since it's only needed during development:
 ::: code-group
 
 ```sh [npm]
-npm install -D @amperjs/solid-generator
+npm install -D @kappajs/solid-generator
 ```
 
 ```sh [pnpm]
-pnpm install -D @amperjs/solid-generator
+pnpm install -D @kappajs/solid-generator
 ```
 
 ```sh [yarn]
-yarn add -D @amperjs/solid-generator
+yarn add -D @kappajs/solid-generator
 ```
 :::
 
@@ -37,8 +37,8 @@ Register the generator in your source folder's `vite.config.ts`:
 
 ```ts [vite.config.ts]
 import solidPlugin from "vite-plugin-solid";
-import devPlugin from "@amperjs/dev";
-import solidGenerator from "@amperjs/solid-generator";
+import devPlugin from "@kappajs/dev";
+import solidGenerator from "@kappajs/solid-generator";
 import defineConfig from "../vite.base";
 
 export default defineConfig(import.meta.dirname, {
@@ -75,5 +75,5 @@ Your main app's routes don't appear in your admin dashboard's LinkProps type,
 and vice versa.
 
 Each application maintains its own namespace
-while sharing the underlying `AmperJS` organizational principles.
+while sharing the underlying `KappaJS` organizational principles.
 

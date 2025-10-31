@@ -25,7 +25,7 @@ export default defineRoute(({ GET }) => [
     const user = await fetchUserFromDatabase(ctx.params.id);
 
     // ctx.body must be a valid User
-    // If it doesn't match the User type, AmperJS throws a ValidationError
+    // If it doesn't match the User type, KappaJS throws a ValidationError
     ctx.body = user;
   }),
 ]);
@@ -37,11 +37,11 @@ The second type argument specifies that the response should match the `User` typ
 Also `TRefine` can be used for fine-grained validation. ([Details](/validation/refine))
 
 Before sending the response to the client,
-`AmperJS` validates that `ctx.body` actually contains a properly structured User object
+`KappaJS` validates that `ctx.body` actually contains a properly structured User object
 with all required fields matching their expected types.
 
 If validation fails — perhaps because the database returned a user object that's missing the `preferences` field,
-or because the `profile.email` doesn't match email format constraints — `AmperJS` throws a ValidationError
+or because the `profile.email` doesn't match email format constraints — `KappaJS` throws a ValidationError
 instead of sending invalid data to the client.
 
 This protects your API consumers from receiving malformed data and helps you catch bugs in your handler logic.

@@ -8,7 +8,7 @@ import {
   type PluginOptionsResolved,
   type ResponseType,
   typeboxLiteralText,
-} from "@amperjs/devlib";
+} from "@kappajs/devlib";
 
 import type {
   JsonSchema,

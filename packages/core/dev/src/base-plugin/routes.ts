@@ -15,7 +15,7 @@ import {
   type RouteResolver,
   render,
   renderToFile,
-} from "@amperjs/devlib";
+} from "@kappajs/devlib";
 
 import { resolveRouteSignature, typeResolverFactory } from "./ast";
 import { cacheFactory } from "./cache";

@@ -13,7 +13,7 @@ import {
   type SpinnerFactory,
   type WatcherEvent,
   type WatchHandler,
-} from "@amperjs/devlib";
+} from "@kappajs/devlib";
 
 import routesFactory from "./routes";
 

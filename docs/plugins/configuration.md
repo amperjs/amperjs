@@ -3,13 +3,13 @@ title: Vite Plugins - Configuration
 description: Vite Plugins - Configuration
 ---
 
-When you bootstrap an `AmperJS` project,
+When you bootstrap an `KappaJS` project,
 it creates a `vite.base.ts` file at the project root.
 This file provides shared configuration for all source folders:
 
 ```ts [vite.base.ts]
 import { basename, resolve } from "node:path";
-import { aliasPlugin, definePlugin } from "@amperjs/dev";
+import { aliasPlugin, definePlugin } from "@kappajs/dev";
 import { loadEnv, mergeConfig, type UserConfig } from "vite";
 import pkg from "./package.json" with { type: "json" };
 
@@ -62,7 +62,7 @@ A typical `vite.config.ts` in a source folder looks like this:
 
 ```ts [vite.config.ts]
 import { join } from "node:path";
-import devPlugin, { apiGenerator, fetchGenerator } from "@amperjs/dev";
+import devPlugin, { apiGenerator, fetchGenerator } from "@kappajs/dev";
 import defineConfig from "../vite.base";
 import { apiurl, baseurl } from "./config";
 

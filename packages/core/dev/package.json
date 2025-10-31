@@ -1,6 +1,6 @@
 {
   "type": "module",
-  "name": "@amperjs/dev",
+  "name": "@kappajs/dev",
   "version": "0.0.0-alpha.0",
   "cacheVersion": "001",
   "author": "Slee Woo",
@@ -31,10 +31,10 @@
     "test": "vitest --root ../../.. --project core/dev"
   },
   "dependencies": {
-    "@amperjs/api": "workspace:^",
-    "@amperjs/api-generator": "workspace:^",
-    "@amperjs/devlib": "workspace:^",
-    "@amperjs/fetch-generator": "workspace:^",
+    "@kappajs/api": "workspace:^",
+    "@kappajs/api-generator": "workspace:^",
+    "@kappajs/devlib": "workspace:^",
+    "@kappajs/fetch-generator": "workspace:^",
     "chokidar": "^4.0.3",
     "crc": "^4.3.2",
     "dotenv": "^17.2.3",

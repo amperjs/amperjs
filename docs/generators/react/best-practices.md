@@ -5,7 +5,7 @@ description: Generators - React - Best Practices
 
 ### 💡 React Best Practices
 
-For optimal React development with `AmperJS`, these established patterns will streamline your workflow.
+For optimal React development with `KappaJS`, these established patterns will streamline your workflow.
 
 Implement loader functions for routes requiring predictable data during navigation.
 When specific information is essential regardless of user behavior,

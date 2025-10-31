@@ -3,7 +3,7 @@ title: Validation - Understanding Performance
 description: Validation - Understanding Performance
 ---
 
-`AmperJS`'s type-to-schema conversion uses TypeScript's compiler API
+`KappaJS`'s type-to-schema conversion uses TypeScript's compiler API
 to deeply analyze your types, including tracing through all referenced files
 to build a complete dependency graph.
 
@@ -55,7 +55,7 @@ The background processing model means you're rarely consciously waiting on the g
 The generation process becomes noticeable in specific scenarios
 that are infrequent by nature.
 
-When you delete the `lib` folder or when `AmperJS` releases an update
+When you delete the `lib` folder or when `KappaJS` releases an update
 that increments the cache version to incorporate improvements to schema templates,
 all routes need to rebuild from scratch.
 
@@ -85,7 +85,7 @@ because they require you to hand-write schemas.
 This eliminates generation time, but it creates an ongoing maintenance burden
 of keeping schemas synchronized with your TypeScript types (if you need ones).
 
-`AmperJS` trades a few seconds of automated generation time
+`KappaJS` trades a few seconds of automated generation time
 for eliminating this manual maintenance work entirely.
 
 For most development workflows, this tradeoff strongly favors automation —<br>

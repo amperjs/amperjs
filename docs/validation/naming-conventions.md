@@ -11,7 +11,7 @@ may work fine at compile time, but cause issues during runtime validation.
 
 ## ⚠️ Why This Matters
 
-When `AmperJS` flattens types for validation schema generation,
+When `KappaJS` flattens types for validation schema generation,
 built-in names are referenced as-is rather than being resolved to their definitions.
 
 This prevents the validator from understanding the actual structure,
@@ -100,7 +100,7 @@ Choose one and use it consistently throughout your project.
 
 For a comprehensive list of all built-in types to avoid,
 check the [tsuit library](https://github.com/sleewoo/tsuit/blob/main/src/builtins.ts){target="_blank" rel="noopener"}
-that `AmperJS` uses for type flattening.
+that `KappaJS` uses for type flattening.
 
 ## 💡 Best Practices
 

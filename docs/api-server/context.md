@@ -5,7 +5,7 @@ description: API Server - Context Object
 
 ### 🔧 The Enhanced Context Object
 
-`AmperJS` extends the standard [Koa context](https://koajs.com/#context){target="_blank" rel="noopener"}
+`KappaJS` extends the standard [Koa context](https://koajs.com/#context){target="_blank" rel="noopener"}
 context with two helpful additions that streamline how you access request data and route parameters.
 
 The `ctx.payload` property provides normalized access to incoming data.

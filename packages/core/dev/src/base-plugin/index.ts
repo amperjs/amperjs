@@ -12,11 +12,11 @@ import {
   type SpinnerFactory,
   spinnerFactory,
   withSpinner,
-} from "@amperjs/devlib";
+} from "@kappajs/devlib";
 
-import apiGenerator from "@amperjs/api-generator";
-import stubGenerator from "@amperjs/dev/stub-generator";
-import fetchGenerator from "@amperjs/fetch-generator";
+import apiGenerator from "@kappajs/api-generator";
+import stubGenerator from "@kappajs/dev/stub-generator";
+import fetchGenerator from "@kappajs/fetch-generator";
 
 import apiHandlerFactory from "./api-handler";
 import routesFactory from "./routes";
@@ -126,7 +126,7 @@ export default (apiurl: string, pluginOptions?: PluginOptions): Plugin => {
   };
 
   return {
-    name: "@amperjs:basePlugin",
+    name: "@kappajs:basePlugin",
 
     config(config) {
       if (!config.build?.outDir) {

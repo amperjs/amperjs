@@ -8,7 +8,7 @@ Often you need more sophisticated validation than just presence of a string or a
 Perhaps your user ID should not only be a number but also fall within a specific range.
 Or perhaps it should be an integer rather than allowing decimal values.
 
-`AmperJS` provides the `TRefine` type for expressing these additional constraints.
+`KappaJS` provides the `TRefine` type for expressing these additional constraints.
 It is a global-defined type so you can use it without import.
 
 The `TRefine` type accepts two arguments.
@@ -59,6 +59,6 @@ is powerful because it keeps all your validation logic in one place — your typ
 You're not maintaining separate validation schemas that could drift out of sync with your types.
 The type is the schema, and the schema is the type.
 
-The `TRefine` type is globally available throughout your `AmperJS` project,
+The `TRefine` type is globally available throughout your `KappaJS` project,
 so you don't need to import it. This makes it convenient to use wherever you need refined types.
 

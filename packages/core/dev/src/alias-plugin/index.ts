@@ -8,7 +8,7 @@ export default (
   },
 ): Plugin => {
   return {
-    name: "@amperjs:aliasPlugin",
+    name: "@kappajs:aliasPlugin",
 
     async config() {
       const compilerOptions: {

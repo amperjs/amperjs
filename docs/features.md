@@ -3,7 +3,7 @@ title: Features
 description: Features
 ---
 
-`AmperJS` brings type-safe structure to full-stack development —
+`KappaJS` brings type-safe structure to full-stack development —
 using Vite as the foundation for both frontend builds and API development,
 with multiple source folders, directory-based routing, runtime validation,
 and typed fetch clients — while keeping full framework freedom.
@@ -95,7 +95,7 @@ doubling your maintenance burden and creating opportunities for drift.
 
 **How it works:**
 
-Define your types once in TypeScript and `AmperJS` generates runtime validators automatically:
+Define your types once in TypeScript and `KappaJS` generates runtime validators automatically:
 
 ```ts
 // Define types once
@@ -168,7 +168,7 @@ Each layer is an opportunity for bugs and drift.
 
 **How it works:**
 
-For every API route you define, `AmperJS` generates:
+For every API route you define, `KappaJS` generates:
 
 **1. Typed fetch clients:**
 
@@ -226,7 +226,7 @@ Generators make common choices convenient.
 Full-stack frameworks often lock you into specific frontend choices.
 Next.js assumes React. Nuxt assumes Vue. SvelteKit assumes Svelte.
 
-`AmperJS` is a Vite template, not a framework — you choose your frontend stack.
+`KappaJS` is a Vite template, not a framework — you choose your frontend stack.
 
 **How it works:**
 
@@ -239,10 +239,10 @@ Next.js assumes React. Nuxt assumes Vue. SvelteKit assumes Svelte.
 **Example with SolidJS:**
 ```ts
 // Install generator
-npm install -D @amperjs/solid-generator
+npm install -D @kappajs/solid-generator
 
 // Configure in vite.config.ts
-import solidGenerator from "@amperjs/solid-generator";
+import solidGenerator from "@kappajs/solid-generator";
 
 export default {
   plugins: [
@@ -272,7 +272,7 @@ Koa for APIs, Vite for frontend, TypeScript for safety. No proprietary abstracti
 New frameworks introduce new abstractions, new APIs to learn, new mental models to internalize.
 When the framework fades, your knowledge doesn't transfer.
 
-`AmperJS` uses tools you already know (or should know) — Koa, Vite, TypeScript — and just provides organizational structure.
+`KappaJS` uses tools you already know (or should know) — Koa, Vite, TypeScript — and just provides organizational structure.
 
 **The stack:**
 
@@ -299,7 +299,7 @@ When the framework fades, your knowledge doesn't transfer.
 - Deep ecosystem of tools and libraries
 - Skills transfer to other projects
 
-You're not learning "the `AmperJS` way" — you're learning industry-standard tools with good organizational structure.
+You're not learning "the `KappaJS` way" — you're learning industry-standard tools with good organizational structure.
 
 [Read more: API Server](/api-server/)
 

@@ -1,6 +1,6 @@
 import { Biome, type Configuration, Distribution } from "@biomejs/js-api";
 
-import type { FormatterConstructor } from "@amperjs/devlib";
+import type { FormatterConstructor } from "@kappajs/devlib";
 
 const biome = await Biome.create({ distribution: Distribution.NODE });
 

@@ -3,7 +3,7 @@ title: Generators - OpenAPI
 description: Generators - OpenAPI
 ---
 
-`AmperJS` can automatically generate OpenAPI 3.1 specifications from your API routes.
+`KappaJS` can automatically generate OpenAPI 3.1 specifications from your API routes.
 
 The generator analyzes your route structure, type definitions, and validation schemas
 to produce a complete, standards-compliant OpenAPI spec.
@@ -13,23 +13,23 @@ to produce a complete, standards-compliant OpenAPI spec.
 ::: code-group
 
 ```sh [npm]
-npm install -D @amperjs/openapi-generator
+npm install -D @kappajs/openapi-generator
 ```
 
 ```sh [pnpm]
-pnpm install -D @amperjs/openapi-generator
+pnpm install -D @kappajs/openapi-generator
 ```
 
 ```sh [yarn]
-yarn add -D @amperjs/openapi-generator
+yarn add -D @kappajs/openapi-generator
 ```
 :::
 
 Add the OpenAPI generator to your source folder's `vite.config.ts`:
 
 ```typescript
-import devPlugin from "@amperjs/dev";
-import openapiGenerator from "@amperjs/openapi-generator";
+import devPlugin from "@kappajs/dev";
+import openapiGenerator from "@kappajs/openapi-generator";
 
 export default {
   plugins: [

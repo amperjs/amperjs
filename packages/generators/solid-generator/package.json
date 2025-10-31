@@ -1,6 +1,6 @@
 {
   "type": "module",
-  "name": "@amperjs/solid-generator",
+  "name": "@kappajs/solid-generator",
   "version": "0.0.0-alpha.0",
   "author": "Slee Woo",
   "license": "MIT",
@@ -21,7 +21,7 @@
     "test": "vitest run --root=../../.. --project=integration solid"
   },
   "dependencies": {
-    "@amperjs/devlib": "workspace:^",
+    "@kappajs/devlib": "workspace:^",
     "picomatch": "^4.0.3",
     "tinyglobby": "^0.2.15"
   },

@@ -8,7 +8,7 @@ import ora from "ora";
 import { glob } from "tinyglobby";
 import { workspaceRoot } from "workspace-root";
 
-import pkg from "../../../../package.json" with { type: "json" };
+import pkg from "~/../package.json" with { type: "json" };
 
 const nodeVersion =
   pkg.devEngines?.runtime?.name === "node" //

@@ -5,7 +5,7 @@ description: Routing - Dynamic Route Parameters
 
 Real applications need to handle dynamic segments in URLs — user IDs, post slugs, category names, and so on.
 
-`AmperJS` supports three types of dynamic parameters using a syntax inspired by
+`KappaJS` supports three types of dynamic parameters using a syntax inspired by
 [`SolidStart`](https://start.solidjs.com/){target="_blank" rel="noopener"}.
 
 The key benefit is that these patterns work identically for both API routes and client pages,

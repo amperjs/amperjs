@@ -1,9 +1,0 @@
-{
-  "extends": "@amperjs/config/tsconfig.vite.json",
-  "compilerOptions": {
-    "paths": {
-      "@/*": ["./*", "./lib/*"],
-      "@src/*": ["./@src/*", "./lib/@src/*"]
-    }
-  }
-}

@@ -3,12 +3,12 @@ title: API Server - Endpoints
 description: API Server - Endpoints
 ---
 
-API endpoints in `AmperJS` are built using the `defineRoute` function,
+API endpoints in `KappaJS` are built using the `defineRoute` function,
 which provides a structured way to handle HTTP methods, apply middleware,
 and maintain type safety throughout your request-response cycle.
 
 This system builds on Koa's middleware architecture
-while adding `AmperJS`-specific enhancements for routing, validation, and type inference.
+while adding `KappaJS`-specific enhancements for routing, validation, and type inference.
 
 ## ⇿ Basic Endpoint Structure
 
@@ -33,7 +33,7 @@ export default defineRoute(({ GET }) => [
 
 This structure gives you a clear, declarative way to define which HTTP methods your endpoint supports.
 Each method handler receives the Koa context object,
-which `AmperJS` enhances with additional properties to make common tasks easier.
+which `KappaJS` enhances with additional properties to make common tasks easier.
 
 ## ⥃ Working with Multiple HTTP Methods
 
@@ -62,17 +62,17 @@ export default defineRoute(({ GET, POST, PUT, DELETE }) => [
 ```
 
 The order in which you list these handlers doesn't matter –
-`AmperJS` routes requests to the appropriate handler based on the HTTP method of the incoming request.
+`KappaJS` routes requests to the appropriate handler based on the HTTP method of the incoming request.
 
 If a request comes in for a method you haven't defined,
-`AmperJS` automatically responds with a 405 Method Not Allowed status.
+`KappaJS` automatically responds with a 405 Method Not Allowed status.
 
 The available method builders are HEAD, OPTIONS, GET, POST, PUT, PATCH, and DELETE,
 covering all the standard HTTP methods you'll typically need in a REST API.
 
 ## ⚠️ Error Handling
 
-`AmperJS` uses Koa's built-in error handling system, which provides a clean and flexible way to handle errors in your API endpoints.
+`KappaJS` uses Koa's built-in error handling system, which provides a clean and flexible way to handle errors in your API endpoints.
 
 ### Using ctx.throw()
 

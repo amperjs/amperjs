@@ -8,30 +8,30 @@ importers:
 
   .:
     devDependencies:
-      '@amperjs/config':
-        specifier: workspace:^
-        version: link:packages/core/config
-      '@amperjs/dev':
-        specifier: workspace:^
-        version: link:packages/core/dev
-      '@amperjs/devlib':
-        specifier: workspace:^
-        version: link:packages/core/devlib
-      '@amperjs/esbuilder':
-        specifier: workspace:^
-        version: link:packages/build/esbuilder
       '@biomejs/biome':
         specifier: ^2.2.6
         version: 2.2.7
       '@changesets/cli':
         specifier: ^2.29.7
         version: 2.29.7(@types/node@24.9.1)
+      '@kappajs/config':
+        specifier: workspace:^
+        version: link:packages/core/config
+      '@kappajs/create':
+        specifier: workspace:^
+        version: link:packages/core/create
+      '@kappajs/dev':
+        specifier: workspace:^
+        version: link:packages/core/dev
+      '@kappajs/devlib':
+        specifier: workspace:^
+        version: link:packages/core/devlib
+      '@kappajs/esbuilder':
+        specifier: workspace:^
+        version: link:packages/build/esbuilder
       '@types/node':
         specifier: ^24.7.2
         version: 24.9.1
-      amperjs:
-        specifier: workspace:^
-        version: link:packages/amperjs
       execa:
         specifier: ^9.6.0
         version: 9.6.0
@@ -81,11 +81,71 @@ importers:
         specifier: ^3.5.22
         version: 3.5.22(typescript@5.9.3)
 
-  packages/amperjs:
+  packages/build/esbuilder:
+    devDependencies:
+      esbuild:
+        specifier: ^0.25.11
+        version: 0.25.11
+      ora:
+        specifier: 9.0.0
+        version: 9.0.0
+      tinyglobby:
+        specifier: ^0.2.15
+        version: 0.2.15
+      workspace-root:
+        specifier: ^3.3.1
+        version: 3.3.1
+
+  packages/core/api:
     dependencies:
-      '@amperjs/devlib':
+      '@koa/router':
+        specifier: ^14.0.0
+        version: 14.0.0
+      formidable:
+        specifier: ^3.5.4
+        version: 3.5.4
+      koa:
+        specifier: ^3.0.1
+        version: 3.0.3
+      picomatch:
+        specifier: ^4.0.3
+        version: 4.0.3
+      qs:
+        specifier: ^6.14.0
+        version: 6.14.0
+      raw-body:
+        specifier: ^3.0.1
+        version: 3.0.1
+      string-width:
+        specifier: ^8.1.0
+        version: 8.1.0
+    devDependencies:
+      '@kappajs/devlib':
         specifier: workspace:^
-        version: link:../core/devlib
+        version: link:../devlib
+      '@types/formidable':
+        specifier: ^3.4.6
+        version: 3.4.6
+      '@types/koa':
+        specifier: ^3.0.0
+        version: 3.0.0
+      '@types/koa__router':
+        specifier: ^12.0.4
+        version: 12.0.4
+      '@types/picomatch':
+        specifier: ^4.0.2
+        version: 4.0.2
+      '@types/qs':
+        specifier: ^6.14.0
+        version: 6.14.0
+
+  packages/core/config: {}
+
+  packages/core/create:
+    dependencies:
+      '@kappajs/devlib':
+        specifier: workspace:^
+        version: link:../devlib
       fs-extra:
         specifier: ^11.3.2
         version: 11.3.2
@@ -93,9 +153,9 @@ importers:
         specifier: ^2.4.2
         version: 2.4.2
     devDependencies:
-      '@amperjs/api':
+      '@kappajs/api':
         specifier: workspace:^
-        version: link:../core/api
+        version: link:../api
       '@solidjs/router':
         specifier: ^0.15.3
         version: 0.15.3(solid-js@1.9.9)
@@ -157,78 +217,18 @@ importers:
         specifier: ^2.11.10
         version: 2.11.10(solid-js@1.9.9)(vite@7.1.12(@types/node@24.9.1)(yaml@2.8.1))
 
-  packages/build/esbuilder:
-    devDependencies:
-      esbuild:
-        specifier: ^0.25.11
-        version: 0.25.11
-      ora:
-        specifier: 9.0.0
-        version: 9.0.0
-      tinyglobby:
-        specifier: ^0.2.15
-        version: 0.2.15
-      workspace-root:
-        specifier: ^3.3.1
-        version: 3.3.1
-
-  packages/core/api:
-    dependencies:
-      '@koa/router':
-        specifier: ^14.0.0
-        version: 14.0.0
-      formidable:
-        specifier: ^3.5.4
-        version: 3.5.4
-      koa:
-        specifier: ^3.0.1
-        version: 3.0.3
-      picomatch:
-        specifier: ^4.0.3
-        version: 4.0.3
-      qs:
-        specifier: ^6.14.0
-        version: 6.14.0
-      raw-body:
-        specifier: ^3.0.1
-        version: 3.0.1
-      string-width:
-        specifier: ^8.1.0
-        version: 8.1.0
-    devDependencies:
-      '@amperjs/devlib':
-        specifier: workspace:^
-        version: link:../devlib
-      '@types/formidable':
-        specifier: ^3.4.6
-        version: 3.4.6
-      '@types/koa':
-        specifier: ^3.0.0
-        version: 3.0.0
-      '@types/koa__router':
-        specifier: ^12.0.4
-        version: 12.0.4
-      '@types/picomatch':
-        specifier: ^4.0.2
-        version: 4.0.2
-      '@types/qs':
-        specifier: ^6.14.0
-        version: 6.14.0
-
-  packages/core/config: {}
-
   packages/core/dev:
     dependencies:
-      '@amperjs/api':
+      '@kappajs/api':
         specifier: workspace:^
         version: link:../api
-      '@amperjs/api-generator':
+      '@kappajs/api-generator':
         specifier: workspace:^
         version: link:../../generators/api-generator
-      '@amperjs/devlib':
+      '@kappajs/devlib':
         specifier: workspace:^
         version: link:../devlib
-      '@amperjs/fetch-generator':
+      '@kappajs/fetch-generator':
         specifier: workspace:^
         version: link:../../generators/fetch-generator
       chokidar:
@@ -330,19 +330,19 @@ importers:
 
   packages/formatters/biome-formatter:
     dependencies:
-      '@amperjs/devlib':
-        specifier: workspace:^
-        version: link:../../core/devlib
       '@biomejs/js-api':
         specifier: ^3.0.0
         version: 3.0.0(@biomejs/wasm-nodejs@2.2.7)
       '@biomejs/wasm-nodejs':
         specifier: ^2.2.6
         version: 2.2.7
+      '@kappajs/devlib':
+        specifier: workspace:^
+        version: link:../../core/devlib
 
   packages/generators/api-generator:
     dependencies:
-      '@amperjs/devlib':
+      '@kappajs/devlib':
         specifier: workspace:^
         version: link:../../core/devlib
       crc:
@@ -358,13 +358,13 @@ importers:
 
   packages/generators/fetch-generator:
     dependencies:
-      '@amperjs/devlib':
+      '@kappajs/devlib':
         specifier: workspace:^
         version: link:../../core/devlib
 
   packages/generators/openapi-generator:
     dependencies:
-      '@amperjs/devlib':
+      '@kappajs/devlib':
         specifier: workspace:^
         version: link:../../core/devlib
       crc:
@@ -380,13 +380,13 @@ importers:
         specifier: ^2.8.1
         version: 2.8.1
     devDependencies:
-      '@amperjs/api':
+      '@kappajs/api':
         specifier: workspace:^
         version: link:../../core/api
-      '@amperjs/biome-formatter':
+      '@kappajs/biome-formatter':
         specifier: workspace:^
         version: link:../../formatters/biome-formatter
-      '@amperjs/dev':
+      '@kappajs/dev':
         specifier: workspace:^
         version: link:../../core/dev
       '@stoplight/spectral-core':
@@ -401,7 +401,7 @@ importers:
 
   packages/generators/react-generator:
     dependencies:
-      '@amperjs/devlib':
+      '@kappajs/devlib':
         specifier: workspace:^
         version: link:../../core/devlib
       picomatch:
@@ -426,7 +426,7 @@ importers:
 
   packages/generators/solid-generator:
     dependencies:
-      '@amperjs/devlib':
+      '@kappajs/devlib':
         specifier: workspace:^
         version: link:../../core/devlib
       '@solidjs/router':
@@ -454,17 +454,17 @@ importers:
 
   packages/generators/typebox-generator:
     dependencies:
-      '@amperjs/devlib':
+      '@kappajs/devlib':
         specifier: workspace:^
         version: link:../../core/devlib
       typebox:
         specifier: ^1.0.37
         version: 1.0.43
     devDependencies:
-      '@amperjs/api':
+      '@kappajs/api':
         specifier: workspace:^
         version: link:../../core/api
-      '@amperjs/dev':
+      '@kappajs/dev':
         specifier: workspace:^
         version: link:../../core/dev
 

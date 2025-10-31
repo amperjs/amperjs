@@ -3,7 +3,7 @@ title: Fetch Client - Intro
 description: Fetch Client - Intro
 ---
 
-`AmperJS` automatically generates a fully-typed fetch client for every API route,
+`KappaJS` automatically generates a fully-typed fetch client for every API route,
 creating a seamless bridge between your backend API definitions and frontend consumption.
 
 This generated client delivers end-to-end type safety from frontend code to backend handlers,
@@ -12,7 +12,7 @@ complete with runtime validation that catches errors before requests reach the s
 ## 🤖 Understanding the Generated Client
 
 When you define API routes with typed parameters, payloads, and responses,
-`AmperJS` generates corresponding fetch clients that mirror this structure exactly.
+`KappaJS` generates corresponding fetch clients that mirror this structure exactly.
 
 The generator runs alongside other generators like the validation generator,
 placing its output in the lib directory alongside other generated artifacts.

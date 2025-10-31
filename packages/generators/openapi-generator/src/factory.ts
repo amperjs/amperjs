@@ -5,7 +5,7 @@ import {
   pathResolver,
   type RouteResolverEntry,
   renderToFile,
-} from "@amperjs/devlib";
+} from "@kappajs/devlib";
 
 import openapiFactory from "./openapi";
 import type { Options } from "./types";

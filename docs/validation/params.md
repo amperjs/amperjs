@@ -14,7 +14,7 @@ or perhaps it should fall within a certain range.
 
 ## 🎯 Params Refinements
 
-`AmperJS` lets you refine parameter types through a tuple passed as the first type argument to `defineRoute`.
+`KappaJS` lets you refine parameter types through a tuple passed as the first type argument to `defineRoute`.
 This tuple uses positional parameters that align with your route's parameter order.
 
 Consider a route at `api/users/[id]/index.ts` where you want to ensure the ID is a number.
@@ -31,10 +31,10 @@ export default defineRoute<[number]>(({ GET }) => [
 ]);
 ```
 
-With this type refinement, `AmperJS` validates that the ID can be converted to a number at runtime.
+With this type refinement, `KappaJS` validates that the ID can be converted to a number at runtime.
 
 If someone makes a request to `/api/users/abc`, where `abc` cannot be parsed as a number,
-`AmperJS` rejects the request with a validation error before your handler runs.
+`KappaJS` rejects the request with a validation error before your handler runs.
 The client receives a 400 status code with information about what went wrong.
 
 Notice that you access the validated parameter through `ctx.typedParams` rather than the standard `ctx.params`.

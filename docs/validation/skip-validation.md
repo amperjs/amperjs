@@ -9,10 +9,10 @@ Perhaps you're gradually adding validation to an existing API,
 or perhaps a specific endpoint has unusual performance requirements
 that make validation overhead unacceptable.
 
-`AmperJS` provides an escape hatch through the `@skip-validation` JSDoc comment.
+`KappaJS` provides an escape hatch through the `@skip-validation` JSDoc comment.
 
 When you add this comment to a type parameter,
-`AmperJS` generates TypeScript types for compile-time checking but skips runtime validation:
+`KappaJS` generates TypeScript types for compile-time checking but skips runtime validation:
 
 ```ts [api/example/index.ts]
 export default defineRoute(({ POST }) => [

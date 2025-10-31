@@ -1,7 +1,7 @@
 import { rimraf } from "rimraf";
 
-import routesFactory from "@amperjs/dev/routes";
-import type { RouteResolverEntry } from "@amperjs/devlib";
+import routesFactory from "@kappajs/dev/routes";
+import type { RouteResolverEntry } from "@kappajs/devlib";
 
 import { appRoot, resolvedOptions } from ".";
 

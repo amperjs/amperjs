@@ -1,6 +1,6 @@
 {
   "type": "module",
-  "name": "@amperjs/openapi-generator",
+  "name": "@kappajs/openapi-generator",
   "version": "0.0.0-alpha.0",
   "author": "Slee Woo",
   "license": "MIT",
@@ -21,16 +21,16 @@
     "test": "vitest --root ../../.. --project generators/openapi-generator"
   },
   "dependencies": {
-    "@amperjs/devlib": "workspace:^",
+    "@kappajs/devlib": "workspace:^",
     "crc": "^4.3.2",
     "fs-extra": "^11.3.2",
     "typebox": "^1.0.37",
     "yaml": "^2.8.1"
   },
   "devDependencies": {
-    "@amperjs/api": "workspace:^",
-    "@amperjs/biome-formatter": "workspace:^",
-    "@amperjs/dev": "workspace:^",
+    "@kappajs/api": "workspace:^",
+    "@kappajs/biome-formatter": "workspace:^",
+    "@kappajs/dev": "workspace:^",
     "@stoplight/spectral-core": "^1.20.0",
     "@stoplight/spectral-rulesets": "^1.22.0",
     "@types/fs-extra": "^11.0.4"

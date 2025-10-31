@@ -11,11 +11,11 @@ const icons = {
 
 export default defineConfig({
   lang: "en-US",
-  title: "⚡ AmperJS",
+  title: "ϰ KappaJS",
   lastUpdated: true,
 
   sitemap: {
-    hostname: "https://amperjs.dev",
+    hostname: "https://kappajs.dev",
     lastmodDateOnly: true,
   },
 
@@ -272,7 +272,7 @@ export default defineConfig({
           collapsed: false,
           items: [
             {
-              text: "💡 About AmperJS",
+              text: "💡 About KappaJS",
               link: "/about",
             },
             {
@@ -389,7 +389,7 @@ export default defineConfig({
           ],
         },
         {
-          text: "Validation",
+          text: "Runtype Validation",
           collapsed: false,
           items: [
             {
@@ -476,7 +476,7 @@ export default defineConfig({
     },
 
     socialLinks: [
-      { icon: "github", link: "https://github.com/amperjs/amperjs" },
+      { icon: "github", link: "https://github.com/kappajs-dev/kappajs" },
     ],
 
     footer: {

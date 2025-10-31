@@ -5,7 +5,7 @@ description: Generators - SolidJS - Best Practices
 
 ### 💡 SolidJS Best Practices
 
-When building SolidJS applications with `AmperJS`,
+When building SolidJS applications with `KappaJS`,
 consider these patterns for effective development.
 
 Use the preload pattern for routes where data is known at navigation time.

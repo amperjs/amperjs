@@ -18,7 +18,7 @@ The default error handler checks if an error is a `ValidationError`
 and returns a 400 Bad Request status:
 
 ```ts [core/api/error-handler.ts]
-import { ValidationError } from "@amperjs/api";
+import { ValidationError } from "@kappajs/api";
 
 // ...
 if (error instanceof ValidationError) {
@@ -56,7 +56,7 @@ if (error instanceof ValidationError) {
 The ValidationError class provides rich, structured information when validation fails,
 making error handling both precise and developer-friendly.
 
-Here's the implementation imported from `@amperjs/api`:
+Here's the implementation imported from `@kappajs/api`:
 
 ```ts
 export class ValidationError extends Error {

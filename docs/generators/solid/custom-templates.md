@@ -15,8 +15,8 @@ Pass custom templates through the generator options in your `vite.config.ts`:
 
 ```ts [vite.config.ts]
 import solidPlugin from "vite-plugin-solid";
-import devPlugin from "@amperjs/dev";
-import solidGenerator from "@amperjs/solid-generator";
+import devPlugin from "@kappajs/dev";
+import solidGenerator from "@kappajs/solid-generator";
 import defineConfig from "../vite.base";
 
 const landingTemplate = `

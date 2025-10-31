@@ -3,13 +3,13 @@ import { mkdir, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { resolve } from "node:path";
 
-import amperFactory, { type Framework } from "amperjs/factory";
 import { execa } from "execa";
 import { chromium, type Page } from "playwright";
 import { createServer } from "vite";
 
-import routesFactory from "@amperjs/dev/routes";
-import { defaults, type PageRoute } from "@amperjs/devlib";
+import kappaFactory, { type Framework } from "@kappajs/create/factory";
+import routesFactory from "@kappajs/dev/routes";
+import { defaults, type PageRoute } from "@kappajs/devlib";
 
 import testRoutes from "./routes";
 
@@ -20,7 +20,7 @@ const app = {
 
 const appRoot = resolve(import.meta.dirname, `../${app.name}`);
 const pkgsDir = resolve(import.meta.dirname, "../../packages");
-const pnpmDir = resolve(tmpdir(), ".amperjs/pnpm-store");
+const pnpmDir = resolve(tmpdir(), ".kappajs/pnpm-store");
 
 const sourceFolder = "@front";
 const sourceFolderPath = resolve(appRoot, sourceFolder);
@@ -31,7 +31,7 @@ const baseURL = `http://localhost:${port}`;
 export { testRoutes };
 
 export async function setupTestProject(framework: Framework) {
-  const { createApp, createSourceFolder } = await amperFactory(
+  const { createApp, createSourceFolder } = await kappaFactory(
     resolve(appRoot, ".."),
     { NODE_VERSION: "22" },
   );
@@ -40,12 +40,12 @@ export async function setupTestProject(framework: Framework) {
 
   await createApp(app, {
     dependencies: {
-      "@amperjs/api": resolve(pkgsDir, "core/api"),
+      "@kappajs/api": resolve(pkgsDir, "core/api"),
     },
     devDependencies: {
-      "@amperjs/config": resolve(pkgsDir, "core/config"),
-      "@amperjs/dev": resolve(pkgsDir, "core/dev"),
-      "@amperjs/fetch": resolve(pkgsDir, "core/fetch"),
+      "@kappajs/config": resolve(pkgsDir, "core/config"),
+      "@kappajs/dev": resolve(pkgsDir, "core/dev"),
+      "@kappajs/fetch": resolve(pkgsDir, "core/fetch"),
     },
   });
 
@@ -59,7 +59,7 @@ export async function setupTestProject(framework: Framework) {
     },
     {
       devDependencies: {
-        [`@amperjs/${framework.name}-generator`]: resolve(
+        [`@kappajs/${framework.name}-generator`]: resolve(
           pkgsDir,
           `generators/${framework.name}-generator`,
         ),

@@ -5,10 +5,10 @@ description: Writing Generators - Example
 
 ### Fetch Generator as Example
 
-Here's a simplified version of `AmperJS`'s fetch generator to illustrate the patterns:
+Here's a simplified version of `KappaJS`'s fetch generator to illustrate the patterns:
 
 ```ts [index.ts]
-import type { GeneratorConstructor } from "@amperjs/devlib";
+import type { GeneratorConstructor } from "@kappajs/devlib";
 import { factory } from "./factory";
 
 export default (): GeneratorConstructor => {
@@ -22,8 +22,8 @@ export default (): GeneratorConstructor => {
 ```
 
 ```ts [factory.ts]
-import type { GeneratorFactory, RouteResolverEntry } from "@amperjs/devlib";
-import { pathResolver, renderToFile } from "@amperjs/devlib";
+import type { GeneratorFactory, RouteResolverEntry } from "@kappajs/devlib";
+import { pathResolver, renderToFile } from "@kappajs/devlib";
 import fetchTpl from "./templates/fetch.hbs";
 import indexTpl from "./templates/index.hbs";
 

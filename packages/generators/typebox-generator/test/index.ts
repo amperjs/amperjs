@@ -1,11 +1,11 @@
 import { resolve } from "node:path";
 
-import type { ValidationSchemas } from "@amperjs/api";
-import { type PluginOptionsResolved, pathResolver } from "@amperjs/devlib";
+import type { ValidationSchemas } from "@kappajs/api";
+import { type PluginOptionsResolved, pathResolver } from "@kappajs/devlib";
 
 import typeboxGenerator from "@/index";
 
-export const appRoot = resolve(import.meta.dirname, "_fixtures/app");
+export const appRoot = resolve(import.meta.dirname, "@fixtures/app");
 
 export const resolvedOptions: PluginOptionsResolved = {
   generators: [

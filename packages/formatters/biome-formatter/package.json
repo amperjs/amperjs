@@ -1,6 +1,6 @@
 {
   "type": "module",
-  "name": "@amperjs/biome-formatter",
+  "name": "@kappajs/biome-formatter",
   "version": "0.0.0-alpha.0",
   "author": "Slee Woo",
   "license": "MIT",
@@ -22,6 +22,6 @@
   "dependencies": {
     "@biomejs/js-api": "^3.0.0",
     "@biomejs/wasm-nodejs": "^2.2.6",
-    "@amperjs/devlib": "workspace:^"
+    "@kappajs/devlib": "workspace:^"
   }
 }

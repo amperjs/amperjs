@@ -3,9 +3,9 @@ title: API Server - Type Safety - Params
 description: API Server - Type Safety - Params
 ---
 
-`AmperJS` generates TypeScript types for your route parameters based on your directory structure.
+`KappaJS` generates TypeScript types for your route parameters based on your directory structure.
 
-When you have a route like `users/[id]/index.ts`, `AmperJS` knows there's an `id` parameter.
+When you have a route like `users/[id]/index.ts`, `KappaJS` knows there's an `id` parameter.
 
 However, by default, route parameters are typed as strings since that's what URLs contain.
 
@@ -79,7 +79,7 @@ defineRoute<Params>(/* ... */) // Error: type references won't work
 ```
 
 **💡 Why this requirement?**
-`AmperJS` needs to analyze the type structure at generation time to create corresponding validation schemas.
+`KappaJS` needs to analyze the type structure at generation time to create corresponding validation schemas.
 Type references don't preserve the necessary structural information for this analysis.
 
 Think of it as providing the "blueprint" directly rather than a "reference to the blueprint"! 🏗️
@@ -87,11 +87,11 @@ Think of it as providing the "blueprint" directly rather than a "reference to th
 ### ✨ Beyond compile-time safety
 
 These type refinements aren't just for TypeScript's benefit.
-`AmperJS` also validates parameters at runtime according to your specifications!
+`KappaJS` also validates parameters at runtime according to your specifications!
 [Details](/validation/params).
 
 If a request comes in with an ID that can't be parsed as a number,
-or an action that isn't one of your allowed values, `AmperJS` rejects the request before your handler runs.
+or an action that isn't one of your allowed values, `KappaJS` rejects the request before your handler runs.
 
 This validation happens automatically — you don't need to write additional validation code!
 

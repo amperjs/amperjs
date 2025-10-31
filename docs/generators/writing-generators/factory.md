@@ -6,7 +6,7 @@ description: Writing Generators - Factory
 The factory function initializes your generator and returns a watch handler:
 
 ```ts
-import type { GeneratorFactory } from "@amperjs/devlib";
+import type { GeneratorFactory } from "@kappajs/devlib";
 import type { Options } from "./index";
 
 export const factory: GeneratorFactory<Options> = async (

@@ -3,7 +3,7 @@ import zlib from "node:zlib";
 import IncomingForm from "formidable";
 import rawParser from "raw-body";
 
-import type { Middleware } from "@amperjs/api";
+import type { Middleware } from "@kappajs/api";
 
 import config from "./config";
 import type {

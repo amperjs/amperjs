@@ -1,0 +1,9 @@
+{
+  "extends": "@kappajs/config/tsconfig.vite.json",
+  "compilerOptions": {
+    "paths": {
+      "@/*": ["../../@fixtures/app/*", "../../@fixtures/app/lib/*"],
+      "@src/*": ["../../@fixtures/app/@src/*", "../../@fixtures/app/lib/@src/*"]
+    }
+  }
+}

@@ -8,7 +8,7 @@ Often you want middleware to run only for specific HTTP methods.
 For example, authentication might be required for POST, PUT, and DELETE requests
 but not for GET requests.
 
-`AmperJS` supports this through the `on` option:
+`KappaJS` supports this through the `on` option:
 
 ```ts [api/example/index.ts]
 export default defineRoute(({ GET, POST, PUT, DELETE, use }) => [

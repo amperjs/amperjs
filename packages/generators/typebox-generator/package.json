@@ -1,6 +1,6 @@
 {
   "type": "module",
-  "name": "@amperjs/typebox-generator",
+  "name": "@kappajs/typebox-generator",
   "version": "0.0.0-alpha.0",
   "cacheVersion": "1",
   "author": "Slee Woo",
@@ -22,11 +22,11 @@
     "test": "vitest --root ../../.. --project generators/typebox-generator"
   },
   "dependencies": {
-    "@amperjs/devlib": "workspace:^"
+    "@kappajs/devlib": "workspace:^"
   },
   "devDependencies": {
-    "@amperjs/api": "workspace:^",
-    "@amperjs/dev": "workspace:^"
+    "@kappajs/api": "workspace:^",
+    "@kappajs/dev": "workspace:^"
   },
   "peerDependencies": {
     "typebox": "^1.0.37"

@@ -2,9 +2,11 @@
 layout: home
 
 hero:
-  name: AmperJS
+  name: KappaJS
   text: "<span class=\"text-nowrap\">Structured Vite Template</span>"
-  tagline: Build scalable full-stack apps.<br>Multiple source folders. Directory-based routing. Runtime validation. Generated fetch clients.<br>Any framework.
+  tagline: Build type-safe full-stack apps.<br>Multiple source folders. Directory-based routing. Runtime validation. Generated fetch clients.<br>Any framework.
+  image:
+    src: /Kappa.svg
   actions:
     - theme: brand
       text: Get Started
@@ -46,11 +48,11 @@ features:
 
 ---
 
-## 🎯 What Is `AmperJS`?
+## 🎯 The What
 
-`AmperJS` is a **structured Vite template** that keeps your full-stack concerns aligned.
+`KappaJS` is a **structured Vite template** that keeps your full-stack concerns aligned.
 
-Rather than inventing yet another framework, `AmperJS` integrates proven tools —
+Rather than inventing yet another framework, `KappaJS` integrates proven tools —
 TypeScript, Vite, Koa, and your frontend framework — into a clear organizational pattern.
 Separation of concerns isn't something you have to remember — it's built into the structure.
 
@@ -62,13 +64,19 @@ No proprietary abstractions. No new paradigms to learn. Just thoughtful structur
 
 ## 📦 Organizational Structure
 
-**Multiple source folders** for distinct concerns — each with its own API and pages directories:
+At its core, `KappaJS` structures full-stack `Vite` development around a `Koa` application.
 
-- Public marketing site at `/`
-- Customer application at `/app`
-- Admin dashboard at `/admin`
+🔹 `Vite` handles your frontend builds and organizational structure.<br>
+🔹 `Koa` powers your API runtime with [runtype validation](/validation/) and middleware composition.<br>
+🔹 `KappaJS` is the structured template that brings them together.<br>
 
-All in one project, each with independent routing and configuration, yet sharing types and validation logic.
+**Multiple source folders** for distinct concerns — each with its own API and pages directories, eg.:
+
+🔹 Public marketing site at `/`<br>
+🔹 Customer application at `/app`<br>
+🔹 Admin dashboard at `/admin`<br>
+
+All in one monorepo-like project, each with independent routing and configuration, yet sharing types and validation logic.
 
 **API/Pages separation** keeps server and client code from mixing.
 Your directory structure enforces boundaries that code review can't.
@@ -79,10 +87,10 @@ Your directory structure enforces boundaries that code review can't.
 
 ## 🛡️ Type Safety & Validation
 
-`AmperJS` extends TypeScript's compile-time safety to runtime.
+`KappaJS` extends TypeScript's compile-time safety to runtime.
 Your type definitions become validation schemas automatically — no duplication, no drift.
 
-Define parameter types, payload structures, and response shapes once. `AmperJS` generates:
+Define parameter types, payload structures, and response shapes once. `KappaJS` generates:
 - Runtime validators for your API
 - Typed fetch clients for your frontend
 - Client-side validation that catches errors before requests
@@ -95,7 +103,9 @@ Everything stays aligned because everything derives from the same source of trut
 
 ## ⚡ Generated Fetch Clients
 
-Every API route gets a fully-typed fetch client with built-in validation. Your frontend knows exactly what parameters each endpoint expects, what payload structure it accepts, and what response shape it returns.
+Every API route gets a fully-typed fetch client with built-in validation.
+Your frontend knows exactly what parameters each endpoint expects,
+what payload structure it accepts, and what response shape it returns.
 
 Invalid data is caught client-side, before network requests. Your API never processes malformed requests.
 
@@ -107,7 +117,8 @@ Invalid data is caught client-side, before network requests. Your API never proc
 
 Build APIs directly inside Vite's dev server with hot-reload support.
 
-**Slot-based middleware** gives you fine-grained control — override global middleware per endpoint, compose request handling precisely, maintain consistent patterns across routes.
+**Slot-based middleware** gives you fine-grained control — override global middleware per endpoint,
+compose request handling precisely, maintain consistent patterns across routes.
 
 Development and production use the same structure — what you build locally is what deploys.
 
@@ -144,12 +155,12 @@ Deploy to any Node.js environment: traditional servers, containers, serverless p
 
 **Structure without constraints.**
 
-`AmperJS` is opinionated about organization but unopinionated about implementation.
+`KappaJS` is opinionated about organization but unopinionated about implementation.
 Clear boundaries between API and pages. Obvious locations for shared types and utilities.
 Separation of concerns built into the filesystem.
 
 You choose your frontend framework, state management, styling approach, database, and everything else.<br>
 The structure scales; your choices remain free.
 
-📘 [About AmperJS](/about) · [Features](/features)
+📘 [About KappaJS](/about) · [Features](/features)
 

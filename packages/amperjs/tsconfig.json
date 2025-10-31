@@ -1,3 +1,0 @@
-{
-  "extends": "@amperjs/config/tsconfig.amperjs.json"
-}

@@ -40,9 +40,9 @@ You get autocomplete on `ctx.payload` properties,
 and TypeScript verifies that whatever you assign to `ctx.body` matches the response type.
 
 Like parameter refinement, these types aren't just compile-time checks.
-`AmperJS` validates the incoming payload against your specified type at runtime
+`KappaJS` validates the incoming payload against your specified type at runtime
 and validates the outgoing response as well.
 [Details](/validation/payload).
 
-If validation fails, `AmperJS` handles the error appropriately without your handler code running.
+If validation fails, `KappaJS` handles the error appropriately without your handler code running.
 

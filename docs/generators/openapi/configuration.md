@@ -42,8 +42,8 @@ The `info` object accepts additional optional properties for richer documentatio
 ### Complete Example
 
 ```typescript
-import devPlugin from "@amperjs/dev";
-import openapiGenerator from "@amperjs/openapi-generator";
+import devPlugin from "@kappajs/dev";
+import openapiGenerator from "@kappajs/openapi-generator";
 
 export default {
   plugins: [

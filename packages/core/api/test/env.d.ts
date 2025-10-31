@@ -1,4 +1,4 @@
-export declare module "@amperjs/api" {
+export declare module "@kappajs/api" {
   interface UseSlots {
     auth: string;
     body: string;

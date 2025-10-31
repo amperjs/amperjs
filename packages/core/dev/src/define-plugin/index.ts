@@ -11,7 +11,7 @@ type Entry = {
 
 export default (entries: Array<Entry>): Plugin => {
   return {
-    name: "@amperjs:definePlugin",
+    name: "@kappajs:definePlugin",
 
     async config() {
       const define: Record<string, unknown> = {};

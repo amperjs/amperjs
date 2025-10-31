@@ -3,7 +3,7 @@ title: Generators - SolidJS - Preload
 description: Generators - SolidJS - Preload
 ---
 
-The preload pattern integrates beautifully with `AmperJS`'s generated fetch clients.
+The preload pattern integrates beautifully with `KappaJS`'s generated fetch clients.
 You define what data a route needs,
 and the router ensures that data is ready when the component renders.
 

@@ -1,5 +1,5 @@
 {
-  "name": "@amperjs/esbuilder",
+  "name": "@kappajs/esbuilder",
   "type": "module",
   "private": true,
   "files": [

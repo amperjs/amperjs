@@ -2,8 +2,8 @@ import { Spectral } from "@stoplight/spectral-core";
 import { oas } from "@stoplight/spectral-rulesets";
 import { describe, expect, test } from "vitest";
 
-import routesFactory from "@amperjs/dev/routes";
-import type { ApiRoute } from "@amperjs/devlib";
+import routesFactory from "@kappajs/dev/routes";
+import type { ApiRoute } from "@kappajs/devlib";
 
 import openapiFactory from "@/openapi";
 

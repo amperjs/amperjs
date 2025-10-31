@@ -3,10 +3,10 @@ title: Generators - SolidJS - Utilities
 description: Generators - SolidJS - Utilities
 ---
 
-`AmperJS`'s fetch clients need to work with framework-specific data structures,
+`KappaJS`'s fetch clients need to work with framework-specific data structures,
 particularly reactive stores that wrap plain data.
 
-To handle this, `AmperJS` provides an unwrap placeholder
+To handle this, `KappaJS` provides an unwrap placeholder
 that framework generators override with their own implementations.
 
 The default unwrap implementation is a no-op that simply returns data unchanged.

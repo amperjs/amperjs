@@ -18,7 +18,7 @@ await renderToFile(
 If you generate code without templates, apply formatters manually:
 
 ```ts
-import { applyFormatters } from "@amperjs/devlib";
+import { applyFormatters } from "@kappajs/devlib";
 
 let code = generateCodeSomehow();
 code = await applyFormatters(code, outputPath, formatters);

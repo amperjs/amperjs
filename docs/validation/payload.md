@@ -9,7 +9,7 @@ including query parameters in GET requests and JSON or form bodies in POST/PUT/P
 These payloads often have complex nested structures with multiple fields,
 each requiring specific validation rules to ensure data integrity.
 
-`AmperJS` makes payload validation straightforward by letting you express validation rules
+`KappaJS` makes payload validation straightforward by letting you express validation rules
 directly through TypeScript types.
 
 You write the type once, and it serves both as compile-time documentation
@@ -17,7 +17,7 @@ and runtime validation enforcement.
 
 ## 📦 Validating Request Payloads
 
-`AmperJS` makes payload validation as simple as providing a type to your method handler.
+`KappaJS` makes payload validation as simple as providing a type to your method handler.
 
 You can use literal type definitions written inline, or you can reference types defined elsewhere and imported.
 
@@ -69,7 +69,7 @@ If they are present, they must match their specified type and pass any refinemen
 ## 🏗️ Complex Nested Structures
 
 Real-world payloads often have deeply nested structures with conditional fields and references to other types.
-`AmperJS` handles this complexity naturally because you're just writing TypeScript types.
+`KappaJS` handles this complexity naturally because you're just writing TypeScript types.
 
 You can nest objects, use union types for conditional fields, reference other types,
 and generally express any structure that TypeScript can represent.
@@ -136,7 +136,7 @@ while the postal code uses a regex pattern to match US zip code formats
 
 All of these constraints are checked at runtime before your handler executes.
 If any field fails validation—wrong type, out of range, doesn't match pattern,
-missing required field, includes unexpected field — `AmperJS` rejects the request
+missing required field, includes unexpected field — `KappaJS` rejects the request
 with a detailed validation error that tells the client exactly what went wrong.
 
 ## 🔗 Working with Referenced Types
@@ -144,7 +144,7 @@ with a detailed validation error that tells the client exactly what went wrong.
 As your application grows, defining complex types inline becomes unwieldy.
 You'll want to define types once and reuse them across multiple routes.
 
-`AmperJS` fully supports this pattern—you can define types in separate files,
+`KappaJS` fully supports this pattern—you can define types in separate files,
 import them where needed, and use them for validation just like inline types.
 
 Suppose you have a file defining user-related types:
@@ -217,7 +217,7 @@ export default defineRoute(({ POST }) => [
 ]);
 ```
 
-`AmperJS`'s type-to-schema conversion handles complex type constructs including generics,
+`KappaJS`'s type-to-schema conversion handles complex type constructs including generics,
 unions, intersections, and deeply nested structures.
 
 When you use `Payload<User>`, the generator resolves the generic type parameter,

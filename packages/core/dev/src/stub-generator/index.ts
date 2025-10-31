@@ -2,7 +2,7 @@ import {
   type GeneratorConstructor,
   pathResolver,
   renderToFile,
-} from "@amperjs/devlib";
+} from "@kappajs/devlib";
 
 import envTpl from "./templates/env.d.ts?as=text";
 import schemasTpl from "./templates/schemas.hbs";

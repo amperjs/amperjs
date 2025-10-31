@@ -3,7 +3,7 @@ title: API Server
 description: API Server
 ---
 
-`AmperJS`'s API layer is built on [Koa](https://koajs.com/){target="_blank" rel="noopener"}, leveraging its elegant middleware composition model
+`KappaJS`'s API layer is built on [Koa](https://koajs.com/){target="_blank" rel="noopener"}, leveraging its elegant middleware composition model
 and powerful context object to create a clean, extensible foundation for API development.
 
 ## 🏗️ Built on Koa
@@ -19,7 +19,7 @@ creates predictable, testable request handling pipelines.
 
 ## 🛡️ Type Safety Throughout
 
-`AmperJS` extends Koa's foundation with type safety throughout the request-response cycle.
+`KappaJS` extends Koa's foundation with type safety throughout the request-response cycle.
 You define your API contracts in TypeScript types — parameters, payloads, responses —
 and these types flow through to runtime validation automatically.
 
@@ -33,7 +33,7 @@ Everything lives in TypeScript, in the same file, maintaining a cohesive develop
 The `defineRoute` function provides structure for organizing HTTP method handlers
 while preserving Koa's flexibility.
 
-Veterans will recognize the familiar elegance of `AmperJS`'s HTTP methods mapper,
+Veterans will recognize the familiar elegance of `KappaJS`'s HTTP methods mapper,
 which draw inspiration from [Sinatra framework](https://sinatrarb.com/){target="_blank" rel="noopener"} —
 the Ruby framework that pioneered minimalist web development back in 2007.
 

@@ -5,7 +5,7 @@ description: Writing Generators
 
 Generators are plugins that produce code based on your route structure and types.
 
-While `AmperJS` provides built-in generators for common needs,
+While `KappaJS` provides built-in generators for common needs,
 you can create custom generators tailored to your specific requirements.
 
 ## Understanding the Architecture
@@ -23,7 +23,7 @@ A generator is a module that exports a default function
 returning a `GeneratorConstructor` object:
 
 ```ts
-import type { GeneratorConstructor } from "@amperjs/devlib";
+import type { GeneratorConstructor } from "@kappajs/devlib";
 import { factory } from "./factory";
 
 export default (): GeneratorConstructor => {
@@ -52,7 +52,7 @@ Can be any JSON-serializable value or `undefined`.
 This receives plugin options and returns a watch handler.
 
 **options** (optional) - Generator-specific options:
-- `resolveTypes?: boolean` - When `true`, `AmperJS` resolves all type references
+- `resolveTypes?: boolean` - When `true`, `KappaJS` resolves all type references
   to their flattened representations before calling your generator,
   providing complete type information for validation or documentation.
 

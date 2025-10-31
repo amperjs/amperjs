@@ -1,0 +1,18 @@
+{
+  "extends": "./tsconfig.base.json",
+  "include": ["${configDir}/src", "${configDir}/test"],
+  "compilerOptions": {
+    "rootDir": "${configDir}",
+    "outDir": "${configDir}/pkg",
+    "paths": {
+      "@src/*": ["${configDir}/test/@fixtures/app/@src/*", "${configDir}/test/@fixtures/app/lib/@src/*"],
+      "@/lib/*": ["${configDir}/test/@fixtures/app/*", "${configDir}/test/@fixtures/app/lib/*"],
+      "@/core/*": ["${configDir}/test/@fixtures/app/core/*"],
+      "@test/*": ["${configDir}/test/*"],
+      "@/*": ["${configDir}/src/*"],
+      "~/*": ["${configDir}/../*", "${configDir}/../../*"]
+    },
+    "declaration": true,
+    "emitDeclarationOnly": true
+  }
+}

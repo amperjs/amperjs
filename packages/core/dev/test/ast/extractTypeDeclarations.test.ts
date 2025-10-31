@@ -142,7 +142,7 @@ describe("extractTypeDeclarations", () => {
       const sourceFile = project.addSourceFileAtPath(
         resolve(
           import.meta.dirname,
-          "../_fixtures/ast/extractTypeDeclarations/imports/with-referenced-files.ts",
+          "../@fixtures/ast/extractTypeDeclarations/imports/with-referenced-files.ts",
         ),
       );
 
@@ -313,7 +313,7 @@ describe("extractTypeDeclarations", () => {
       const sourceFile = project.addSourceFileAtPath(
         resolve(
           import.meta.dirname,
-          "../_fixtures/ast/extractTypeDeclarations/exports/with-referenced-files.ts",
+          "../@fixtures/ast/extractTypeDeclarations/exports/with-referenced-files.ts",
         ),
       );
       const [typeDeclarations, referencedFiles] = extractTypeDeclarations(

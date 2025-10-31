@@ -45,11 +45,11 @@ export default defineConfig({
             alias: {
               "@/lib": resolve(
                 import.meta.dirname,
-                `packages/${name}/test/_fixtures/app/lib/`,
+                `packages/${name}/test/@fixtures/app/lib/`,
               ),
               "@/core": resolve(
                 import.meta.dirname,
-                `packages/${name}/test/_fixtures/app/core/`,
+                `packages/${name}/test/@fixtures/app/core/`,
               ),
               "@test": resolve(import.meta.dirname, `packages/${name}/test`),
               // should go last

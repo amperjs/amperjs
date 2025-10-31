@@ -3,7 +3,7 @@ title: Generators - React
 description: Generators - React
 ---
 
-The React generator seamlessly connects `AmperJS`'s file-system routing to React's rendering system and router implementation.
+The React generator seamlessly connects `KappaJS`'s file-system routing to React's rendering system and router implementation.
 
 This enables a fluid development experience where page components are automatically registered as routes
 with end-to-end type safety and efficient loading strategies.
@@ -20,15 +20,15 @@ since it's only needed during development:
 ::: code-group
 
 ```sh [npm]
-npm install -D @amperjs/react-generator
+npm install -D @kappajs/react-generator
 ```
 
 ```sh [pnpm]
-pnpm install -D @amperjs/react-generator
+pnpm install -D @kappajs/react-generator
 ```
 
 ```sh [yarn]
-yarn add -D @amperjs/react-generator
+yarn add -D @kappajs/react-generator
 ```
 :::
 
@@ -36,8 +36,8 @@ Register the generator in your source folder's `vite.config.ts`:
 
 ```ts [vite.config.ts]
 import reactPlugin from "@vitejs/plugin-react";
-import devPlugin from "@amperjs/dev";
-import reactGenerator from "@amperjs/react-generator";
+import devPlugin from "@kappajs/dev";
+import reactGenerator from "@kappajs/react-generator";
 import defineConfig from "../vite.base";
 
 export default defineConfig(import.meta.dirname, {
@@ -74,5 +74,5 @@ The route definitions from your main application won't appear in the admin inter
 maintaining clear boundaries between different application domains.
 
 While each application operates within its own namespace,
-they all benefit from consistent `AmperJS` structural conventions.
+they all benefit from consistent `KappaJS` structural conventions.
 

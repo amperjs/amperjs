@@ -5,7 +5,7 @@ description: Vite Plugins - Dev Plugin
 
 ### ⚙️ The DevPlugin
 
-The DevPlugin is the default export from `@amperjs/dev` and accepts two arguments:
+The DevPlugin is the default export from `@kappajs/dev` and accepts two arguments:
 
 The first argument is the API URL (typically imported from your `config/index.ts`),
 which tells the plugin where API routes should be mounted.
@@ -33,9 +33,9 @@ You configure generators by adding them to the array:
 import devPlugin, {
   apiGenerator,
   fetchGenerator
-} from "@amperjs/dev";
-import typeboxGenerator from "@amperjs/typebox-generator";
-import solidGenerator from "@amperjs/solid-generator";
+} from "@kappajs/dev";
+import typeboxGenerator from "@kappajs/typebox-generator";
+import solidGenerator from "@kappajs/solid-generator";
 
 plugins: [
   devPlugin(apiurl, {
@@ -59,7 +59,7 @@ without manual intervention.
 The most common formatter is the Biome formatter:
 
 ```ts [vite.config.ts]
-import biomeFormatter from "@amperjs/biome-formatter";
+import biomeFormatter from "@kappajs/biome-formatter";
 
 const biomeConfig = {
   "formatter": {

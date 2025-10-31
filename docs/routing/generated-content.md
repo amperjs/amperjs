@@ -3,7 +3,7 @@ title: Routing - Generated Content
 description: Routing - Generated Content
 ---
 
-When you create a new route file, `AmperJS` detects it and instantly generates appropriate boilerplate code.
+When you create a new route file, `KappaJS` detects it and instantly generates appropriate boilerplate code.
 
 This generation is context-aware — it produces different code depending on whether you're creating an API route or a client page,
 and for pages, it adapts to your chosen frontend framework.
@@ -15,11 +15,11 @@ First, it saves you from the tedium of repeatedly typing the same structural cod
 Second, and more importantly, it ensures that every route follows the correct patterns
 and imports the right types from the beginning.
 
-You get a working starting point that's already integrated with `AmperJS`'s type system.
+You get a working starting point that's already integrated with `KappaJS`'s type system.
 
 ## ⚙️ API Route Generation
 
-When you create a file like `api/users/[id]/index.ts`, `AmperJS` generates this content:
+When you create a file like `api/users/[id]/index.ts`, `KappaJS` generates this content:
 
 ```ts [api/users/[id]/index.ts][dark]
 import { defineRoute } from "@front/{api}/users/[id]";
@@ -65,7 +65,7 @@ which you replace with your actual business logic.
 ## 🎨 Client Page Generation
 
 For client-side pages, the generated code adapts to your chosen framework.
-If you create `pages/users/[id]/index.tsx` while using the SolidJS generator, `AmperJS` generates:
+If you create `pages/users/[id]/index.tsx` while using the SolidJS generator, `KappaJS` generates:
 
 ```ts [pages/users/[id]/index.tsx]
 export default function Page() {
@@ -88,6 +88,6 @@ The generator understands your framework and produces appropriate code.
 The generated scaffold gives you the component structure,
 and you add your framework-specific logic for routing, data fetching, and rendering.
 
-Because the route parameters are part of the URL structure that `AmperJS` manages,
+Because the route parameters are part of the URL structure that `KappaJS` manages,
 your framework's router integration can access them naturally.
 

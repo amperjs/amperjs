@@ -4,7 +4,7 @@ description: Writing Generators - Path Resolver
 ---
 
 The `pathResolver` utility provides consistent path construction
-across `AmperJS`'s directory structure.
+across `KappaJS`'s directory structure.
 
 It handles the complexity of different directory types —
 some relative to the project root, some to the source folder,
@@ -13,7 +13,7 @@ and some nested within the `lib` directory.
 ## Basic Usage
 
 ```ts [factory.ts]
-import { pathResolver } from "@amperjs/devlib";
+import { pathResolver } from "@kappajs/devlib";
 
 export const factory: GeneratorFactory = async ({
   appRoot,
@@ -108,7 +108,7 @@ to create absolute file paths suitable for file system operations.
 
 ## Available Directories
 
-The resolver works with all directory constants from `AmperJS`'s defaults.
+The resolver works with all directory constants from `KappaJS`'s defaults.
 Common directories include:
 
 **Source directories:**
@@ -207,7 +207,7 @@ const middlewareContent = await fs.readFile(middlewarePath, "utf8");
 The resolver ensures consistency and handles the complexity
 of different directory nesting patterns.
 
-**Import from `@amperjs/devlib`** to access the resolver and other utilities
+**Import from `@kappajs/devlib`** to access the resolver and other utilities
 rather than implementing your own path logic.
 
 **Leverage type safety** by letting TypeScript guide you

@@ -1,4 +1,4 @@
-import type { GeneratorConstructor } from "@amperjs/devlib";
+import type { GeneratorConstructor } from "@kappajs/devlib";
 
 import { factory } from "./factory";
 import type { Options } from "./types";

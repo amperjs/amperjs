@@ -3,19 +3,22 @@ title: Validation - Rationale
 description: Validation - Rationale
 ---
 
-One of `AmperJS`'s most compelling features is its approach to validation.
+One of `KappaJS`'s most compelling features is its approach to validation.
+
+It's called "runtype" validation —
+your TypeScript types are automatically converted into JSON Schema and validated at runtime.
 
 Rather than forcing you to learn and maintain separate schema definition languages,<br>
-`AmperJS` lets you express validation rules directly in TypeScript.
+`KappaJS` lets you express validation rules directly in TypeScript.
 
 You write standard TypeScript types with optional refinements,
-and `AmperJS` automatically generates high-performance runtime validators from those types.
+and `KappaJS` automatically generates high-performance runtime validators from those types.
 
 This creates a seamless development experience where your type definitions
 serve as both compile-time type checking and runtime validation,
 all without duplicating your specifications.
 
-## 🛡️ Understanding Typed Validation
+## 🛡️ Understanding Runtype Validation
 
 By default, when you provide type annotations to your route parameters, payloads, and responses,
 those annotations provide compile-time type checking through TypeScript.
@@ -26,46 +29,46 @@ However, these compile-time checks don't protect you at runtime.
 When actual HTTP requests arrive with unpredictable data from the outside world,
 TypeScript can't help you — it only exists during development and compilation.
 
-This is where `AmperJS`'s typed validation comes in.
+This is where `KappaJS`'s runtype validation comes in.
 By installing a validation generator, you enable runtime validation that mirrors your TypeScript types exactly.
 
 The same type definitions that give you compile-time safety
 also generate validation logic that runs when requests arrive,
 ensuring that the data actually matches what your types promise.
 
-`AmperJS` provides a TypeBox-based validator that generates highly optimized validation code.
+`KappaJS` provides a TypeBox-based validator that generates highly optimized validation code.
 TypeBox compiles your types into JSON Schema internally,
 which is the widely-recognized standard for data validation across programming languages and platforms.
 
-You don't need to learn JSON Schema directly — `AmperJS` handles the conversion transparently.
+You don't need to learn JSON Schema directly — `KappaJS` handles the conversion transparently.
 But knowing that JSON Schema powers the validation under the hood helps you understand
 what's possible and how to refine your types for specific validation needs.
 
 ## ⚙️ Setting Up Validation
 
-To enable runtime validation, you need to install and configure the validation generator.
+To enable runtype validation, you need to install and configure the validation generator.
 Start by adding the TypeBox generator package to your project, then register it in your Vite configuration.
 
 ::: code-group
 
 ```sh [npm]
-npm install -D @amperjs/typebox-generator
+npm install -D @kappajs/typebox-generator
 ```
 
 ```sh [pnpm]
-pnpm install -D @amperjs/typebox-generator
+pnpm install -D @kappajs/typebox-generator
 ```
 
 ```sh [yarn]
-yarn add -D @amperjs/typebox-generator
+yarn add -D @kappajs/typebox-generator
 ```
 :::
 
 Then in your source folder's `vite.config.ts`, import the generator and add it to the generators array:
 
 ```ts [vite.config.ts]
-import devPlugin from "@amperjs/dev";
-import typeboxGenerator from "@amperjs/typebox-generator";
+import devPlugin from "@kappajs/dev";
+import typeboxGenerator from "@kappajs/typebox-generator";
 
 export default {
   plugins: [
@@ -89,17 +92,17 @@ With the generator in place, every type annotation you provide for route paramet
 request payloads, and responses becomes a runtime validation check.
 You don't need to write additional validation code or call validation functions explicitly.
 
-`AmperJS` integrates validation directly into the request processing pipeline,
+`KappaJS` integrates validation directly into the request processing pipeline,
 checking data before it reaches your handlers and after your handlers produce responses.
 
 ## 🔄 The Power of End-to-End Validation
 
-`AmperJS`'s validation is end-to-end, which means it spans from the client making requests
+`KappaJS`'s validation is end-to-end, which means it spans from the client making requests
 all the way through to the server processing them.
 This architecture provides benefits beyond simple data validation.
 
 When you enable validation with the TypeBox generator,
-`AmperJS` also generates a fully-typed fetch client for every API route.
+`KappaJS` also generates a fully-typed fetch client for every API route.
 
 This generated client isn't just typed — it actively validates request data on the client side
 before sending anything to the server.
@@ -123,13 +126,13 @@ making API consumption as type-safe as calling local functions.
 ## 🔍 Understanding the Generated Validation Code
 
 When you enable validation with the TypeBox generator,
-`AmperJS` generates validation code in your `lib` directory alongside other generated artifacts.
+`KappaJS` generates validation code in your `lib` directory alongside other generated artifacts.
 
 This code converts your TypeScript types into executable validation functions using the TypeBox library,
 which in turn generates optimized validators based on JSON Schema.
 
 You don't need to understand the generated code to use validation —
-`AmperJS` integrates it into the request processing pipeline automatically.
+`KappaJS` integrates it into the request processing pipeline automatically.
 
 However, understanding what happens under the hood can help you reason about performance characteristics
 and troubleshoot issues if they arise.

@@ -6,9 +6,8 @@
       "vitest.config.js",
       "docs/**/*.ts",
       "test/**/*.ts",
-      "packages/amperjs/{src,test}/**/*.ts",
-      "packages/{build,core,formatters,generators}/*/{src,test}/**/*.ts",
-      "!packages/**/test/**/lib/*"
+      "packages/*/*/{src,test}/**/*.ts",
+      "!packages/*/*/test/**/@fixtures/**/lib/*"
     ]
   },
 
@@ -60,8 +59,8 @@
         "./test/**/*.ts",
         "./packages/build/esbuilder/src/index.ts",
         "./packages/core/dev/src/base-plugin/api-handler.ts",
-        "./packages/amperjs/src/cli.ts",
-        "./packages/amperjs/src/templates/**/*.ts"
+        "./packages/core/create/src/cli.ts",
+        "./packages/core/create/src/templates/**/*.ts"
       ],
       "linter": {
         "rules": {
@@ -86,7 +85,7 @@
                 ":PACKAGE:",
                 ":PACKAGE_WITH_PROTOCOL:",
                 "!@test/**",
-                "!@amperjs/**"
+                "!@kappajs/**"
               ],
               ":BLANK_LINE:",
 
@@ -94,15 +93,15 @@
                 ":PACKAGE:",
                 ":PACKAGE_WITH_PROTOCOL:",
                 "!@test/**",
-                "@amperjs/**",
-                "!@amperjs/**/*-generator"
+                "@kappajs/**",
+                "!@kappajs/**/*-generator"
               ],
               ":BLANK_LINE:",
 
               [
                 ":PACKAGE:",
                 ":PACKAGE_WITH_PROTOCOL:",
-                "@amperjs/**/*-generator"
+                "@kappajs/**/*-generator"
               ],
               ":BLANK_LINE:",
 

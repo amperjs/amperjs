@@ -12,7 +12,7 @@ import {
   pathTokensFactory,
   type RouteResolverEntry,
   renderToFile,
-} from "@amperjs/devlib";
+} from "@kappajs/devlib";
 
 import type { Options } from "./types";
 

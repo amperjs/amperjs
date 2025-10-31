@@ -2,11 +2,11 @@ import { resolve } from "node:path";
 
 import { describe, expect, test } from "vitest";
 
-import type { ApiRoute, RouteResolverEntry } from "@amperjs/devlib";
+import type { ApiRoute, RouteResolverEntry } from "@kappajs/devlib";
 
 import routesResolver from "@/base-plugin/routes";
 
-const appRoot = resolve(import.meta.dirname, "../_fixtures/app");
+const appRoot = resolve(import.meta.dirname, "../@fixtures/app");
 
 const pluginOptions = {
   baseurl: "/",

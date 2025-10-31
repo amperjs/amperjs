@@ -3,7 +3,6 @@ minimumReleaseAgeExclude:
   - typebox
   - tsuit
 packages:
-  - "packages/amperjs"
   - "packages/core/*"
   - "packages/generators/*"
   - "packages/formatters/*"

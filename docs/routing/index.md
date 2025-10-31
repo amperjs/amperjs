@@ -3,7 +3,7 @@ title: Routing - Overview
 description: Routing - Overview
 ---
 
-`AmperJS` uses directory-based routing to map your file system structure directly to URL paths.
+`KappaJS` uses directory-based routing to map your file system structure directly to URL paths.
 
 This approach eliminates the need for separate routing configuration files
 and ensures that your routes are always in sync with your actual code structure.
@@ -52,7 +52,7 @@ The parallel structure makes it easy to understand how your frontend and backend
 
 ## 📄 Route File Requirements
 
-Every route in `AmperJS` is defined by an `index.ts` file within a folder.
+Every route in `KappaJS` is defined by an `index.ts` file within a folder.
 This file must export a default value — the specific format of that export
 depends on whether you're creating an API route or a client page.
 
@@ -84,6 +84,6 @@ This nesting can go as deep as your application needs.
 For client pages, nested routes often benefit from layout components
 that wrap child routes and provide common UI elements like navigation or headers.
 
-While `AmperJS` doesn't impose a specific layout system (since this is framework-specific),
+While `KappaJS` doesn't impose a specific layout system (since this is framework-specific),
 the folder structure provides a natural place to implement layouts if your framework supports them.
 

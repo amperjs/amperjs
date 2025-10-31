@@ -1,0 +1,29 @@
+import { join } from "node:path";
+
+{{#each plugins}}{{importDeclaration}}
+{{/each}}
+import devPlugin, { apiGenerator, fetchGenerator } from "@kappajs/dev";
+{{#each generators}}{{importDeclaration}}
+{{/each}}
+
+import defineConfig from "../vite.base";
+import { apiurl, baseurl } from "./config";
+
+export default defineConfig(import.meta.dirname, {
+  base: join(baseurl, "/"),
+  server: {
+    port: {{folder.port}},
+  },
+  plugins: [
+    {{#each plugins}}{{importName}}(),
+    {{/each}}
+    devPlugin(apiurl, {
+      generators: [
+        apiGenerator(),
+        fetchGenerator(),
+        {{#each generators}}{{importName}}({{options}}),
+        {{/each}}
+      ],
+    }),
+  ],
+});

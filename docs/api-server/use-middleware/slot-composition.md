@@ -3,14 +3,14 @@ title: API Server - use Middleware - Slot Composition
 description: API Server - use Middleware - Slot Composition
 ---
 
-`AmperJS`'s slot system gives you fine-grained control over middleware composition and override behavior.
+`KappaJS`'s slot system gives you fine-grained control over middleware composition and override behavior.
 
 Using slot composition, you can precisely control which middleware runs and when, including selective overrides.
 
 This becomes important when working with global middleware that applies to all routes
 but needs customization for specific endpoints.
 
-`AmperJS` applies certain middleware globally through a core configuration file located at `core/api/use.ts`.
+`KappaJS` applies certain middleware globally through a core configuration file located at `core/api/use.ts`.
 
 This file defines middleware that runs for every API endpoint by default.
 However, individual routes can override this default behavior using slots.
@@ -21,11 +21,11 @@ with the same slot name replaces the earlier one.
 
 This replacement mechanism gives you fine-grained control over which middleware runs where.
 
-Let's look at a concrete example from `AmperJS`'s core configuration:
+Let's look at a concrete example from `KappaJS`'s core configuration:
 
 ```ts [core/api/use.ts]
-import { use } from "@amperjs/api";
-import bodyparser from "@amperjs/api/bodyparser";
+import { use } from "@kappajs/api";
+import bodyparser from "@kappajs/api/bodyparser";
 
 export default [
   use(bodyparser.json(), {
@@ -54,7 +54,7 @@ Now suppose you have an endpoint that needs to accept form data instead of JSON.
 You can override the bodyparser middleware by using the same slot name:
 
 ```ts [api/example/index.ts]
-import bodyparser from "@amperjs/api/bodyparser";
+import bodyparser from "@kappajs/api/bodyparser";
 import { defineRoute } from "@front/{api}/upload";
 
 export default defineRoute(({ POST, use }) => [
@@ -105,8 +105,8 @@ where you want consistent behavior across most endpoints but need exceptions for
 
 ### 🔗 Combining Body Parsers with Custom Logic
 
-While `AmperJS` provides convenient body parsers for JSON and form data
-through the `@amperjs/api/bodyparser` module, you're not limited to these.
+While `KappaJS` provides convenient body parsers for JSON and form data
+through the `@kappajs/api/bodyparser` module, you're not limited to these.
 The slot system for the bodyparser middleware means you can plug in any Koa-compatible body parsing middleware.
 
 If you need to parse XML, multipart form data with file uploads, or any other format,
@@ -133,6 +133,6 @@ export default defineRoute(({ POST, use }) => [
 ]);
 ```
 
-This flexibility means `AmperJS` doesn't box you into specific formats or parsers.
-Use what makes sense for your application, and `AmperJS`'s structure accommodates it.
+This flexibility means `KappaJS` doesn't box you into specific formats or parsers.
+Use what makes sense for your application, and `KappaJS`'s structure accommodates it.
 

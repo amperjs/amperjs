@@ -15,8 +15,8 @@ Pass custom templates through the generator options in your `vite.config.ts`:
 
 ```ts [vite.config.ts]
 import reactPlugin from "@vitejs/plugin-react";
-import devPlugin from "@amperjs/dev";
-import reactGenerator from "@amperjs/react-generator";
+import devPlugin from "@kappajs/dev";
+import reactGenerator from "@kappajs/react-generator";
 import defineConfig from "../vite.base";
 
 const landingTemplate = `

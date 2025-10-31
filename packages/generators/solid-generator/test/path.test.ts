@@ -1,6 +1,6 @@
 import { describe, expect, test } from "vitest";
 
-import { pathTokensFactory } from "@amperjs/devlib";
+import { pathTokensFactory } from "@kappajs/devlib";
 
 import { pathFactory } from "@/factory";
 

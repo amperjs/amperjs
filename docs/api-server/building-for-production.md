@@ -3,7 +3,7 @@ title: API Server - Building for Production
 description: API Server - Building for Production
 ---
 
-Each source folder in `AmperJS` builds independently,
+Each source folder in `KappaJS` builds independently,
 producing deployment-ready output for that specific concern.
 
 ## ▶️ Build Command
@@ -18,7 +18,7 @@ Replace `@front` with your source folder name (`@admin`, `@marketing`, etc.).
 
 ## 📦 What Gets Built
 
-When you run `vite build`, `AmperJS` produces:
+When you run `vite build`, `KappaJS` produces:
 
 **Frontend assets:**
 - Optimized, bundled client code

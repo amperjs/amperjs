@@ -10,7 +10,7 @@ Check whether `event` is defined to determine the call type.
 
 **Use path resolution helpers.**
 The `pathResolver` provides consistent path construction
-across `AmperJS`'s directory structure.
+across `KappaJS`'s directory structure.
 
 **Filter route entries appropriately.**
 Most generators only care about API routes or page routes, not both.

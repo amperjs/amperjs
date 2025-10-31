@@ -3,19 +3,19 @@ title: Getting Started
 description: Getting Started
 ---
 
-**Starting your `AmperJS` journey is a breeze!** ✨
+**Starting your `KappaJS` journey is a breeze!** ✨
 
 In just a few commands, you'll have a fully-configured Vite project ready to scale with your application's needs.
 
-Begin your project with a solid foundation. `AmperJS` provides a structured
+Begin your project with a solid foundation. `KappaJS` provides a structured
 yet flexible starting point designed for real-world applications with multiple concerns.
 
 ## 🚀 Create Your Application
 
-Run the following command to create a new `AmperJS` application:
+Run the following command to create a new `KappaJS` application:
 
 ```bash
-npx amperjs
+npx @kappajs/create
 ```
 
 You'll be asked for an app name (required) and a dist directory (optional, defaults to `.dist`).
@@ -40,15 +40,15 @@ yarn install
 
 ## 📁 Create Your First Source Folder
 
-Unlike standard Vite templates, `AmperJS` doesn't create a source folder immediately.
+Unlike standard Vite templates, `KappaJS` doesn't create a source folder immediately.
 Instead, it gives you the tools to create as many source folders as your application needs,
 each organized around a specific concern.
 
-Navigate to your application directory and run `npx amperjs` again:
+Navigate to your application directory and run `npx @kappajs/create` again:
 
 ```bash
 cd your-app-name
-npx amperjs
+npx @kappajs/create
 ```
 
 You'll configure three things. The folder name is required and determines what your source folder will be called
@@ -68,7 +68,7 @@ Each source folder runs on its own port and must be started with a separate comm
 ### Example: Creating a main frontend folder
 
 ```bash
-npx amperjs
+npx @kappajs/create
 # folder name: @front
 # baseurl: /
 # port: 4000
@@ -101,24 +101,24 @@ and a proper Node.js environment for API code, running together seamlessly.
 
 ## 🎨 Choosing Your Frontend Framework
 
-Since `AmperJS` is just a structured Vite template, you can use any frontend framework that works with Vite.
-To make this easier, `AmperJS` provides generators for common frameworks:
+Since `KappaJS` is just a structured Vite template, you can use any frontend framework that works with Vite.
+To make this easier, `KappaJS` provides generators for common frameworks:
 
 ::: code-group
 
 ```sh [npm]
-npm install -D @amperjs/solid-generator
-#              @amperjs/react-generator
+npm install -D @kappajs/solid-generator
+#              @kappajs/react-generator
 ```
 
 ```sh [pnpm]
-pnpm install -D @amperjs/solid-generator
-#               @amperjs/react-generator
+pnpm install -D @kappajs/solid-generator
+#               @kappajs/react-generator
 ```
 
 ```sh [yarn]
-yarn add -D @amperjs/solid-generator
-#           @amperjs/react-generator
+yarn add -D @kappajs/solid-generator
+#           @kappajs/react-generator
 ```
 :::
 
@@ -127,8 +127,8 @@ yarn add -D @amperjs/solid-generator
 Configure them in your source folder's `vite.config.ts`:
 
 ```ts [vite.config.ts]
-import devPlugin from "@amperjs/dev";
-import solidGenerator from "@amperjs/solid-generator";
+import devPlugin from "@kappajs/dev";
+import solidGenerator from "@kappajs/solid-generator";
 
 export default {
     devPlugin(apiurl, {
@@ -149,7 +149,7 @@ You can even write your own generator plugin following standard Vite plugin patt
 
 ## 🛣️ Directory-Based Routing
 
-`AmperJS` derives routes from your directory structure.
+`KappaJS` derives routes from your directory structure.
 Your folder names become URL path segments, and each route needs an `index.ts` file
 that serves as the endpoint (for API) or component (for pages).
 
@@ -162,7 +162,7 @@ This consistency means every route follows the same pattern.
 
 ## 🔀 Dynamic Parameters
 
-`AmperJS` supports three types of dynamic route segments, using syntax inspired by solid-start
+`KappaJS` supports three types of dynamic route segments, using syntax inspired by solid-start
 that works the same way for both API and client routes. ([Details](/routing/params))
 
 Required parameters use single brackets like `[id]` and match exactly one path segment.
@@ -177,7 +177,7 @@ or any other path under `/docs`. ([Details](/routing/params))
 
 ## ⚡ Auto-Generated Routes
 
-When you create a new route file, `AmperJS` detects it and instantly generates appropriate starter code.
+When you create a new route file, `KappaJS` detects it and instantly generates appropriate starter code.
 ([Details](/routing/generated-content))
 
 **For an API route at `api/users/[id]/index.ts`:**
@@ -209,19 +209,19 @@ The generator adapts to your chosen framework, producing appropriate code.
 
 ## 🏗️ Multiple Source Folders
 
-The power of `AmperJS`'s structure becomes clear when you need to organize a larger application.
+The power of `KappaJS`'s structure becomes clear when you need to organize a larger application.
 Consider a SaaS product with a marketing site, customer-facing app, and admin dashboard.
 Instead of cramming these into a single source directory, create separate source folders:
 
 ```bash
-npx amperjs
+npx @kappajs/create
 # folder name: @admin
 # baseurl: /admin
 # port: 4001
 ```
 
 ```bash
-npx amperjs
+npx @kappajs/create
 # folder name: @marketing
 # baseurl: /
 # port: 4002
@@ -245,7 +245,7 @@ you're working with a structure designed for this pattern from the beginning.
 
 ## 📂 Project Structure Example
 
-Here's what a complete `AmperJS` project looks like with multiple source folders:
+Here's what a complete `KappaJS` project looks like with multiple source folders:
 
 ```
 my-app/
@@ -277,7 +277,7 @@ my-app/
 └── vite.base.ts
 ```
 
-The `lib` directory contains generated code that `AmperJS` maintains for you
+The `lib` directory contains generated code that `KappaJS` maintains for you
 — type definitions and helpers based on your route structure.
 You don't edit these files directly.
 
@@ -286,7 +286,7 @@ and the TypeScript path mappings make everything import cleanly.
 
 ## 📝 TypeScript Path Mapping
 
-When you create a source folder, `AmperJS` automatically updates your `tsconfig.json` with path mappings:
+When you create a source folder, `KappaJS` automatically updates your `tsconfig.json` with path mappings:
 
 ```json [tsconfig.json]
 {
@@ -300,7 +300,7 @@ When you create a source folder, `AmperJS` automatically updates your `tsconfig.
 ```
 
 Each mapping points to two locations. The first is your source folder where you write code.
-The second is the `lib` directory where `AmperJS` places generated TypeScript types and helper functions.
+The second is the `lib` directory where `KappaJS` places generated TypeScript types and helper functions.
 
 This separation keeps your source directories clean —
 you focus on writing business logic while generated artifacts live elsewhere.

@@ -1,6 +1,6 @@
 {
   "type": "module",
-  "name": "@amperjs/fetch",
+  "name": "@kappajs/fetch",
   "version": "0.0.0-alpha.0",
   "author": "Slee Woo",
   "license": "MIT",

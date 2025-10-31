@@ -7,7 +7,7 @@ Beyond the standard HTTP method handlers, you often need to run custom middlewar
 code that executes before your main handler to perform tasks like authentication,
 logging, or data transformation.
 
-`AmperJS` provides the `use` function for this purpose,
+`KappaJS` provides the `use` function for this purpose,
 which works similarly to Koa's standard middleware system but with additional capabilities.
 
 The most basic use of `use` applies middleware to all HTTP methods on that endpoint:
@@ -73,7 +73,7 @@ First middleware after next
 Middleware executes in order until reaching your method handler,
 then unwinds back through the middleware in reverse order.
 
-This "onion" model is a core Koa concept that `AmperJS` preserves.
+This "onion" model is a core Koa concept that `KappaJS` preserves.
 It allows middleware to do work both before and after your handler runs —
 useful for tasks like timing requests, catching errors, or modifying responses.
 

@@ -3,7 +3,7 @@ title: Vite Plugins - Intro
 description: Vite Plugins - Intro
 ---
 
-`AmperJS` is a standard Vite template.
+`KappaJS` is a standard Vite template.
 All its functionality comes from three Vite plugins that handle path resolution,
 environment variable management, and code generation.
 
@@ -11,7 +11,7 @@ Using these plugins is straightforward — import them and add them to your Vite
 
 ### 🔌 The Three Plugins
 
-`AmperJS` provides three plugins that work together to create the development experience:
+`KappaJS` provides three plugins that work together to create the development experience:
 
 🔹 **AliasPlugin** reads the path mappings from your `tsconfig.json`,
 performs filesystem analysis, and provides alias information to Vite.

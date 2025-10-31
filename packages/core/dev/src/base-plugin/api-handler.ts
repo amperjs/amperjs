@@ -4,8 +4,8 @@ import { styleText } from "node:util";
 
 import { context, build as esbuild, type Plugin } from "esbuild";
 
-import type { App } from "@amperjs/api";
-import { defaults, type PluginOptionsResolved } from "@amperjs/devlib";
+import type { App } from "@kappajs/api";
+import { defaults, type PluginOptionsResolved } from "@kappajs/devlib";
 
 export default async (options: PluginOptionsResolved) => {
   const { appRoot, sourceFolder, baseurl, apiurl } = options;

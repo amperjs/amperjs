@@ -34,7 +34,7 @@ or other application-wide concerns.
 
 ## 🛣️ The Router Configuration
 
-The `router.tsx` file connects `AmperJS`'s generated routes to React Router:
+The `router.tsx` file connects `KappaJS`'s generated routes to React Router:
 
 ```tsx [router.tsx]
 import { createBrowserRouter, Outlet, RouterProvider } from "react-router";
@@ -101,7 +101,7 @@ if (root) {
 ```
 
 This file is referenced from your `index.html` file,
-which `AmperJS` creates when you initialize a source folder:
+which `KappaJS` creates when you initialize a source folder:
 
 ```html
 <script type="module" src="/index.tsx"></script>

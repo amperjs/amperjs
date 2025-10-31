@@ -1,4 +1,4 @@
-import useFetch from "@amperjs/fetch";
+import useFetch from "@kappajs/fetch";
 
 import { baseurl, apiurl } from "{{importPathmap.config}}";
 import { validationSchemas } from "./schemas";
@@ -12,7 +12,7 @@ import {
   createHost,
 } from "{{importPathmap.fetchLib}}";
 
-export { ValidationError } from "@amperjs/api";
+export { ValidationError } from "@kappajs/api";
 
 export type ParamsT = [
   {{#each route.params.schema}}

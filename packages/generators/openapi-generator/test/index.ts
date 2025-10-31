@@ -1,9 +1,9 @@
 import { resolve } from "node:path";
 
-import formatter from "@amperjs/biome-formatter";
-import type { PluginOptionsResolved } from "@amperjs/devlib";
+import formatter from "@kappajs/biome-formatter";
+import type { PluginOptionsResolved } from "@kappajs/devlib";
 
-export const appRoot = resolve(import.meta.dirname, "_fixtures/app");
+export const appRoot = resolve(import.meta.dirname, "@fixtures/app");
 
 export const openapiOptions = {
   openapi: "3.1.0",

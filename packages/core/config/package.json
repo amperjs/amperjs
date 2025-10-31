@@ -1,5 +1,5 @@
 {
-  "name": "@amperjs/config",
+  "name": "@kappajs/config",
   "version": "0.0.0-alpha.0",
   "author": "Slee Woo",
   "license": "MIT",
@@ -10,7 +10,7 @@
     "*.json"
   ],
   "exports": {
-    "./tsconfig.amperjs.json": "./tsconfig.amperjs.json",
+    "./tsconfig.kappajs.json": "./tsconfig.kappajs.json",
     "./tsconfig.vite.json": "./tsconfig.vite.json"
   },
   "scripts": {

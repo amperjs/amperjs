@@ -3,7 +3,7 @@ title: API Server - Development Workflow
 description: API Server - Development Workflow
 ---
 
-Each source folder in `AmperJS` is a **standalone entity** with its own dev server, port, and configuration.
+Each source folder in `KappaJS` is a **standalone entity** with its own dev server, port, and configuration.
 
 **Why this model?**
 
@@ -63,7 +63,7 @@ Then run: `npm run dev:front`
 
 ## 🔀 What Happens During Development
 
-When you start a dev server, `AmperJS`:
+When you start a dev server, `KappaJS`:
 
 1. **Builds your API** - Uses esbuild to compile `api/app.ts`
 2. **Starts Vite's dev server** - Serves your client pages with HMR
@@ -72,7 +72,7 @@ When you start a dev server, `AmperJS`:
 
 ### API Hot-Reload
 
-When you modify API files, `AmperJS`:
+When you modify API files, `KappaJS`:
 - Detects the change via file watcher
 - Waits for file stability (default: 1 second)
 - Rebuilds the API bundle in a background worker thread
@@ -87,11 +87,11 @@ Your Vite dev server remains responsive during API rebuilds since they happen in
 The current build system uses `esbuild`, which is fast and reliable
 but doesn't support HMR for server-side code.
 
-`AmperJS` is watching the development of [Rolldown](https://rolldown.rs/),
+`KappaJS` is watching the development of [Rolldown](https://rolldown.rs/),
 a Rust-based bundler that aims to provide HMR capabilities for server-side builds.
 
 Once Rolldown finalizes its API and reaches a stable release,
-`AmperJS` plans to evaluate it as a replacement for esbuild.
+`KappaJS` plans to evaluate it as a replacement for esbuild.
 
 HMR for API code would eliminate full rebuilds, preserve in-memory state across changes,
 and further improve the development experience.
@@ -120,7 +120,7 @@ This function lets you customize how requests are routed between your API handle
 /**
  * In dev mode, determines whether to pass the request to API handler or to Vite.
  */
-export const devMiddlewareFactory: import("@amperjs/api").DevMiddlewareFactory = (
+export const devMiddlewareFactory: import("@kappajs/api").DevMiddlewareFactory = (
   app,
 ) => {
   return (req, res, next) => {
@@ -131,7 +131,7 @@ export const devMiddlewareFactory: import("@amperjs/api").DevMiddlewareFactory =
 };
 ```
 
-By default, `AmperJS` routes requests based on your `apiurl` configuration. If you need more sophisticated routing logic—perhaps certain paths should bypass the API entirely, or you want to handle WebSocket connections differently—you can implement custom logic here.
+By default, `KappaJS` routes requests based on your `apiurl` configuration. If you need more sophisticated routing logic—perhaps certain paths should bypass the API entirely, or you want to handle WebSocket connections differently—you can implement custom logic here.
 
 ### TeardownHandler
 
@@ -141,7 +141,7 @@ This function runs before the API handler reloads during development:
 /**
  * In dev mode, used to cleanup before reloading api handler.
  */
-export const teardownHandler: import("@amperjs/api").TeardownHandler = () => {
+export const teardownHandler: import("@kappajs/api").TeardownHandler = () => {
   // close db connections, server sockets etc.
 };
 ```
