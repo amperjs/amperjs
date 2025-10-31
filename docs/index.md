@@ -48,6 +48,8 @@ features:
 
 ---
 
+<CodeSamples />
+
 ## 🎯 The What
 
 `KappaJS` is a **structured Vite template** that keeps your full-stack concerns aligned.
@@ -62,13 +64,7 @@ No proprietary abstractions. No new paradigms to learn. Just thoughtful structur
 
 ---
 
-## 📦 Organizational Structure
-
-At its core, `KappaJS` structures full-stack `Vite` development around a `Koa` application.
-
-🔹 `Vite` handles your frontend builds and organizational structure.<br>
-🔹 `Koa` powers your API runtime with [runtype validation](/validation/) and middleware composition.<br>
-🔹 `KappaJS` is the structured template that brings them together.<br>
+## 💡 The Why
 
 **Multiple source folders** for distinct concerns — each with its own API and pages directories, eg.:
 
@@ -76,12 +72,21 @@ At its core, `KappaJS` structures full-stack `Vite` development around a `Koa` a
 🔹 Customer application at `/app`<br>
 🔹 Admin dashboard at `/admin`<br>
 
-All in one monorepo-like project, each with independent routing and configuration, yet sharing types and validation logic.
-
-**API/Pages separation** keeps server and client code from mixing.
+All in one monorepo-like project, each with independent routing and configuration, yet sharing types and validation logic.<br>
+**API / Pages separation** keeps server and client code from mixing.
 Your directory structure enforces boundaries that code review can't.
 
 📘 [Getting started](/start) · [Directory-based routing](/routing/)
+
+---
+
+## 📦 The How
+
+At its core, `KappaJS` structures full-stack `Vite` development around a `Koa` application.
+
+🔹 `Vite` handles your frontend builds and organizational structure.<br>
+🔹 `Koa` powers your API runtime with [runtype validation](/validation/) and middleware composition.<br>
+🔹 `KappaJS` is the structured template that brings them together.<br>
 
 ---
 
