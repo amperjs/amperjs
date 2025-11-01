@@ -45,21 +45,21 @@ export default defineConfig({
         items: [
           {
             text: "🔹 SolidJS",
-            link: "/generators/solid/",
+            link: "/generators/solid/intro",
           },
           {
             text: "🔹 React",
-            link: "/generators/react/",
+            link: "/generators/react/intro",
           },
           {
             text: "🔹 OpenAPI",
-            link: "/generators/openapi/",
+            link: "/generators/openapi/intro",
           },
           {
             items: [
               {
                 text: "Writing Generators",
-                link: "/generators/writing-generators/",
+                link: "/generators/writing-generators/intro",
               },
             ],
           },
@@ -67,7 +67,7 @@ export default defineConfig({
       },
       {
         text: "🔌 Plugins",
-        link: "/plugins/",
+        link: "/plugins/intro",
         activeMatch: "^/plugins/",
       },
     ],
@@ -81,7 +81,7 @@ export default defineConfig({
             {
               text: "🛠 Install / Setup",
               docFooterText: "🛠 SolidJS - Install / Setup",
-              link: "/generators/solid/",
+              link: "/generators/solid/intro",
             },
             {
               text: "🏗 Application",
@@ -129,7 +129,7 @@ export default defineConfig({
             {
               text: "🛠 Install / Setup",
               docFooterText: "🛠 React - Install / Setup",
-              link: "/generators/react/",
+              link: "/generators/react/intro",
             },
             {
               text: "🏗 Application",
@@ -169,7 +169,7 @@ export default defineConfig({
             {
               text: "🛠 Install / Setup",
               docFooterText: "🛠 OpenAPI - Install / Setup",
-              link: "/generators/openapi/",
+              link: "/generators/openapi/intro",
             },
             {
               text: `${icons.gear} Configuration`,
@@ -193,7 +193,7 @@ export default defineConfig({
             {
               text: "🏗 Architecture",
               docFooterText: "🏗 Generators Architecture",
-              link: "/generators/writing-generators/",
+              link: "/generators/writing-generators/intro",
             },
             {
               text: `${icons.gear} User Options`,
@@ -234,14 +234,14 @@ export default defineConfig({
           ],
         },
       ],
-      "/plugins": [
+      "/plugins/": [
         {
           text: "Plugins",
           collapsed: false,
           items: [
             {
               text: "🔰 Intro",
-              link: "/plugins/",
+              link: "/plugins/intro",
             },
             {
               text: "🔧 Configuration",
@@ -292,7 +292,7 @@ export default defineConfig({
             {
               text: "🔰 Intro",
               docFooterText: "🛣 Routing",
-              link: "/routing/",
+              link: "/routing/intro",
             },
             {
               text: "🏆 Rationale",
@@ -320,7 +320,7 @@ export default defineConfig({
             {
               text: "🔰 Intro",
               docFooterText: "🧩 API Intro",
-              link: "/api-server/",
+              link: "/api-server/intro",
             },
             {
               text: "🧩 Endpoints",
@@ -359,7 +359,7 @@ export default defineConfig({
                 {
                   text: "🔹 Rationale",
                   docFooterText: "🔹 use Middleware",
-                  link: "/api-server/use-middleware/",
+                  link: "/api-server/use-middleware/intro",
                 },
                 {
                   text: "🔹 Method-Specific",
@@ -395,7 +395,7 @@ export default defineConfig({
             {
               text: "🔰 Intro",
               docFooterText: "🛡 Runtime Validation",
-              link: "/validation/",
+              link: "/validation/intro",
             },
             {
               text: "🎯 TRefine for Refinement",
@@ -443,7 +443,7 @@ export default defineConfig({
             {
               text: "🔰 Intro",
               docFooterText: "🔗 Fetch Client",
-              link: "/fetch/",
+              link: "/fetch/intro",
             },
             {
               text: "🚀 Quick Start",

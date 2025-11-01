@@ -1,6 +1,10 @@
 ---
-title: Generators - SolidJS
-description: Generators - SolidJS
+title: SolidJS Generator
+description: Integrate KappaJS directory-based routing with SolidJS reactive primitives and router. Automatic route configuration, type-safe navigation, and optimized lazy loading for SolidJS applications.
+head:
+  - - meta
+    - name: keywords
+      content: solidjs generator, solidjs routing, reactive primitives, solidjs router, type-safe navigation, lazy loading, solidjs vite, solid-start alternative
 ---
 
 The SolidJS generator integrates `KappaJS`'s directory-based routing

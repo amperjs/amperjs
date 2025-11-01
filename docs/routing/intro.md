@@ -1,6 +1,10 @@
 ---
-title: Routing - Overview
-description: Routing - Overview
+title: Directory-Based Routing
+description: KappaJS uses directory-based routing to map file system structure directly to URL paths. Folder names become path segments with index.ts files defining endpoints and components.
+head:
+  - - meta
+    - name: keywords
+      content: directory-based routing, url mapping, api routes, page routes, route organization
 ---
 
 `KappaJS` uses directory-based routing to map your file system structure directly to URL paths.

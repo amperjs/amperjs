@@ -1,6 +1,10 @@
 ---
-title: API Server - use Middleware
-description: API Server - use Middleware
+title: Use Middleware
+description: Apply custom middleware in KappaJS with the use function for authentication, logging, and data transformation. Understand middleware chains and Koa's onion model execution pattern.
+head:
+  - - meta
+    - name: keywords
+      content: koa middleware, use function, middleware chain, authentication middleware, onion model, middleware composition, request logging
 ---
 
 Beyond the standard HTTP method handlers, you often need to run custom middleware —

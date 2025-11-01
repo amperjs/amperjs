@@ -1,6 +1,10 @@
 ---
-title: Writing Generators
-description: Writing Generators
+title: Writing Custom Generators
+description: Create custom KappaJS generators to produce code based on route structure and types. Learn generator architecture, worker threads, and the GeneratorConstructor structure.
+head:
+  - - meta
+    - name: keywords
+      content: custom generators, vite plugin development, generator api, worker threads, code generation, plugin architecture, GeneratorConstructor, devlib
 ---
 
 Generators are plugins that produce code based on your route structure and types.

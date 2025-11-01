@@ -1,6 +1,10 @@
 ---
-title: Vite Plugins - Intro
-description: Vite Plugins - Intro
+title: Vite Plugins
+description: KappaJS is a standard Vite template powered by three plugins - AliasPlugin for path resolution, DefinePlugin for environment variables, and DevPlugin for code generation.
+head:
+  - - meta
+    - name: keywords
+      content: vite plugins, kappajs plugins, alias plugin, define plugin, dev plugin, path resolution, code generation, environment variables
 ---
 
 `KappaJS` is a standard Vite template.

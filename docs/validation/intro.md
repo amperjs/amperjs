@@ -1,6 +1,10 @@
 ---
-title: Validation - Rationale
-description: Validation - Rationale
+title: Runtime Validation
+description: KappaJS runtype validation automatically converts TypeScript types into JSON Schema with runtime validators. Write types once, get compile-time and runtime safety without schema duplication.
+head:
+  - - meta
+    - name: keywords
+      content: runtime validation, typebox, json schema, runtype validation, typescript validation, type safety, validation generator, end-to-end validation
 ---
 
 One of `KappaJS`'s most compelling features is its approach to validation.

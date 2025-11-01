@@ -1,6 +1,10 @@
 ---
-title: Fetch Client - Intro
-description: Fetch Client - Intro
+title: Generated Fetch Clients
+description: KappaJS automatically generates fully-typed fetch clients with runtime validation for every API route. End-to-end type safety from frontend to backend with validation schemas and URL utilities.
+head:
+  - - meta
+    - name: keywords
+      content: generated fetch client, typed api client, runtime validation, type safety, fetch generator, api consumption, validation schemas, url utilities
 ---
 
 `KappaJS` automatically generates a fully-typed fetch client for every API route,

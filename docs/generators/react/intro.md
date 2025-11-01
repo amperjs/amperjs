@@ -1,6 +1,10 @@
 ---
-title: Generators - React
-description: Generators - React
+title: React Generator
+description: Seamlessly connect KappaJS file-system routing to React Router with automatic route configuration, type-safe navigation, lazy loading, and Suspense boundary integration.
+head:
+  - - meta
+    - name: keywords
+      content: react generator, react router, type-safe navigation, lazy loading, suspense boundaries, react vite, file-system routing, react hooks
 ---
 
 The React generator seamlessly connects `KappaJS`'s file-system routing to React's rendering system and router implementation.

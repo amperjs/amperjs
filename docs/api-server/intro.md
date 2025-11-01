@@ -1,6 +1,10 @@
 ---
 title: API Server
-description: API Server
+description: KappaJS API layer built on Koa with elegant middleware composition, end-to-end type safety, and flexible route definitions inspired by Sinatra framework.
+head:
+  - - meta
+    - name: keywords
+      content: koa api, middleware composition, type-safe api, sinatra-style routing, koa context, typescript api, defineRoute, api middleware
 ---
 
 `KappaJS`'s API layer is built on [Koa](https://koajs.com/){target="_blank" rel="noopener"}, leveraging its elegant middleware composition model
@@ -39,7 +43,7 @@ the Ruby framework that pioneered minimalist web development back in 2007.
 
 The `use` function enables fine-grained middleware control at the route level,
 complementing global middleware with route-specific behavior.
-([Details](/api-server/use-middleware/))
+([Details](/api-server/use-middleware/intro))
 
 Context and state extensibility means middleware can augment requests
 with authentication details, database connections, or any other request-scoped data,
