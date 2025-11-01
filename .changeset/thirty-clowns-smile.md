@@ -1,0 +1,3 @@
+---
+"@kappajs/create": patch
+---
