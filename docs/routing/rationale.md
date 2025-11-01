@@ -11,7 +11,7 @@ At first glance, directory-based routing might seem more verbose compared to fil
 You might wonder why `products/[id]/index.json/index.ts` is better than simply `products/[id]/index.json.ts`.
 The answer becomes clear as your application scales.
 
-### ⚠ File-Based Routing Limitations
+### ⚠️ File-Based Routing Limitations
 
 In file-based routing systems, each route is a single file:
 
@@ -63,7 +63,7 @@ The benefits become apparent at scale:
 
 **Scales gracefully:** At 10 routes, the extra folders seem like overhead. At 100 routes, they're a lifesaver. The organizational benefits compound over time.
 
-### ± The Trade-off
+### ⚖️ The Trade-off
 
 Yes, directory-based routing is slightly more verbose upfront. You create a folder even when you only have one file inside it. But this small initial cost pays enormous dividends:
 
