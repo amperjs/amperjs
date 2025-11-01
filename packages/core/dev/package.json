@@ -48,8 +48,8 @@
   },
   "devDependencies": {
     "@types/fs-extra": "^11.0.4",
-    "@types/koa": "^3.0.0",
+    "@types/koa": "^3.0.1",
     "@types/picomatch": "^4.0.2",
-    "vite": "^7.1.10"
+    "vite": "^7.1.12"
   }
 }

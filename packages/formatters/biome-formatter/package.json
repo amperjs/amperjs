@@ -20,8 +20,8 @@
     "build": "esbuilder src/index.ts"
   },
   "dependencies": {
-    "@biomejs/js-api": "^3.0.0",
-    "@biomejs/wasm-nodejs": "^2.2.6",
+    "@biomejs/js-api": "^4.0.0",
+    "@biomejs/wasm-nodejs": "^2.3.2",
     "@kappajs/devlib": "workspace:^"
   }
 }

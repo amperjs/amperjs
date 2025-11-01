@@ -29,16 +29,16 @@
     "crc": "^4.3.2",
     "fs-extra": "^11.3.2",
     "handlebars": "^4.7.8",
-    "koa": "^3.0.1",
+    "koa": "^3.1.1",
     "koa-compose": "^4.1.0"
   },
   "devDependencies": {
     "@types/fs-extra": "^11.0.4",
-    "@types/koa": "^3.0.0",
-    "@types/koa-compose": "^3.2.8",
-    "@types/koa__router": "^12.0.4",
+    "@types/koa": "^3.0.1",
+    "@types/koa-compose": "^3.2.9",
+    "@types/koa__router": "^12.0.5",
     "ts-morph": "^27.0.2",
     "tsuit": "^0.0.22",
-    "vite": "^7.1.10"
+    "vite": "^7.1.12"
   }
 }

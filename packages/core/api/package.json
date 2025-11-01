@@ -35,7 +35,7 @@
   "dependencies": {
     "@koa/router": "^14.0.0",
     "formidable": "^3.5.4",
-    "koa": "^3.0.1",
+    "koa": "^3.1.1",
     "picomatch": "^4.0.3",
     "qs": "^6.14.0",
     "raw-body": "^3.0.1",
@@ -44,8 +44,8 @@
   "devDependencies": {
     "@kappajs/devlib": "workspace:^",
     "@types/formidable": "^3.4.6",
-    "@types/koa": "^3.0.0",
-    "@types/koa__router": "^12.0.4",
+    "@types/koa": "^3.0.1",
+    "@types/koa__router": "^12.0.5",
     "@types/picomatch": "^4.0.2",
     "@types/qs": "^6.14.0"
   }

@@ -22,8 +22,8 @@
   },
   "dependencies": {
     "@kappajs/devlib": "workspace:^",
-    "picomatch": "^4.0.2",
-    "tinyglobby": "^0.2.12"
+    "picomatch": "^4.0.3",
+    "tinyglobby": "^0.2.15"
   },
   "devDependencies": {
     "@types/picomatch": "^4.0.2"

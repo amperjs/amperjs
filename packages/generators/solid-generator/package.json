@@ -27,7 +27,7 @@
   },
   "devDependencies": {
     "@types/picomatch": "^4.0.2",
-    "vite": "^7.1.10"
+    "vite": "^7.1.12"
   },
   "peerDependencies": {
     "@solidjs/router": "^0.15.3",
