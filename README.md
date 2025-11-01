@@ -1,6 +1,6 @@
 # ϰ KappaJS
 
-### Structured Vite Template for building type-safe full-stack apps.
+### Structured Vite Template for building type-safe full-stack apps
 
 Multiple source folders. Directory-based routing. Runtime validation.
 Generated fetch clients. Any framework.

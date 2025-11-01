@@ -4,7 +4,7 @@ layout: home
 hero:
   name: KappaJS
   tagline: <span class="tagline-container">
-        <span>Structured Vite Template.</span>
+        <span class="headline">Structured Vite Template.</span>
         <span>Build type-safe full-stack apps.</span>
         <span>Multiple source folders.</span>
         <span>Directory-based routing.</span>

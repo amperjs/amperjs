@@ -47,7 +47,13 @@
   justify-content: center;
 }
 
-.VPHero .tagline-container > div {
+.VPHero .tagline-container > .headline {
+  font-size: 150%;
+  font-style: italic;
+  color:var(--vp-c-important-1);
+}
+
+.VPHero .tagline-container > span {
   white-space: nowrap;
 }
 
