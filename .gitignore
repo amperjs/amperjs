@@ -1,11 +1,12 @@
 /packages/*/*/test/**/@fixtures/**/lib/
 /packages/*/*/pkg/
-/packages/*/*/var/
 
 /docs/.vitepress/dist/
 /docs/.vitepress/cache/
 /docs/.vitepress/.temp/
 
 /test/__test_app/
-/var/
 /.tmuxinator*
+
+# ignore var dir any level depth
+var/
