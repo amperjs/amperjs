@@ -7,9 +7,11 @@ head:
       content: directory routing benefits, file-based routing, routing comparison, scalability, code organization, folder structure, routing patterns
 ---
 
-At first glance, directory-based routing might seem more verbose compared to file-based routing systems. You might wonder why `products/[id]/index.json/index.ts` is better than simply `products/[id]/index.json.ts`. The answer becomes clear as your application scales.
+At first glance, directory-based routing might seem more verbose compared to file-based routing systems.
+You might wonder why `products/[id]/index.json/index.ts` is better than simply `products/[id]/index.json.ts`.
+The answer becomes clear as your application scales.
 
-### File-Based Routing Limitations
+### ⚠ File-Based Routing Limitations
 
 In file-based routing systems, each route is a single file:
 
@@ -30,7 +32,7 @@ This looks simpler initially, but quickly becomes problematic:
 - **Cluttered structure:** Every helper file sits alongside route files with no clear ownership
 - **Ambiguous ownership:** Is `helper.ts` shared by all formats or specific to one?
 
-### Directory-Based Routing Benefits
+### 🏆 Directory-Based Routing Benefits
 
 With directory-based routing, each route gets its own folder:
 
@@ -61,7 +63,7 @@ The benefits become apparent at scale:
 
 **Scales gracefully:** At 10 routes, the extra folders seem like overhead. At 100 routes, they're a lifesaver. The organizational benefits compound over time.
 
-### The Trade-off
+### ± The Trade-off
 
 Yes, directory-based routing is slightly more verbose upfront. You create a folder even when you only have one file inside it. But this small initial cost pays enormous dividends:
 
@@ -70,4 +72,7 @@ Yes, directory-based routing is slightly more verbose upfront. You create a fold
 - Refactoring is safer because related code is physically grouped
 - The file system structure serves as living documentation
 
-It's one of those "trust the process" patterns where the benefit isn't obvious until your application grows. But once you've experienced trying to maintain a large file-based routing system, you'll appreciate why directory-based routing enforces this structure from the start.
+It's one of those "trust the process" patterns where the benefit isn't obvious until your application grows.
+But once you've experienced trying to maintain a large file-based routing system,
+you'll appreciate why directory-based routing enforces this structure from the start.
+

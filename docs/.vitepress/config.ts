@@ -418,7 +418,7 @@ export default defineConfig({
               link: "/validation/skip-validation",
             },
             {
-              text: "❌ Error Handler",
+              text: "🚧 Error Handler",
               link: "/validation/error-handler",
             },
             {
@@ -458,7 +458,7 @@ export default defineConfig({
               link: "/fetch/validation",
             },
             {
-              text: "🚨 Error Handling",
+              text: "🚧 Error Handling",
               link: "/fetch/error-handling",
             },
             {
