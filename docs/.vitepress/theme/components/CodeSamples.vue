@@ -1,10 +1,12 @@
 <template>
   <div class="hero-sections">
     <div class="hero-block">
-      <div class="hero-text">
-        <h1 class="hero-title">Simple Params Validation</h1>
-        <div class="hero-description">
-          Require <code>id</code> to be a number
+      <div class="hero-content">
+        <div class="hero-text">
+          <h1 class="hero-title">Simple Params Validation</h1>
+          <div class="hero-description">
+            Require <code>id</code> to be a number
+          </div>
         </div>
         <a href="/validation/params" class="details-button">Details →</a>
       </div>
@@ -21,11 +23,13 @@
         <img src="/ParamsValidation002.png" alt="Refined params validation" loading="lazy" />
         <div class="zoom-hint">🔍 Click to zoom</div>
       </div>
-      <div class="hero-text">
-        <h1 class="hero-title">Refined Params Validation</h1>
-        <div class="hero-description">
-          Require <code>id</code> to be a positive integer.<br />
-          Use <code>TRefine</code> to specify JSON Schema constraints.
+      <div class="hero-content">
+        <div class="hero-text">
+          <h1 class="hero-title">Refined Params Validation</h1>
+          <div class="hero-description">
+            Require <code>id</code> to be a positive integer.<br />
+            Use <code>TRefine</code> to specify JSON Schema constraints.
+          </div>
         </div>
         <a href="/validation/params" class="details-button">Details →</a>
       </div>
@@ -34,11 +38,13 @@
     <div class="divider" />
 
     <div class="hero-block">
-      <div class="hero-text">
-        <h1 class="hero-title">Payload Validation</h1>
-        <div class="hero-description">
-          Use the first type argument to define the payload schema.
-          <code>TRefine</code> can be used to specify JSON Schema constraints.
+      <div class="hero-content">
+        <div class="hero-text">
+          <h1 class="hero-title">Payload Validation</h1>
+          <div class="hero-description">
+            Use the first type argument to define the payload schema.
+            <code>TRefine</code> can be used to specify JSON Schema constraints.
+          </div>
         </div>
         <a href="/validation/payload" class="details-button">Details →</a>
       </div>
@@ -55,13 +61,15 @@
         <img src="/ResponseValidation.png" alt="Response validation" loading="lazy" />
         <div class="zoom-hint">🔍 Click to zoom</div>
       </div>
-      <div class="hero-text">
-        <h1 class="hero-title">Response Validation</h1>
-        <div class="hero-description">
-          Use the second type argument to define the response schema.
-          <code>ctx.body</code> should match defined schema for validation to pass.
-          <div class="text-hint">
-            If no payload validation is needed, use <code>never</code> for the first argument.
+      <div class="hero-content">
+        <div class="hero-text">
+          <h1 class="hero-title">Response Validation</h1>
+          <div class="hero-description">
+            Use the second type argument to define the response schema.
+            <code>ctx.body</code> should match defined schema for validation to pass.
+            <div class="text-hint">
+              If no payload validation is needed, use <code>never</code> for the first argument.
+            </div>
           </div>
         </div>
         <a href="/validation/response" class="details-button">Details →</a>
@@ -71,12 +79,14 @@
     <div class="divider" />
 
     <div class="hero-block">
-      <div class="hero-text">
-        <h1 class="hero-title">Global Middleware</h1>
-        <div class="hero-description">
-          Define middleware to run on every route.
-          Use the <code>slot</code> option to allow routes to override this middleware later.
-          Use the <code>on</code> option to run middleware only for specific HTTP methods.
+      <div class="hero-content">
+        <div class="hero-text">
+          <h1 class="hero-title">Global Middleware</h1>
+          <div class="hero-description">
+            Define middleware to run on every route.
+            Use the <code>slot</code> option to allow routes to override this middleware later.
+            Use the <code>on</code> option to run middleware only for specific HTTP methods.
+          </div>
         </div>
         <a href="/api-server/use-middleware/slot-composition" class="details-button">Details →</a>
       </div>
@@ -93,13 +103,15 @@
         <img src="/OverrideGlobalMiddleware.png" alt="Override Middleware" loading="lazy" />
         <div class="zoom-hint">🔍 Click to zoom</div>
       </div>
-      <div class="hero-text">
-        <h1 class="hero-title">Override Middleware</h1>
-        <div class="hero-description">
-          Use the <code>slot</code> option in routes to override global middleware with the same slot name.
-          Eg., for file upload routes, use a form body parser instead of the default JSON parser.
-          <div class="text-hint">
-            Feel free to use any <code>Koa</code>-compatible middleware — not just those provided by <code>KappaJS</code>.
+      <div class="hero-content">
+        <div class="hero-text">
+          <h1 class="hero-title">Override Middleware</h1>
+          <div class="hero-description">
+            Use the <code>slot</code> option in routes to override global middleware with the same slot name.
+            Eg., for file upload routes, use a form body parser instead of the default JSON parser.
+            <div class="text-hint">
+              Feel free to use any <code>Koa</code>-compatible middleware — not just those provided by <code>KappaJS</code>.
+            </div>
           </div>
         </div>
         <a href="/api-server/use-middleware/slot-composition" class="details-button">Details →</a>
@@ -155,32 +167,32 @@ onUnmounted(() => {
 
 <style scoped>
 .hero-sections {
-  max-width: 1200px;
   margin: 0 auto;
   padding: 2rem 1rem;
 }
 
 .hero-block {
   display: flex;
+  flex-direction: column;
   align-items: flex-start;
-  gap: 3rem;
-  padding: 3rem 0;
+  gap: 2rem;
+  padding: 2rem 0;
 }
 
-@media (max-width: 1200px) {
-  .hero-block {
-    flex-direction: column !important;
-    gap: 2rem;
-    padding: 2rem 0;
-  }
-
-  .hero-text {
-    order: -1;
-  }
+.hero-content {
+  flex: 0 1 auto;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+  order: -1;
 }
 
 .hero-text {
-  flex: 0 1 auto;
+  flex: 1;
 }
 
 .hero-title {
@@ -192,17 +204,11 @@ onUnmounted(() => {
   white-space: nowrap;
 }
 
-@media (max-width: 768px) {
-  .hero-title {
-    font-size: 2rem;
-  }
-}
-
 .hero-description {
   font-size: 1.125rem;
   line-height: 1.6;
   color: var(--vp-c-text-2, #476582);
-  margin-bottom: 1.5rem;
+  margin-bottom: 0;
 }
 
 .details-button {
@@ -218,6 +224,7 @@ onUnmounted(() => {
   border-color: var(--vp-button-brand-border);
   color: var(--vp-button-brand-text);
   background-color: var(--vp-button-brand-bg);
+  flex-shrink: 0;
 }
 
 .details-button:hover {
@@ -315,5 +322,23 @@ onUnmounted(() => {
 .fade-enter-from,
 .fade-leave-to {
   opacity: 0;
+}
+
+/* Media Queries - Mobile First */
+@media (min-width: 961px) {
+  .hero-block {
+    flex-direction: row;
+    gap: 3rem;
+    padding: 3rem 0;
+  }
+
+  .hero-content {
+    flex-direction: column;
+    order: 0;
+  }
+
+  .hero-description {
+    margin-bottom: 1.5rem;
+  }
 }
 </style>
