@@ -36,11 +36,13 @@ function randomCongratMessage(): string {
     "🎉 Well done! You just created a new React route.",
     "🚀 Success! A fresh React route is ready to roll.",
     "🌟 Nice work! Another React route added to your app.",
-    "🧩 All set! Your React route has been scaffolded.",
-    "🔧 Scaffold complete! Your new React route is in place.",
     "⚡ Quick and easy! Your new React route is good to go.",
     "🥳 Congrats! Your app just leveled up with a new React route.",
-    "🔗 Done! A new React route has joined your project.",
+    "🧩 All set! A new React route has been scaffolded.",
+    "🔧 Scaffold complete! Your new React route is in place.",
+    "✨ Fantastic! Your new React route is ready.",
+    "🎯 Nailed it! A brand new React route just landed.",
+    "💫 Awesome! Another React route joins the lineup.",
   ];
   return messages[Math.floor(Math.random() * messages.length)];
 }

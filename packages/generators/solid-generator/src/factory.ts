@@ -39,9 +39,11 @@ function randomCongratMessage(): string {
     "🌟 Nice work! Another Solid route added to your app.",
     "🧩 All set! A new Solid route has been scaffolded.",
     "🔧 Scaffold complete! Your new Solid route is in place.",
-    "⚡ Quick and easy! Your new Solid route is good to go.",
-    "🥳 Congrats! Your app just leveled up with a new Solid route.",
-    "🔗 Done! A new Solid route has joined your project.",
+    "✅ Built! Your Solid route is scaffolded and ready.",
+    "✨ Fantastic! Your new Solid route is good to go.",
+    "🎯 Nailed it! A brand new Solid route just landed.",
+    "💫 Awesome! Another Solid route joins the party.",
+    "⚡ Lightning fast! A new Solid route created successfully.",
   ];
   return messages[Math.floor(Math.random() * messages.length)];
 }
