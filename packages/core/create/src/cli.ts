@@ -1,6 +1,5 @@
 #!/usr/bin/env -S node --enable-source-maps --no-warnings=ExperimentalWarning
 
-import { execFileSync } from "node:child_process";
 import { basename, resolve } from "node:path";
 import { parseArgs, styleText } from "node:util";
 
@@ -70,6 +69,8 @@ const viteBaseExists = await fsx.exists(resolve(cwd, "vite.base.ts"));
 const tsconfigExists = await fsx.exists(resolve(cwd, "tsconfig.json"));
 
 const NODE_VERSION = "22";
+
+const depsInstallCmds = ["npm install", "pnpm install", "yarn install"];
 
 if (viteBaseExists && tsconfigExists && packageJson?.distDir) {
   const { createSourceFolder } = await kappaFactory(resolve(cwd, ".."), {
@@ -155,11 +156,30 @@ if (viteBaseExists && tsconfigExists && packageJson?.distDir) {
     halt(error.message);
   }
 
-  try {
-    execFileSync("vite", ["build", folder.name], {
-      stdio: "inherit",
-    });
-  } catch (_error) {}
+  const sourceFolderHeadline: string =
+    {
+      solid: `${styleText("cyan", "SolidJS")} Source Folder`,
+      react: `${styleText("magenta", "React")} Source Folder`,
+    }[folder.framework.name as string] || "Source Folder";
+
+  for (const line of [
+    "",
+    `💫 Congrats! Your app just leveled up with a new ${sourceFolderHeadline}`,
+    "",
+
+    "Now install any new dependencies that may have been added:",
+    ...depsInstallCmds.map((cmd) => `$ ${styleText("blue", cmd)}`),
+    "",
+
+    "🚀 Once dependencies are installed, start the dev server by specifying your source folder name:",
+    `$ ${styleText("blue", `vite ${folder.name}`)}`,
+    "",
+
+    "📘 Docs: https://kappajs.dev",
+    "",
+  ]) {
+    console.log(`  ${line}`);
+  }
 } else {
   const { createApp } = await kappaFactory(cwd, {
     NODE_VERSION,
@@ -210,17 +230,15 @@ if (viteBaseExists && tsconfigExists && packageJson?.distDir) {
     `────────────────────────────────────────────`,
     "",
 
-    `Next steps`,
-    `» Navigate to your app dir:`,
-    `  ${styleText("blue", `cd ./${app.name}`)}`,
-    `» Install dependencies using your favorite package manager:`,
-
-    ...["npm install", "pnpm install", "yarn install"].map((cmd) =>
-      styleText("blue", `  ${cmd}`),
-    ),
+    `Next steps:`,
+    `➜ Navigate to your app dir:`,
+    `$ ${styleText("blue", `cd ./${app.name}`)}`,
+    "",
+    `➜ Install dependencies using your favorite package manager:`,
+    ...depsInstallCmds.map((cmd) => `$ ${styleText("blue", cmd)}`),
     "",
 
-    `🚀 Once dependencies installed, create a source folder by running \`${styleText("blue", "npx @kappajs/create")}\` inside app dir.`,
+    `🚀 Once dependencies are installed, create a source folder by running \`${styleText("blue", "npx @kappajs/create")}\` inside app dir.`,
 
     styleText(
       ["dim", "gray"],
@@ -228,7 +246,7 @@ if (viteBaseExists && tsconfigExists && packageJson?.distDir) {
     ),
     "",
 
-    "📘  Docs: https://kappajs.dev",
+    "📘 Docs: https://kappajs.dev",
     "",
   ]) {
     console.log(`  ${line}`);
