@@ -3,8 +3,15 @@ layout: home
 
 hero:
   name: KappaJS
-  text: "<span class=\"text-nowrap\">Structured Vite Template</span>"
-  tagline: Build type-safe full-stack apps.<br>Multiple source folders. Directory-based routing. Runtime validation. Generated fetch clients.<br>Any framework.
+  tagline: <div class="tagline-container">
+        <div>Structured Vite Template.</div>
+        <div>Build type-safe full-stack apps.</div>
+        <div>Multiple source folders.</div>
+        <div>Directory-based routing.</div>
+        <div>Runtime validation.</div>
+        <div>Generated fetch clients.</div>
+        <div>Any framework.</div>
+    </div>
   image:
     src: /Kappa.svg
   actions:
@@ -19,7 +26,7 @@ features:
   - icon: 🗂️
     title: Multiple Source Folders
     details: Organize distinct concerns — public site, customer app, admin dashboard — all connected in one Vite project.
-    link: /features/#🔹-multiple-source-folders-with-clear-separation
+    link: /features/
 
   - icon: 🛣️
     title: Directory-Based Routing
@@ -39,7 +46,7 @@ features:
   - icon: 🎨
     title: Framework Freedom
     details: Use any frontend framework — SolidJS, React, Vue, Svelte, or none.
-    link: /start/#🎨-choosing-your-frontend-framework
+    link: /start/
 
   - icon: 🔧
     title: Built on Proven Tools

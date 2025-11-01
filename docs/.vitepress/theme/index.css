@@ -39,3 +39,20 @@
   z-index: 1;   /* image above glow */
   max-width: 100%; /* stays responsive */
 }
+
+.VPHero .tagline-container {
+  display:flex;
+  flex-wrap:wrap;
+  gap: .2rem;
+  justify-content: center;
+}
+
+.VPHero .tagline-container > div {
+  white-space: nowrap;
+}
+
+@media (min-width: 960px) {
+  .VPHero .tagline-container {
+    justify-content: left;
+  }
+}
