@@ -1,7 +1,7 @@
 {
   "type": "module",
   "name": "@kappajs/dev",
-  "version": "0.0.0-alpha.0",
+  "version": "0.0.0",
   "cacheVersion": "001",
   "author": "Slee Woo",
   "license": "MIT",
