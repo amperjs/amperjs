@@ -3,15 +3,15 @@ layout: home
 
 hero:
   name: KappaJS
-  tagline: <div class="tagline-container">
-        <div>Structured Vite Template.</div>
-        <div>Build type-safe full-stack apps.</div>
-        <div>Multiple source folders.</div>
-        <div>Directory-based routing.</div>
-        <div>Runtime validation.</div>
-        <div>Generated fetch clients.</div>
-        <div>Any framework.</div>
-    </div>
+  tagline: <span class="tagline-container">
+        <span>Structured Vite Template.</span>
+        <span>Build type-safe full-stack apps.</span>
+        <span>Multiple source folders.</span>
+        <span>Directory-based routing.</span>
+        <span>Runtime validation.</span>
+        <span>Generated fetch clients.</span>
+        <span>Any framework.</span>
+    </span>
   image:
     src: /Kappa.svg
   actions:
