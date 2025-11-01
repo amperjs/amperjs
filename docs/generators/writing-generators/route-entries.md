@@ -1,6 +1,10 @@
 ---
-title: Writing Generators - Route Entries
-description: Writing Generators - Route Entries
+title: Route Entry Structure
+description: Understand RouteResolverEntry types including ApiRoute and PageRoute properties, PathToken structure, parameter metadata, and type information for generator development.
+head:
+  - - meta
+    - name: keywords
+      content: route entries, ApiRoute, PageRoute, PathToken, route parameters, type metadata, route structure, parameter schema
 ---
 
 ### RouteResolverEntry

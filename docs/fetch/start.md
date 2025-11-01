@@ -1,6 +1,10 @@
 ---
-title: Fetch Client - Getting Started
-description: Fetch Client - Getting Started
+title: Getting Started with Fetch Client
+description: Import and use KappaJS generated fetch clients with full TypeScript typing. Access routes directly or through a centralized map with automatic parameter and payload validation.
+head:
+  - - meta
+    - name: keywords
+      content: fetch client, typed fetch, api client, http methods, route parameters, payload typing, response types, typescript api client
 ---
 
 You can import fetch clients in two ways, depending on whether you want to access a specific route's client

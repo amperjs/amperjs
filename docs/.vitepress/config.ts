@@ -295,7 +295,7 @@ export default defineConfig({
               link: "/routing/intro",
             },
             {
-              text: "🏆 Rationale",
+              text: "💯 Rationale",
               link: "/routing/rationale",
             },
             {

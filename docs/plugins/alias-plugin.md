@@ -1,6 +1,10 @@
 ---
-title: Vite Plugins - Alias Plugin
-description: Vite Plugins - Alias Plugin
+title: Alias Plugin
+description: AliasPlugin automatically resolves TypeScript path mappings from tsconfig.json to filesystem locations, enabling imports like @front/{api} and @front/{fetch} to work correctly.
+head:
+  - - meta
+    - name: keywords
+      content: alias plugin, path mappings, tsconfig paths, typescript aliases, vite aliases, import resolution, virtual paths
 ---
 
 ### 🔀 The AliasPlugin

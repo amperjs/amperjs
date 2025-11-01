@@ -1,6 +1,10 @@
 ---
-title: Generators - React - Custom Templates
-description: Generators - React - Custom Templates
+title: Custom Page Templates
+description: Override default page templates for specific routes using glob patterns. Create specialized templates for landing pages, marketing content, and admin interfaces.
+head:
+  - - meta
+    - name: keywords
+      content: custom templates, page templates, glob patterns, route templates, template matching, landing pages, react templates
 ---
 
 The `React` generator allows you to override the default page template

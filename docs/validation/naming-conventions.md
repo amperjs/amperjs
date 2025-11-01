@@ -1,6 +1,10 @@
 ---
-title: Validation - Naming Conventions
-description: Validation - Naming Conventions
+title: Validation Naming Conventions
+description: Avoid TypeScript built-in type names like Event, Response, Request, Error when defining types for validation. Use suffix T or prefix T conventions to prevent runtime validation failures.
+head:
+  - - meta
+    - name: keywords
+      content: naming conventions, type naming, built-in types, naming conflicts, EventT, ResponseT, validation types, typescript conventions
 ---
 
 When defining types that will be used for runtime validation,

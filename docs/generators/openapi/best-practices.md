@@ -1,8 +1,11 @@
 ---
-title: Generators - OpenAPI - Best Practices
-description: Generators - OpenAPI - Best Practices
+title: OpenAPI Best Practices
+description: Best practices for OpenAPI documentation including file placement, info descriptions, multiple server environments, semantic versioning, and periodic spec review strategies.
+head:
+  - - meta
+    - name: keywords
+      content: openapi best practices
 ---
-
 
 ### 💡 OpenAPI Best Practices
 

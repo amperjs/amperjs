@@ -1,6 +1,10 @@
 ---
-title: Writing Generators - Incremental Updates
-description: Writing Generators - Incremental Updates
+title: Incremental Updates
+description: Optimize generator performance with incremental updates that regenerate only affected routes when files change using referencedFiles dependency tracking.
+head:
+  - - meta
+    - name: keywords
+      content: incremental generation, performance optimization, file dependencies, referencedFiles, change detection, selective regeneration
 ---
 
 For better performance, implement incremental updates

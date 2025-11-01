@@ -1,6 +1,10 @@
 ---
-title: Validation - Response
-description: Validation - Response
+title: Response Validation
+description: Validate API responses before sending to clients. Catch bugs where handlers return incomplete objects, wrong types, or unexpected structures with automatic runtime checking.
+head:
+  - - meta
+    - name: keywords
+      content: response validation, output validation, api contract, response typing, data integrity, runtime response check, ValidationError
 ---
 
 Just as you validate incoming request data, you can validate outgoing response data.

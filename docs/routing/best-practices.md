@@ -1,6 +1,10 @@
 ---
-title: Routing - Best Practices
-description: Routing - Best Practices
+title: Routing Best Practices
+description: Best practices for organizing routes including grouping related endpoints, colocalizing utilities, handling optional parameters, and maintaining stable URL structures.
+head:
+  - - meta
+    - name: keywords
+      content: route organization, best practices, folder structure, url stability, route colocalization, api contracts, seo friendly urls
 ---
 
 ### 💡 Route Organization Best Practices

@@ -1,5 +1,6 @@
 ---
 layout: home
+description: Structured Vite Template for building type-safe full-stack apps
 
 hero:
   name: KappaJS
@@ -31,17 +32,17 @@ features:
   - icon: 🛣️
     title: Directory-Based Routing
     details: Your folder structure defines your routes. Works identically for both API endpoints and client pages.
-    link: /routing/
+    link: /routing/intro
 
   - icon: 🛡️
     title: End-to-End Type Safety
     details: Write TypeScript types once, get runtime validation automatically. No separate schemas to maintain.
-    link: /validation/
+    link: /validation/intro
 
   - icon: 🔗
     title: Generated Fetch Clients + OpenAPI spec
     details: Fully-typed fetch clients with client-side validation. Invalid requests never reach your server.
-    link: /fetch/
+    link: /fetch/intro
 
   - icon: 🎨
     title: Framework Freedom
@@ -51,7 +52,7 @@ features:
   - icon: 🔧
     title: Built on Proven Tools
     details: Koa for APIs, Vite for frontend, TypeScript for safety. No proprietary abstractions.
-    link: /api-server/
+    link: /api-server/intro
 
 ---
 
@@ -83,7 +84,7 @@ All in one monorepo-like project, each with independent routing and configuratio
 **API / Pages separation** keeps server and client code from mixing.
 Your directory structure enforces boundaries that code review can't.
 
-📘 [Getting started](/start) · [Directory-based routing](/routing/)
+📘 [Getting started](/start) · [Directory-based routing](/routing/intro)
 
 ---
 
@@ -92,7 +93,7 @@ Your directory structure enforces boundaries that code review can't.
 At its core, `KappaJS` structures full-stack `Vite` development around a `Koa` application.
 
 🔹 `Vite` handles your frontend builds and organizational structure.<br>
-🔹 `Koa` powers your API runtime with [runtype validation](/validation/) and middleware composition.<br>
+🔹 `Koa` powers your API runtime with [runtype validation](/validation/intro) and middleware composition.<br>
 🔹 `KappaJS` is the structured template that brings them together.<br>
 
 ---
@@ -109,7 +110,7 @@ Define parameter types, payload structures, and response shapes once. `KappaJS` 
 
 Everything stays aligned because everything derives from the same source of truth.
 
-📘 [Type safety overview](/api-server/type-safety/params) · [Validation](/validation/) · [Payload validation](/validation/payload)
+📘 [Type safety overview](/api-server/type-safety/params) · [Validation](/validation/intro) · [Payload validation](/validation/payload)
 
 ---
 
@@ -121,7 +122,7 @@ what payload structure it accepts, and what response shape it returns.
 
 Invalid data is caught client-side, before network requests. Your API never processes malformed requests.
 
-📘 [Fetch clients intro](/fetch/) · [Getting started](/fetch/start) · [Client-side validation](/fetch/validation)
+📘 [Fetch clients intro](/fetch/intro) · [Getting started](/fetch/start) · [Client-side validation](/fetch/validation)
 
 ---
 
@@ -134,7 +135,7 @@ compose request handling precisely, maintain consistent patterns across routes.
 
 Development and production use the same structure — what you build locally is what deploys.
 
-📘 [Dev workflow](/api-server/development-workflow) · [Middleware patterns](/api-server/use-middleware/)
+📘 [Dev workflow](/api-server/development-workflow) · [Middleware patterns](/api-server/use-middleware/intro)
 
 ---
 
@@ -149,7 +150,7 @@ Enable features by adding generators to your Vite config:
 
 Each generator watches your code and updates artifacts as you develop.
 
-📘 [Generators overview](/generators/) · [SolidJS generator](/generators/solid/) · [OpenAPI generator](/generators/openapi/)
+📘 [SolidJS generator](/generators/solid/intro) · [OpenAPI generator](/generators/openapi/intro)
 
 ---
 

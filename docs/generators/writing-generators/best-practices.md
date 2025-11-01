@@ -1,6 +1,10 @@
 ---
-title: Writing Generators - Best Practices
-description: Writing Generators - Best Practices
+title: Generator Best Practices
+description: Best practices for writing KappaJS generators including handling incremental updates, using path resolvers, applying formatters, and documenting generator behavior.
+head:
+  - - meta
+    - name: keywords
+      content: generator best practices, code generation patterns, path resolution, formatters, incremental updates, template design, generator documentation
 ---
 
 ### 💡 Writing Generators Best Practices

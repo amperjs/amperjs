@@ -1,6 +1,10 @@
 ---
-title: API Server - Endpoints
-description: API Server - Endpoints
+title: API Server Endpoints
+description: Learn how to build KappaJS API endpoints using defineRoute with Koa middleware, handle multiple HTTP methods (GET, POST, PUT, DELETE), and implement error handling with ctx.throw and ctx.assert.
+head:
+  - - meta
+    - name: keywords
+      content: koa endpoints, defineRoute, http methods, koa context, ctx.throw, ctx.assert, rest api, koa error handling, middleware composition
 ---
 
 API endpoints in `KappaJS` are built using the `defineRoute` function,

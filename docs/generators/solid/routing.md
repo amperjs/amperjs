@@ -1,6 +1,10 @@
 ---
-title: Generators - SolidJS - Routing
-description: Generators - SolidJS - Routing
+title: SolidJS Routing
+description: Automatic route generation from pages directory with lazy-loaded components, preload functions, and SolidJS Router parameter syntax conversion from KappaJS directory structure.
+head:
+  - - meta
+    - name: keywords
+      content: solidjs routing, lazy loading, route parameters, preload function, dynamic imports, solidjs router config, route generation
 ---
 
 The SolidJS generator continuously watches your `pages` directory for components.

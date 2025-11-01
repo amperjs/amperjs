@@ -1,6 +1,10 @@
 ---
-title: Generators - SolidJS - Best Practices
-description: Generators - SolidJS - Best Practices
+title: SolidJS Best Practices
+description: Best practices for building SolidJS applications with KappaJS including preload patterns, resource management, type-safe navigation, and Suspense boundary strategies.
+head:
+  - - meta
+    - name: keywords
+      content: solidjs best practices, preload pattern, createResource, suspense boundaries, type-safe routing, data fetching patterns, solidjs development
 ---
 
 ### 💡 SolidJS Best Practices

@@ -1,6 +1,10 @@
 ---
-title: Generators - SolidJS - useResource Helper
-description: Generators - SolidJS - useResource Helper
+title: useResource Helper
+description: Generated useResource helper that wraps SolidJS createResource with type safety, automatic refetching on navigation, and integration with SolidJS Router query function.
+head:
+  - - meta
+    - name: keywords
+      content: solidjs resource, createResource, useResource, data fetching, reactive data, solidjs query, resource refetch, type-safe resource
 ---
 
 For common data fetching patterns,

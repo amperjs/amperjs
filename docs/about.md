@@ -1,6 +1,10 @@
 ---
-title: About
-description: About
+title: About KappaJS
+description: KappaJS is a structured Vite template for type-safe full-stack development. Organize multiple apps with automatic runtime validation, typed fetch clients, and OpenAPI generation.
+head:
+  - - meta
+    - name: keywords
+      content: vite template, full-stack typescript, type-safe api, runtime validation, openapi generator, multi-app vite, directory-based routing, koa api
 ---
 
 ### 🎯 What is KappaJS?

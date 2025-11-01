@@ -1,6 +1,10 @@
 ---
-title: API Server - Building for Production
-description: API Server - Building for Production
+title: Building for Production
+description: Build and deploy KappaJS applications to production with independent source folder builds, esbuild configuration, deployment strategies for containers, serverless, and edge runtimes.
+head:
+  - - meta
+    - name: keywords
+      content: vite build, production deployment, esbuild configuration, docker deployment, serverless api, edge runtime, nodejs deployment, api bundling, source maps
 ---
 
 Each source folder in `KappaJS` builds independently,

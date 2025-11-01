@@ -1,6 +1,10 @@
 ---
-title: API Server - Type Safety - Params
-description: API Server - Type Safety - Params
+title: Type Safety - Route Parameters
+description: Refine route parameter types in KappaJS with compile-time TypeScript checking and automatic runtime validation using defineRoute type arguments and TRefine constraints.
+head:
+  - - meta
+    - name: keywords
+      content: route parameters, type refinement, runtime validation, typed params, url parameters, parameter validation, TRefine, typescript routes
 ---
 
 `KappaJS` generates TypeScript types for your route parameters based on your directory structure.

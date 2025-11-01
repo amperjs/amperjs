@@ -1,6 +1,10 @@
 ---
-title: Generators - React - Routing
-description: Generators - React - Routing
+title: React Routing
+description: Automatic route generation from pages directory with lazy-loaded components, loader functions, and React Router parameter syntax conversion from KappaJS directory structure.
+head:
+  - - meta
+    - name: keywords
+      content: react routing, lazy loading, route parameters, loader function, dynamic imports, react router config, code splitting
 ---
 
 The React generator continuously watches your `pages` directory for components.

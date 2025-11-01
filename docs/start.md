@@ -1,6 +1,10 @@
 ---
 title: Getting Started
-description: Getting Started
+description: Get started with KappaJS in minutes. Create a new Vite project with multiple source folders, set up directory-based routing, and configure your frontend framework of choice.
+head:
+  - - meta
+    - name: keywords
+      content: vite setup, typescript project setup, create vite app, multi-folder vite, koa api setup, solidjs setup, react setup, typescript path mapping, vite dev server
 ---
 
 **Starting your `KappaJS` journey is a breeze!** ✨
@@ -158,7 +162,7 @@ For an API route, that's `api/index/index.ts`,
 and for a client route, it's `pages/index/index.ts`.
 
 This consistency means every route follows the same pattern.
-([Details](/routing/))
+([Details](/routing/intro))
 
 ## 🔀 Dynamic Parameters
 

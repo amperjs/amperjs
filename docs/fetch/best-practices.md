@@ -1,6 +1,10 @@
 ---
-title: Fetch Client - Best Practices
-description: Fetch Client - Best Practices
+title: Fetch Client Best Practices
+description: Best practices for using KappaJS fetch clients including module-level imports, form validation patterns, framework abstractions, and error handling strategies.
+head:
+  - - meta
+    - name: keywords
+      content: fetch best practices, form validation patterns, error handling, state management, loading states, validation optimization, api sync, tree shaking
 ---
 
 ### 💡 Best Practices for Using the Fetch Client

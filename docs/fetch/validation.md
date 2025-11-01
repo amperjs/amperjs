@@ -1,6 +1,10 @@
 ---
-title: Fetch Client - Validation
-description: Fetch Client - Validation
+title: Client-Side Validation
+description: Automatic client-side validation with TypeBox schemas before network requests. Use check, errors, errorMessage methods for form validation with performance optimization patterns.
+head:
+  - - meta
+    - name: keywords
+      content: client validation, form validation, typebox, validation schemas, check method, validation errors, nested field validation, performance optimization, real-time validation
 ---
 
 When you enable validation by adding a generator like the TypeBox generator,

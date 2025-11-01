@@ -1,6 +1,10 @@
 ---
-title: Writing Generators - Path Resolver
-description: Writing Generators - Path Resolver
+title: Path Resolver Utility
+description: Use pathResolver for consistent path construction across KappaJS directory structure including source folders, lib directories, and root locations with type-safe directory names.
+head:
+  - - meta
+    - name: keywords
+      content: path resolver, directory structure, apiLibDir, pagesLibDir, fetchLibDir, path construction, file paths, typescript paths
 ---
 
 The `pathResolver` utility provides consistent path construction

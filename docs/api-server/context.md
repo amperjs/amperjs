@@ -1,6 +1,10 @@
 ---
-title: API Server - Context Object
-description: API Server - Context Object
+title: Enhanced Context Object
+description: Learn about KappaJS's enhanced Koa context with ctx.payload for normalized request data and ctx.typedParams for type-safe route parameters with full TypeScript inference.
+head:
+  - - meta
+    - name: keywords
+      content: koa context, ctx.payload, ctx.typedParams, typed parameters, request body parsing, query parameters, koa middleware, typescript context
 ---
 
 ### 🔧 The Enhanced Context Object

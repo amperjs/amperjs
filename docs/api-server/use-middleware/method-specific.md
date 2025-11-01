@@ -1,6 +1,10 @@
 ---
-title: API Server - use Middleware - Method-Specific Middleware
-description: API Server - use Middleware - Method-Specific Middleware
+title: Method-Specific Middleware
+description: Configure middleware to run only for specific HTTP methods using the on option. Apply authentication to POST/PUT/DELETE while keeping GET requests public.
+head:
+  - - meta
+    - name: keywords
+      content: method-specific middleware, http methods, conditional middleware, authentication middleware, koa middleware options, targeted middleware
 ---
 
 Often you want middleware to run only for specific HTTP methods.

@@ -1,6 +1,10 @@
 ---
-title: Generators - SolidJS - Customization
-description: Generators - SolidJS - Customization
+title: Customizing Generated Files
+description: Customize generated SolidJS application files including App.tsx, router.tsx, Link component, and entry point. Files are generated once and persist through updates.
+head:
+  - - meta
+    - name: keywords
+      content: solidjs customization, app customization, custom router, error boundaries, custom components, generator customization
 ---
 
 The generated files — `App.tsx`, `router.tsx`, `index.tsx`, and `components/Link.tsx`—

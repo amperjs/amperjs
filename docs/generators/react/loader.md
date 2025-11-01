@@ -1,6 +1,10 @@
 ---
-title: Generators - React - Loader
-description: Generators - React - Loader
+title: Loader Pattern
+description: Integrate data fetching with React Router loaders. Export loader functions that work with useLoaderData for efficient data fetching before component rendering.
+head:
+  - - meta
+    - name: keywords
+      content: react loader, data fetching, useLoaderData, route data, react router data, preloading, loader function, async data
 ---
 
 The loader pattern integrates beautifully with React Router's data fetching.

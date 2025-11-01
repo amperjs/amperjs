@@ -1,6 +1,10 @@
 ---
-title: Vite Plugins - Dev Plugin
-description: Vite Plugins - Dev Plugin
+title: Dev Plugin
+description: DevPlugin coordinates code generation with configurable generators for API routes, fetch clients, validation, and framework integration, plus formatters for code style consistency.
+head:
+  - - meta
+    - name: keywords
+      content: dev plugin, code generators, api generator, fetch generator, typebox generator, biome formatter, code formatting, vite generators
 ---
 
 ### ⚙️ The DevPlugin

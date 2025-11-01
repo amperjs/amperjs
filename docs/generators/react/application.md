@@ -1,6 +1,10 @@
 ---
-title: Generators - React - Application
-description: Generators - React - Application
+title: React Application Structure
+description: Generated React application files including App.tsx with Suspense boundaries, router.tsx with React Router configuration, and index.tsx entry point with StrictMode.
+head:
+  - - meta
+    - name: keywords
+      content: react app structure, suspense boundary, react router config, app component, createRoot, react entry point, vite react
 ---
 
 React generator automates the project setup by creating the foundational files needed for routing and application structure.

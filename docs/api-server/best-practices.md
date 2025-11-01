@@ -1,6 +1,10 @@
 ---
-title: API Server - Best Practices
-description: API Server - Best Practices
+title: API Server Best Practices
+description: Best practices for organizing KappaJS API endpoints including handler responsibilities, middleware slots, type declarations, validation patterns, and middleware ordering strategies.
+head:
+  - - meta
+    - name: keywords
+      content: koa middleware, api organization, endpoint best practices, typescript api patterns, middleware ordering, DRY principles, koa context typing
 ---
 
 ### 💡 Best Practices for Endpoint Organization

@@ -1,6 +1,10 @@
 ---
-title: Generators - OpenAPI - Configuration
-description: Generators - OpenAPI - Configuration
+title: OpenAPI Configuration
+description: Configure OpenAPI generator with required options including outfile, version, API info metadata, server definitions, contact information, and license details for comprehensive API documentation.
+head:
+  - - meta
+    - name: keywords
+      content: openapi config, api metadata, server configuration, api info, contact info, license info, semantic versioning, openapi options
 ---
 
 OpenAPI generator accepts the following configuration options:

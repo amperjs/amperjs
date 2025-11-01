@@ -1,6 +1,10 @@
 ---
-title: Validation - Skip
-description: Validation - Skip
+title: Skip Runtime Validation
+description: Use @skip-validation JSDoc comment to keep TypeScript type checking without runtime validation for gradual adoption, performance optimization, or trusted internal endpoints.
+head:
+  - - meta
+    - name: keywords
+      content: skip validation, opt-out validation, jsdoc comments, gradual adoption, performance optimization, type checking only
 ---
 
 Sometimes you might want TypeScript type checking without runtime validation.

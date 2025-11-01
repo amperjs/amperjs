@@ -1,6 +1,10 @@
 ---
-title: Writing Generators - User Options
-description: Writing Generators - User Options
+title: Generator User Options
+description: Make generators configurable by defining options types that users can pass through Vite config for custom output paths, formats, and behavior.
+head:
+  - - meta
+    - name: keywords
+      content: generator options, plugin configuration, user config, generator settings, configurable generators, vite config
 ---
 
 To make your generator configurable, define an options type

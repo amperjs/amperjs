@@ -1,6 +1,10 @@
 ---
-title: Routing - Rationale
-description: Routing - Rationale
+title: Directory vs File-Based Routing
+description: Understanding why directory-based routing scales better than file-based routing for organizing large applications with clear navigation, colocalization, and visual hierarchy.
+head:
+  - - meta
+    - name: keywords
+      content: directory routing benefits, file-based routing, routing comparison, scalability, code organization, folder structure, routing patterns
 ---
 
 At first glance, directory-based routing might seem more verbose compared to file-based routing systems. You might wonder why `products/[id]/index.json/index.ts` is better than simply `products/[id]/index.json.ts`. The answer becomes clear as your application scales.

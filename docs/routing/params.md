@@ -1,6 +1,10 @@
 ---
-title: Routing - Dynamic Route Parameters
-description: Routing - Dynamic Route Parameters
+title: Dynamic Route Parameters
+description: Handle dynamic URL segments with required [id], optional [[id]], and rest [...path] parameters. SolidStart-inspired syntax that works identically for API routes and client pages.
+head:
+  - - meta
+    - name: keywords
+      content: route parameters, dynamic routes, url parameters, required parameters, optional parameters, rest parameters, bracket notation, path segments
 ---
 
 Real applications need to handle dynamic segments in URLs — user IDs, post slugs, category names, and so on.

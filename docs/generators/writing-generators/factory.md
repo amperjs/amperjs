@@ -1,6 +1,10 @@
 ---
-title: Writing Generators - Factory
-description: Writing Generators - Factory
+title: Generator Factory Function
+description: Initialize generators with the factory function that receives plugin options and returns a watch handler for processing route entries and generating files.
+head:
+  - - meta
+    - name: keywords
+      content: generator factory, plugin options, watch handler, code generation, formatters, generator initialization, route processing
 ---
 
 The factory function initializes your generator and returns a watch handler:

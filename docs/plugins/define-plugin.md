@@ -1,6 +1,10 @@
 ---
-title: Vite Plugins - Define Plugin
-description: Vite Plugins - Define Plugin
+title: Define Plugin
+description: DefinePlugin provides fine-grained control over environment variables exposed to client code. Explicitly specify variables from process.env or .env files for security and clarity.
+head:
+  - - meta
+    - name: keywords
+      content: define plugin, environment variables, env vars, vite env, process.env, dotenv, client environment
 ---
 
 ### 🔧 The DefinePlugin

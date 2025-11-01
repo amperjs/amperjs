@@ -1,6 +1,10 @@
 ---
-title: API Server - Type Safety - Payload / Response
-description: API Server - Type Safety - Payload / Response
+title: Type Safety - Payload and Response
+description: Type request payloads and response bodies in KappaJS API handlers with automatic runtime validation. Ensure handlers receive expected data and return properly structured responses.
+head:
+  - - meta
+    - name: keywords
+      content: request validation, response typing, payload validation, ctx.body typing, api contract, runtime validation, typescript validation, type-safe api
 ---
 
 Beyond route parameters and context properties,

@@ -1,6 +1,10 @@
 ---
-title: Validation - Error Handler
-description: Validation - Error Handler
+title: Validation Error Handler
+description: Handle ValidationError instances in core/api/error-handler.ts with detailed error information including scope, error messages, field paths, and structured ValidationErrorEntry data.
+head:
+  - - meta
+    - name: keywords
+      content: error handling, ValidationError, error messages, validation scope, error logging, field errors, structured errors, error response
 ---
 
 When route parameters, request payloads, or response data don't match the expected schema,

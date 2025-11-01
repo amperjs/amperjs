@@ -1,6 +1,10 @@
 ---
-title: Generators - OpenAPI - Generated Spec
-description: Generators - OpenAPI - Generated Spec
+title: Generated OpenAPI Specification
+description: Complete OpenAPI 3.1 spec with paths, schemas, parameters, request bodies, responses, and validation rules. Automatic regeneration on route changes with Swagger UI and Redoc integration.
+head:
+  - - meta
+    - name: keywords
+      content: openapi spec, api paths, json schema, request bodies, response schemas, swagger ui, redoc, api documentation tools
 ---
 
 The generator produces a complete OpenAPI 3.1 specification that includes:

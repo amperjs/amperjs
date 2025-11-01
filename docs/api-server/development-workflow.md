@@ -1,6 +1,10 @@
 ---
-title: API Server - Development Workflow
-description: API Server - Development Workflow
+title: Development Workflow
+description: Run multiple KappaJS source folders independently with separate dev servers, automatic API hot-reload, custom middleware routing, and resource cleanup with teardown handlers.
+head:
+  - - meta
+    - name: keywords
+      content: vite dev server, hot reload, esbuild, rolldown, api development, multiple ports, teardown handler, development middleware, file watching
 ---
 
 Each source folder in `KappaJS` is a **standalone entity** with its own dev server, port, and configuration.

@@ -1,6 +1,10 @@
 ---
-title: Writing Generators - Example
-description: Writing Generators - Example
+title: Generator Example
+description: Simplified fetch generator example demonstrating generator structure, factory implementation, incremental updates, and template rendering with formatters.
+head:
+  - - meta
+    - name: keywords
+      content: generator example, fetch generator, code generation example, template rendering, incremental generation, generator patterns
 ---
 
 ### Fetch Generator as Example

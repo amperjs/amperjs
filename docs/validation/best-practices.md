@@ -1,6 +1,10 @@
 ---
-title: Validation - Best Practices
-description: Validation - Best Practices
+title: Validation Best Practices
+description: Best practices for KappaJS validation including centralized domain types, liberal use of TRefine, valid-state-only types, response validation for external data, and consistent error handling.
+head:
+  - - meta
+    - name: keywords
+      content: validation best practices, domain types, TRefine usage, type design, response validation, error handling, validation strategy
 ---
 
 ### 💡 Best Practices for Validation

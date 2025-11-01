@@ -1,6 +1,10 @@
 ---
-title: API Server - Type Safety - State/Context
-description: API Server - Type Safety - State/Context
+title: Type Safety - State and Context
+description: Add route-specific TypeScript types for ctx.state and context properties in KappaJS using defineRoute generic type arguments for endpoints with unique middleware requirements.
+head:
+  - - meta
+    - name: keywords
+      content: typescript context, koa state typing, route-specific types, context properties, type arguments, middleware types, DefaultContext
 ---
 
 Beyond parameter types, you might need to provide additional type information

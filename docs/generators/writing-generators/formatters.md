@@ -1,6 +1,10 @@
 ---
-title: Writing Generators - Formatters
-description: Writing Generators - Formatters
+title: Code Formatters
+description: Apply code formatters to generated files with renderToFile or applyFormatters to ensure generated code matches project style conventions like Biome or Prettier.
+head:
+  - - meta
+    - name: keywords
+      content: code formatting, biome formatter, prettier, generated code style, renderToFile, applyFormatters, code style consistency
 ---
 
 Always pass formatters when rendering files

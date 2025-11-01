@@ -1,6 +1,10 @@
 ---
-title: Fetch Client - Integration
-description: Fetch Client - Integration
+title: Fetch Client Integration
+description: Integrate KappaJS fetch clients with SolidJS createResource, React hooks, and custom state management patterns. Type safety flows through all framework abstractions.
+head:
+  - - meta
+    - name: keywords
+      content: solidjs integration, react hooks, createResource, custom hooks, fetch client integration, state management, promise handling, typescript hooks
 ---
 
 The generated fetch client integrates naturally with modern frontend patterns.

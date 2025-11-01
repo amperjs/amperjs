@@ -1,6 +1,10 @@
 ---
-title: Generators - SolidJS - Application
-description: Generators - SolidJS - Application
+title: SolidJS Application Structure
+description: Generated SolidJS application files including App.tsx with Suspense boundaries, router.tsx with route configuration, and index.tsx entry point for rendering to the DOM.
+head:
+  - - meta
+    - name: keywords
+      content: solidjs app structure, suspense boundary, solidjs router, app component, entry point, solidjs render, vite entry
 ---
 
 To establish a robust foundation, Solid generator produces a suite of core files.

@@ -1,6 +1,10 @@
 ---
-title: Vite Plugins - Best Practices
-description: Vite Plugins - Best Practices
+title: Plugin Best Practices
+description: Best practices for KappaJS plugins including base configuration organization, explicit environment variables, consistent formatters, and incremental generator adoption.
+head:
+  - - meta
+    - name: keywords
+      content: plugin best practices, vite config, generator setup, formatter consistency, environment security, incremental adoption
 ---
 
 ### 💡 Plugins Best Practices

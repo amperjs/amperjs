@@ -1,6 +1,10 @@
 ---
-title: Routing - Generated Content
-description: Routing - Generated Content
+title: Auto-Generated Route Content
+description: KappaJS automatically generates boilerplate code for new routes with context-aware templates for API endpoints using defineRoute and framework-specific page components.
+head:
+  - - meta
+    - name: keywords
+      content: code generation, route templates, defineRoute, auto-generated routes, boilerplate code, koa context, page components
 ---
 
 When you create a new route file, `KappaJS` detects it and instantly generates appropriate boilerplate code.

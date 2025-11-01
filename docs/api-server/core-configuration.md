@@ -1,6 +1,10 @@
 ---
-title: API Server - Core Configuration Files
-description: API Server - Core Configuration Files
+title: Core Configuration Files
+description: Configure global middleware in core/api/use.ts and extend Koa context and state types in core/api/env.d.ts for consistent TypeScript typing across all API endpoints.
+head:
+  - - meta
+    - name: keywords
+      content: global middleware, koa configuration, typescript declarations, DefaultContext, DefaultState, body parser, cors middleware, request logging
 ---
 
 `KappaJS` uses several core configuration files that affect all API endpoints.

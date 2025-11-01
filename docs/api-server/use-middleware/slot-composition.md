@@ -1,6 +1,10 @@
 ---
-title: API Server - use Middleware - Slot Composition
-description: API Server - use Middleware - Slot Composition
+title: Slot Composition
+description: Override global middleware using KappaJS's slot system. Replace default body parsers, customize payload construction, and use multer for file uploads with fine-grained middleware control.
+head:
+  - - meta
+    - name: keywords
+      content: middleware slots, bodyparser override, form data, file upload, multer, middleware composition, custom parsers, middleware replacement
 ---
 
 `KappaJS`'s slot system gives you fine-grained control over middleware composition and override behavior.

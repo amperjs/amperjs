@@ -1,6 +1,10 @@
 ---
-title: Validation - Validating Payloads
-description: Validation - Validating Payloads
+title: Payload Validation
+description: Validate request payloads with inline TypeScript types or imported type definitions. Support for nested structures, conditional validation, generics, and complex domain models with TRefine constraints.
+head:
+  - - meta
+    - name: keywords
+      content: payload validation, request validation, nested types, conditional validation, union types, generic types, json validation, form validation, TRefine
 ---
 
 Request payloads are the data your API receives from clients —

@@ -1,6 +1,10 @@
 ---
-title: Generators - React - Customization
-description: Generators - React - Customization
+title: Customizing Generated Files
+description: Customize generated React application files including App.tsx, router.tsx, Link component, and entry point. Files are generated once and persist through updates.
+head:
+  - - meta
+    - name: keywords
+      content: react customization, app customization, custom router, error boundaries, custom components, generator customization
 ---
 
 The core generated files — including `App.tsx`, `router.tsx`, `index.tsx`, and `components/Link.tsx` —

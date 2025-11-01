@@ -1,6 +1,10 @@
 ---
 title: Features
-description: Features
+description: Explore KappaJS features including multiple source folders, directory-based routing, end-to-end type safety, generated fetch clients, OpenAPI specs, and framework freedom for React, Solid, Vue, and Svelte.
+head:
+  - - meta
+    - name: keywords
+      content: typescript validation, vite multi-app, type-safe routing, fetch client generator, openapi 3.1, solidjs vite, react vite, koa middleware, runtime type checking, typescript api
 ---
 
 `KappaJS` brings type-safe structure to full-stack development —
@@ -77,7 +81,7 @@ pages/
 - Same pattern for API and pages — learn once, use everywhere
 - URL structure matches code structure — easy to navigate
 
-[Read more: Directory-Based Routing](/routing/)
+[Read more: Directory-Based Routing](/routing/intro)
 
 ---
 
@@ -150,7 +154,7 @@ defineRoute<[TRefine<number, { minimum: 1 }>]>(({ GET }) => [
 - Compile-time and runtime safety from the same definitions
 - Changes to types automatically update all validation
 
-[Read more: Validation](/validation/)
+[Read more: Validation](/validation/intro)
 
 ---
 
@@ -212,7 +216,7 @@ await useFetch.POST([invalidId], invalidPayload);
 - OpenAPI docs stay current automatically
 - Type safety flows through your entire stack
 
-[Read more: Fetch Clients](/fetch/) · [OpenAPI Generator](/generators/openapi/)
+[Read more: Fetch Clients](/fetch/intro) · [OpenAPI Generator](/generators/openapi/intro)
 
 ---
 
@@ -259,7 +263,7 @@ export default {
 - Generators are optional — use what you need
 - Framework ecosystem compatibility
 
-[Read more: Framework Setup](/start#🎨-choosing-your-frontend-framework) · [SolidJS Generator](/generators/solid/)
+[Read more: Framework Setup](/start) · [SolidJS Generator](/generators/solid/intro)
 
 ---
 
@@ -301,7 +305,7 @@ When the framework fades, your knowledge doesn't transfer.
 
 You're not learning "the `KappaJS` way" — you're learning industry-standard tools with good organizational structure.
 
-[Read more: API Server](/api-server/)
+[Read more: API Server](/api-server/intro)
 
 ---
 

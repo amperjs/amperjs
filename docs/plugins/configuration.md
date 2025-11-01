@@ -1,6 +1,10 @@
 ---
-title: Vite Plugins - Configuration
-description: Vite Plugins - Configuration
+title: Plugin Configuration
+description: Configure KappaJS plugins through vite.base.ts for shared settings and per-source-folder vite.config.ts for specific generators, formatters, ports, and base URLs.
+head:
+  - - meta
+    - name: keywords
+      content: vite configuration, plugin config, vite.base.ts, source folder config, generators config, formatters config, multi-folder setup
 ---
 
 When you bootstrap an `KappaJS` project,

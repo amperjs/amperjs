@@ -1,6 +1,10 @@
 ---
-title: Generators - SolidJS - Preload
-description: Generators - SolidJS - Preload
+title: Preload Pattern
+description: Preload route data with SolidJS Router integration. Export preload functions that work with createAsync for efficient data fetching before component rendering.
+head:
+  - - meta
+    - name: keywords
+      content: solidjs preload, data fetching, createAsync, route data, prefetching, solidjs router data, async data loading
 ---
 
 The preload pattern integrates beautifully with `KappaJS`'s generated fetch clients.

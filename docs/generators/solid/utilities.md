@@ -1,6 +1,10 @@
 ---
-title: Generators - SolidJS - Utilities
-description: Generators - SolidJS - Utilities
+title: SolidJS Utilities
+description: Framework-specific utilities for unwrapping SolidJS stores, handling reactive data in fetch clients, and query parameter serialization for API requests.
+head:
+  - - meta
+    - name: keywords
+      content: solidjs store, unwrap utility, reactive data, solidjs stores, query parameters, fetch client integration, MaybeWrapped type
 ---
 
 `KappaJS`'s fetch clients need to work with framework-specific data structures,

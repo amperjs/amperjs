@@ -1,6 +1,10 @@
 ---
-title: Validation - Understanding Performance
-description: Validation - Understanding Performance
+title: Validation Performance
+description: Understand KappaJS validation performance with TypeScript compiler analysis, worker thread generation, intelligent caching, and background processing that doesn't impact development workflow.
+head:
+  - - meta
+    - name: keywords
+      content: validation performance, type analysis, worker threads, caching, generation time, typescript compiler, background processing, ts-morph, tsuit
 ---
 
 `KappaJS`'s type-to-schema conversion uses TypeScript's compiler API

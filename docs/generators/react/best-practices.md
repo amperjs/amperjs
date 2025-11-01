@@ -1,6 +1,10 @@
 ---
-title: Generators - React - Best Practices
-description: Generators - React - Best Practices
+title: React Best Practices
+description: Best practices for building React applications with KappaJS including loader patterns, React Query integration, type-safe navigation, and Suspense boundary strategies.
+head:
+  - - meta
+    - name: keywords
+      content: react best practices, loader pattern, react query, suspense boundaries, type-safe routing, data fetching patterns, react development
 ---
 
 ### 💡 React Best Practices

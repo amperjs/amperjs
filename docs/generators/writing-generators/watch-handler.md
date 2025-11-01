@@ -1,6 +1,10 @@
 ---
-title: Writing Generators - Watch Handler
-description: Writing Generators - Watch Handler
+title: Watch Handler Implementation
+description: Implement watch handlers that process route changes with initial generation for all routes and incremental updates for create, update, and delete events.
+head:
+  - - meta
+    - name: keywords
+      content: watch handler, file watching, incremental updates, route entries, ApiRoute, PageRoute, file changes, event handling
 ---
 
 The watch handler is called whenever route files change.

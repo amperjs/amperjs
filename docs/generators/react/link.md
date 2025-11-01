@@ -1,6 +1,10 @@
 ---
-title: Generators - React - Link
-description: Generators - React - Link
+title: Type-Safe Link Component
+description: Type-safe navigation with generated Link component that wraps React Router's Link. Autocomplete for routes, compile-time parameter validation, and query string handling.
+head:
+  - - meta
+    - name: keywords
+      content: react link, type-safe navigation, route parameters, LinkProps, typed routing, query parameters, react router navigation
 ---
 
 The generator creates a `Link` component that wraps React Router's `Link` component

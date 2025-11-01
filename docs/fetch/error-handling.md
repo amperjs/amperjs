@@ -1,6 +1,10 @@
 ---
-title: Fetch Client - Error Handling
-description: Fetch Client - Error Handling
+title: Fetch Client Error Handling
+description: Handle fetch request errors with try-catch blocks, distinguish ValidationError from network errors, and implement defense in depth with client-side and server-side validation.
+head:
+  - - meta
+    - name: keywords
+      content: fetch error handling, ValidationError, client-side validation, error catching, try-catch, network errors, validation feedback, defensive programming
 ---
 
 When fetch requests fail, the client throws errors

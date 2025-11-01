@@ -1,6 +1,10 @@
 ---
-title: Validation - Parameters
-description: Validation - Parameters
+title: Parameter Validation
+description: Validate route parameters at runtime with type refinements using defineRoute type arguments. Convert string URL parameters to validated numbers, integers, or constrained values with TRefine.
+head:
+  - - meta
+    - name: keywords
+      content: parameter validation, route parameters, type refinement, url validation, numeric validation, TRefine, typed parameters, runtime param validation
 ---
 
 Route parameters are values extracted from the URL path itself,
