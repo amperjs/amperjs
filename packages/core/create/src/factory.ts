@@ -77,13 +77,6 @@ export default async (
   ) => {
     const packageJson = {
       type: "module",
-      devEngines: {
-        runtime: {
-          name: "node",
-          version: `^${env.NODE_VERSION}`,
-          onFail: "download",
-        },
-      },
       distDir: app.distDir,
       dependencies: {
         "@kappajs/api": "^0.0.0",
